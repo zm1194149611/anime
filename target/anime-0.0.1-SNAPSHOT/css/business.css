@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+ul{
+    padding-top: 20px;
+    width: 94%;
+    margin-left: 6%;
+    list-style: none;
+}
+ul li{
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+.right{
+    display: inline-block;
+    float: right;
+    color: red;
+    margin-right: 5%;
+    visibility: hidden;
+}
+.business{
+    display: inline-block;
+    float: left;
+}
+@media (max-height: 600px) {
+    ul li{
+        height: 38px;
+    }
+    ul li span{
+        line-height: 38px;
+    }
+    .business {
+        font-size: 14px;
+    }
+}
+@media (min-height: 600px) {
+    ul li{
+        height: 48px;
+    }
+    ul li span{
+        line-height: 48px;
+    }
+    .business {
+        font-size: 16px;
+    }
+}

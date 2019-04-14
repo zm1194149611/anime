@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ApplyRecommendDao">
+  <resultMap id="applyRecommend" type="applyRecommend">
+    <result column="id"  property="id" />
+    <result column="anchor_user_id"  property="anchorUserId" />
+    <result column="apply_count"  property="applyCount" />
+    <result column="refuse_reason"  property="refuseReason" />
+    <result column="handle_status"  property="handleStatus" />
+    <result column="update_time"  property="updateTime" />
+    <result column="create_time"  property="createTime" />
+  </resultMap>
+  
+	<sql id="keyColumns">ID, anchor_user_id, apply_count,refuse_reason,handle_status,update_time,create_time</sql>
+	<sql id="valueColumns">#{id}, #{anchorUserId}, #{applyCount},#{refuseReason},#{handleStatus},#{updateTime},#{createTime}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="applyRecommend" flushCache="true">
+		INSERT INTO apply_recommend(<include refid="keyColumns" />)
+		VALUES (<include refid="valueColumns" />)
+	</insert>
+	
+	<select id="getById" parameterType="long" resultMap="applyRecommend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM apply_recommend WHERE ID=#{id}
+	</select>
+	
+	<select id="getByAnchorUserId" parameterType="long" resultMap="applyRecommend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM apply_recommend WHERE anchor_user_id=#{anchorUserId}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM apply_recommend WHERE ID=#{id}
+	</delete>
+	
+	<update id="update" parameterType="account" flushCache="true">
+		UPDATE	apply_recommend T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="applyCount != null">T.apply_count=#{applyCount},</if>
+			<if test="refuseReason != null">T.refuse_reason=#{refuseReason},</if>
+			<if test="handleStatus != null">T.handle_status=#{handleStatus},</if>
+			T.update_time=#{updateTime},T.create_time=#{createTime}
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+	<select id="getAuditPassCount" resultType="long">
+		select count(1) from apply_recommend a where a.handle_status=1
+	</select>
+</mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.MachineMessageConfigDao">
+	<resultMap id="machineMessageConfig" type="machineMessageConfig">
+		<result column="id" property="id" />
+		<result column="push_period" property="pushPeriod" />
+		<result column="message_text" property="messageText" />
+		<result column="message_url" property="messageUrl" />
+		<result column="create_date" property="createDate" />
+		<result column="msg_type" property="msgType" />
+		
+		<result column="delay_second" property="delaySecond" />
+		<result column="width" property="width" />
+		<result column="height" property="height" />
+		<result column="second" property="second" />
+		<result column="size" property="size" />
+		<result column="ext" property="ext" />
+		<result column="md5" property="md5" />
+		
+	</resultMap>
+
+
+	<sql id="keyColumns">ID, PUSH_PERIOD,MESSAGE_TEXT,MESSAGE_URL,CREATE_DATE,MSG_TYPE,delay_second,width,height,second,size,`ext`,md5</sql>
+	<sql id="valueColumns">#{id},#{pushPeriod},#{messageText},#{messageUrl},#{createDate},#{msgType},#{delaySecond},#{width},#{height},#{second},#{size},#{ext},#{md5}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="machineMessageConfig" flushCache="true">
+		INSERT INTO MACHINE_MESSAGE_CONFIG(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="machineMessageConfig"
+		flushCache="true">
+		UPDATE MACHINE_MESSAGE_CONFIG T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="pushPeriod != null">T.PUSH_PERIOD=#{pushPeriod},</if>
+			<if test="messageText != null">T.MESSAGE_TEXT=#{messageText},</if>
+			<if test="messageUrl != null">T.MESSAGE_URL=#{messageUrl},</if>
+			<if test="msgType != null">T.msg_type=#{msgType},</if>
+			<if test="delaySecond != null">T.delay_second=#{delaySecond},</if>
+			<if test="width != null">T.width=#{width},</if>
+			<if test="height != null">T.height=#{height},</if>
+			<if test="second != null">T.second=#{second},</if>
+			<if test="size != null">T.size=#{size},</if>
+			<if test="ext != null">T.ext=#{ext},</if>
+			<if test="md5 != null">T.md5=#{md5},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+
+	<select id="find" parameterType="machineMessageConfig" resultMap="machineMessageConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_MESSAGE_CONFIG  
+		<trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides=",">
+			<if test="pushPeriod != null">AND PUSH_PERIOD=#{pushPeriod}</if>
+			<if test="msgType != null">AND msg_type=#{msgType}</if>
+		</trim>
+	</select>
+	
+	
+	<select id="getById" parameterType="long" resultMap="machineMessageConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_MESSAGE_CONFIG WHERE ID=#{id}
+	</select>
+
+
+
+	<select id="getByIds" parameterType="long" resultMap="machineMessageConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_MESSAGE_CONFIG WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getAll" parameterType="long" resultMap="machineMessageConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_MESSAGE_CONFIG
+	</select>
+
+	<delete id="delete">
+		DELETE FROM MACHINE_MESSAGE_CONFIG WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+ 
+
+</mapper>

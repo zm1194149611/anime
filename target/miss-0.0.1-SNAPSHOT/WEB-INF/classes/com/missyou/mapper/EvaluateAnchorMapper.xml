@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.EvaluateAnchorDao">
+  <resultMap id="evaluateAnchor" type="evaluateAnchor">
+    <result column="id"  property="id" />
+    <result column="anchor_userid"  property="anchorUserid" />
+    <result column="user_id"  property="userId" />
+    <result column="evaluate_title"  property="evaluateTitle" />
+    <result column="create_date"  property="createDate" />
+    <result column="status"  property="status" />
+    <result column="evaluate_star"  property="evaluateStar" />
+    <result column="recharge_id"  property="rechargeId" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, anchor_userid,user_id, evaluate_title,create_date,status,evaluate_star,recharge_id</sql>
+	<sql id="valueColumns">#{id}, #{anchorUserid}, #{userId}, #{evaluateTitle},#{createDate},#{status},#{evaluateStar},#{rechargeId}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="evaluateAnchor" flushCache="true">
+		INSERT INTO evaluate_anchor(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="evaluateAnchor" flushCache="true">
+		UPDATE	evaluate_anchor T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="userId != null">T.user_id=#{userId},</if>
+			<if test="anchorUserid != null">T.anchor_userid=#{anchorUserid},</if>
+			<if test="evaluateTitle != null">T.evaluate_title=#{evaluateTitle},</if>
+			<if test="status != null">T.status=#{status},</if>
+			<if test="evaluateStar != null">T.evaluate_star=#{evaluateStar},</if>
+			<if test="rechargeId != null">T.recharge_id=#{rechargeId},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="evaluateAnchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM evaluate_anchor WHERE ID=#{id}
+	</select>
+	
+
+	<select id="find" parameterType="evaluateAnchor" resultMap="evaluateAnchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM evaluate_anchor T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+		    <if test="anchorUserid != null"> and T.anchor_userid=#{anchorUserid}</if>
+			<if test="userId != null"> and T.user_id=#{userId}</if>
+			<if test="status != null">and T.status&gt;=#{status}</if>
+			<if test="userType != null">and T.user_type=#{userType}</if>
+			<if test="evaluateStar != null">and T.evaluate_star>=#{evaluateStar}</if>
+			<if test="rechargeId != null">and T.recharge_id>=#{rechargeId}</if>
+		</trim>
+		</where>
+	</select>
+	
+	
+  
+</mapper>

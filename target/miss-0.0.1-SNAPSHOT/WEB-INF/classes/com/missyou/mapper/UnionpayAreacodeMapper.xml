@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UnionpayAreacodeDao">
+  <resultMap id="unionpayAreacode" type="unionpayAreacode">
+    <result column="id"  property="id" />
+    <result column="code"  property="code" />
+    <result column="name"  property="name" />
+    <result column="parent_code"  property="parentCode" />
+    <result column="level"  property="level" />
+    <result column="isvalid"  property="isvalid" />
+    <result column="order_num"  property="orderNum" />
+    <result column="create_time"  property="createTime" />
+    <result column="update_time"  property="updateTime" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, code, name,parent_code,level,isvalid,order_num,create_time,update_time</sql>
+	<sql id="valueColumns">#{id}, #{code}, #{name},#{parentCode},#{level},#{isvalid},#{orderNum},#{createTime},#{updateTime}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="unionpayAreacode" flushCache="true">
+		INSERT INTO unionpay_areacode(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="unionpayAreacode" flushCache="true">
+		UPDATE	unionpay_areacode T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="code != null">T.code=#{code},</if>
+			<if test="name != null">T.name=#{name},</if>
+			<if test="parentCode != null">T.parent_code=#{parentCode},</if>
+			<if test="level != null">T.level=#{level},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="unionpayAreacode">
+		SELECT
+		<include refid="keyColumns" />
+		FROM unionpay_areacode WHERE ID=#{id}
+	</select>
+
+ 
+
+	<select id="getByIds" parameterType="long" resultMap="unionpayAreacode">
+		SELECT
+		<include refid="keyColumns" />
+		FROM unionpay_areacode WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+
+
+	<delete id="delete">
+		DELETE FROM unionpay_areacode WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="find" parameterType="unionpayAreacode" resultMap="unionpayAreacode">
+		SELECT
+		<include refid="keyColumns" />
+		FROM unionpay_areacode
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="code != null"> AND code= #{code}</if>
+			<if test="name != null"> AND name= #{name}</if>
+			<if test="parentCode != null"> AND parent_code= #{parentCode}</if>
+			<if test="level != null"> AND level= #{level}</if>
+		</trim>
+	</select>
+  
+</mapper>

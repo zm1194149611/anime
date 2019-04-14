@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.MonitorDao">
+  <resultMap id="monitor" type="monitor">
+    <result column="id"  property="id" />
+	<result column="user_id"  property="userId" /> 
+	<result column="anchor_user_id"  property="anchorUserID" /> 
+	<result column="msg_type"  property="msgType" /> 
+	<result column="status"  property="status" /> 
+	<result column="status_reason"  property="statusReason" /> 
+	<result column="create_date"  property="createDate" /> 
+	<result column="operatr_type"  property="operatrType" /> 
+	<result column="file_location"  property="fileLocation" /> 
+	<result column="config_ext2"  property="configExt2" /> 
+	<result column="log_id"  property="logID" /> 
+	<result column="response_str"  property="responseStr" />
+  </resultMap> 
+  
+	<sql id="keyColumns">id, user_id,anchor_user_id, msg_type,status,status_reason,create_date,operatr_type,file_location,config_ext2,log_id,response_str</sql>
+	<sql id="valueColumns">#{id}, #{userId},#{anchorUserID}, #{msgType},#{status},#{statusReason},#{createDate},#{operatrType},#{fileLocation},#{configExt2},#{logID},#{responseStr}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="monitor" flushCache="true">
+		INSERT INTO `IM_MONITOR` (
+		<include refid="keyColumns" />
+		) VALUES (
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="updateMonitor" parameterType="monitor" flushCache="true">
+		UPDATE `IM_MONITOR` SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="monitor.userId != null">user_id=#{monitor.userId},</if>
+			<if test="monitor.anchorUserID != null">anchor_user_id=#{monitor.anchorUserID},</if>
+			<if test="monitor.msgType != null">msg_type=#{monitor.msgType},</if>
+			<if test="monitor.status != null">status=#{monitor.status},</if>
+			<if test="monitor.statusReason != null">status_reason=#{monitor.statusReason},</if>
+			<if test="monitor.createDate != null">create_date=#{monitor.createDate},</if>
+			<if test="monitor.operatrType != null">operatr_type=#{monitor.operatrType},</if>
+			<if test="monitor.fileLocation != null">file_location=#{monitor.fileLocation},</if>
+			<if test="monitor.configExt2 != null">config_ext2=#{monitor.configExt2},</if>
+			<if test="monitor.logID != null">log_id=#{monitor.logID},</if>
+			<if test="monitor.responseStr != null">response_str=#{monitor.responseStr},</if>
+		</trim>
+		WHERE ID=#{monitor.id}
+	</update>
+	
+	<select id="getMonitor" resultMap="monitor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM `IM_MONITOR` WHERE ID=#{id}
+	</select>
+	
+	<!-- 管理端分页查询 -->
+	<select id="getPagerMonitorList"  resultMap="monitor">
+		<choose>
+        <when test="monitor.userAlias != null">
+            SELECT
+			t1.*
+			FROM `IM_MONITOR` t1,user t2 where t1.user_id=t2.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.userAlias != null"> AND t2.alias LIKE '%${monitor.userAlias}%'</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			<!-- <if test="monitor.anchorUser.alias != null"> AND t2.alias LIKE '%${monitor.anchorUser.alias}%'</if> -->
+			</trim>
+			ORDER BY t1.create_date DESC
+			<include refid="Sql.pager"></include>
+        </when>
+        <when test="monitor.anchorAlias != null">
+            SELECT
+			t1.*
+			FROM `IM_MONITOR` t1,user t3 where t1.anchor_user_id=t3.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.anchorAlias != null"> AND t3.alias LIKE '%${monitor.anchorAlias}%'</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			</trim>
+			ORDER BY t1.create_date DESC
+			<include refid="Sql.pager"></include>
+        </when>
+        <otherwise>
+            SELECT
+			t1.*
+			FROM `IM_MONITOR` t1,user t3 where t1.user_id=t3.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			</trim>
+			ORDER BY t1.create_date DESC
+			<include refid="Sql.pager"></include>
+        </otherwise>
+    	</choose>
+		
+	</select>
+	<!-- 管理端查询数量 -->
+	<select id="getMonitorCount"  resultType="Integer">
+	    <!-- SELECT
+		count(1)
+		FROM `IM_MONITOR` t1,user t2 where (t1.user_id=t2.id or t1.anchor_user_id=t2.id)
+		<trim prefix="" prefixOverrides="" suffixOverrides="">  
+		<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+		<if test="monitor.user.alias != null"> AND t2.alias LIKE '%${monitor.user.alias}%'</if>
+		<if test="monitor.anchorUser.alias != null"> AND t2.alias LIKE '%${monitor.anchorUser.alias}%'</if>
+		</trim> -->
+		<choose>
+        <when test="monitor.userAlias != null">
+            SELECT
+			count(1)
+			FROM `IM_MONITOR` t1,user t2 where t1.user_id=t2.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.userAlias != null"> AND t2.alias LIKE '%${monitor.userAlias}%'</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			</trim>
+        </when>
+        <when test="monitor.anchorAlias != null">
+            SELECT
+			count(1)
+			FROM `IM_MONITOR` t1,user t3 where t1.anchor_user_id=t3.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.anchorAlias != null"> AND t3.alias LIKE '%${monitor.anchorAlias}%'</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			</trim>
+        </when>
+        <otherwise>
+            SELECT
+			count(1)
+			FROM `IM_MONITOR` t1,user t3 where t1.user_id=t3.id
+			<trim prefix="" prefixOverrides="" suffixOverrides="">  
+			<if test="monitor.createDateStr != null"> AND DATE(t1.create_date) = #{monitor.createDateStr}</if>
+			<if test="monitor.configExt2 != null"> AND t1.config_ext2 = #{monitor.configExt2}</if>
+			<if test="monitor.operatrType != null"> AND t1.operatr_type=#{monitor.operatrType}</if>
+			<if test="monitor.status != null"> AND t1.status=#{monitor.status}</if>
+			</trim>
+        </otherwise>
+    	</choose>
+	</select>
+</mapper>

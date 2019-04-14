@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.AccountDao">
+  <resultMap id="account" type="account">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="totalcash_count"  property="totalcashCount" />
+    <result column="reflectcash_count"  property="reflectcashCount" />
+    <result column="create_date"  property="createDate" />
+    <result column="lastup_date"  property="lastupDate" />
+    <result column="amount_settled"  property="amountSettled" />
+    <result column="account_type"  property="accountType" />
+    <result column="account_webchat"  property="accountWebchat" />
+    <result column="account_alipay"  property="accountAlipay" />
+    <result column="account_bankCard"  property="accountBankCard" />
+    <result column="ext_1"  property="ext1" />
+    <result column="ext_2"  property="ext2" />
+    <result column="withdrawals_account"  property="withdrawalsAccount" />
+    <result column="chat_coin"  property="chatCoin" />
+    <result column="free_Vedio_Mts"  property="freeVedioMts" />
+    <result column="invitor_user_count"  property="invitorUserCount" />
+    <result column="invitor_anchor_count"  property="invitorAnchorCount" />
+    <result column="invitor_user_paycnt"  property="invitorUserPayCnt" />
+    <result column="invitor_anchor_earncnt"  property="invitorAnchorEarnCnt" />
+    <result column="recharge_cnt"  property="rechargeCnt" />
+    <result column="anchor_earn_cnt"  property="anchorEarnCnt" />
+    <result column="sub_chat_coin"  property="subChatCoin" />
+    <result column="name"  property="name" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, totalcash_count,reflectcash_count,create_date,lastup_date,amount_settled,account_type,account_webchat,account_alipay,account_bankCard,ext_1,ext_2,withdrawals_account,chat_coin,free_Vedio_Mts,invitor_user_count,invitor_anchor_count,invitor_user_paycnt,invitor_anchor_earncnt,recharge_cnt,anchor_earn_cnt,sub_chat_coin,name</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{totalcashCount},#{reflectcashCount},#{createDate},#{lastupDate},#{amountSettled},#{accountType},#{accountWebchat},#{accountAlipay},#{accountBankCard},#{ext1},#{ext2},#{withdrawalsAccount},#{chatCoin},#{freeVedioMts},#{invitorUserCount},#{invitorAnchorCount},#{invitorUserPayCnt},#{invitorAnchorEarnCnt},#{rechargeCnt},#{anchorEarnCnt},#{subChatCoin},#{name}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="account" flushCache="true">
+		INSERT INTO account(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="account" flushCache="true">
+		UPDATE	account T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="totalcashCount != null">T.totalcash_count=#{totalcashCount},</if>
+			<if test="reflectcashCount != null">T.reflectcash_count=#{reflectcashCount},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+			<if test="amountSettled != null">T.amount_settled=#{amountSettled},</if>
+			<if test="accountType != null">T.account_type=#{accountType},</if>
+			<if test="accountWebchat != null">T.account_webchat=#{accountWebchat},</if>
+			<if test="accountAlipay != null">T.account_alipay=#{accountAlipay},</if>
+			<if test="accountBankCard != null">T.account_bankCard=#{accountBankCard},</if>
+			<if test="ext1 != null">T.ext_1=#{ext1},</if>
+			<if test="ext2 != null">T.ext_2=#{ext2},</if>
+			<if test="withdrawalsAccount != null">T.withdrawals_account=#{withdrawalsAccount},</if>
+			<if test="chatCoin != null">T.chat_coin=#{chatCoin},</if>
+			<if test="freeVedioMts != null">T.free_Vedio_Mts=#{freeVedioMts},</if>
+			<if test="invitorUserCount != null">T.invitor_user_count=#{invitorUserCount},</if>
+			<if test="invitorAnchorCount != null">T.invitor_anchor_count=#{invitorAnchorCount},</if>
+			<if test="invitorUserPayCnt != null">T.invitor_user_paycnt=#{invitorUserPayCnt},</if>
+			<if test="invitorAnchorEarnCnt != null">T.invitor_anchor_earncnt=#{invitorAnchorEarnCnt},</if>
+			<if test="rechargeCnt != null">T.recharge_cnt=#{rechargeCnt},</if>
+			<if test="anchorEarnCnt != null">T.anchor_earn_cnt=#{anchorEarnCnt},</if>
+			<if test="subChatCoin != null">T.sub_chat_coin=#{subChatCoin},</if>
+			<if test="name != null">T.name=#{name},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+	
+	<update id="addCashAndSettle" parameterType="account" >
+		UPDATE	account T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="totalcashCount != null">T.totalcash_count = totalcash_count+#{totalcashCount},</if>
+			<if test="amountSettled != null">T.amount_settled=amount_settled+#{amountSettled},</if>
+			<if test="reflectcashCount != null">T.reflectcash_count=reflectcash_count+#{reflectcashCount},</if>
+			<if test="chatCoin != null">T.chat_coin = chat_coin+#{chatCoin},</if>
+			<if test="rechargeCnt != null and rechargeCnt>0">T.recharge_cnt = IFNULL(recharge_cnt,0) + #{rechargeCnt},</if>
+			<if test="anchorEarnCnt != null and anchorEarnCnt>0">T.anchor_earn_cnt = IFNULL(anchor_earn_cnt,'0') + #{anchorEarnCnt},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+	<update id="multplyCoin" parameterType="account" >
+		UPDATE	account T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="totalcashCount != null">T.totalcash_count = totalcash_count-#{totalcashCount},</if>
+			<if test="amountSettled != null">T.amount_settled=amount_settled-#{amountSettled},</if>
+			<if test="reflectcashCount != null">T.reflectcash_count=reflectcash_count-#{reflectcashCount},</if>
+			<if test="chatCoin != null">T.chat_coin = chat_coin-#{chatCoin},</if>
+			<if test="subChatCoin != null and subChatCoin>0">T.sub_chat_coin = IFNULL(sub_chat_coin,0)-#{subChatCoin},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account WHERE ID=#{id}
+	</select>
+	
+	<select id="getByUserId" parameterType="long" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account WHERE user_id=#{userId}
+	</select>
+
+	<select id="getByUserIds" parameterType="long" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account WHERE user_id IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+ 
+
+	<select id="getByIds" parameterType="long" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	
+	<select id="find" parameterType="account" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userId != null"> and T.user_id=#{userId}</if>
+			<if test="createDate != null"> and T.create_date=#{createDate}</if>
+		    <if test="totalcashCount != null"> and T.totalcash_count=#{totalcashCount}</if>
+			<if test="reflectcashCount != null"> and T.reflectcash_count=#{reflectcashCount}</if>
+			<if test="lastupDate != null"> and T.lastup_date=#{lastupDate}</if>
+			<if test="amountSettled != null"> and T.amount_settled=#{amountSettled},</if>
+			<if test="accountType != null"> and T.account_type=#{accountType}</if>
+			<if test="accountWebchat != null"> and T.account_webchat=#{accountWebchat},</if>
+			<if test="accountAlipay != null"> and T.account_alipay=#{accountAlipay}</if>
+			<if test="accountBankCard != null"> and T.account_bankCard=#{accountBankCard}</if>
+			<if test="ext1 != null"> and T.ext_1=#{ext1}</if>
+			<if test="ext2 != null"> and T.ext_2=#{ext2}</if>
+			<if test="withdrawalsAccount != null"> and T.withdrawals_account=#{withdrawalsAccount}</if>
+			<if test="chatCoin != null">and T.chat_coin=#{chatCoin}</if>
+			<if test="freeVedioMts != null">and T.free_Vedio_Mts=#{freeVedioMts}</if>
+			<if test="invitorUserCount != null">and T.invitor_user_count=#{invitorUserCount}</if>
+			<if test="invitorAnchorCount != null">and T.invitor_anchor_count=#{invitorAnchorCount}</if>
+			<if test="invitorUserPayCnt != null">and T.invitor_user_paycnt=#{invitorUserPayCnt}</if>
+			<if test="invitorAnchorEarnCnt != null">and T.invitor_anchor_earncnt=#{invitorAnchorEarnCnt}</if>
+			<if test="rechargeCnt != null">and T.recharge_cnt=#{rechargeCnt}</if>
+			<if test="subChatCoin != null">and T.sub_chat_coin=#{subChatCoin}</if>
+			<if test="name != null">and T.name=#{name}</if>
+		</trim>
+		</where>
+	</select>
+
+	<delete id="delete">
+		DELETE FROM account WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="getAccountByWithdrawalsAccount" resultMap="account">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="withdrawalsAccountType == 1"> and T.account_webchat=#{account}</if>
+			<if test="withdrawalsAccountType == 2"> and T.account_alipay=#{account}</if>
+			<if test="withdrawalsAccountType == 3"> and T.account_bankCard=#{account}</if>
+		</trim>
+		</where>
+	</select>
+	
+
+
+	<!-- <select id="getCount" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		account T
+		<include refid="querycondition" />
+	</select> -->
+
+	<!-- <select id="getWithCondition" resultMap="account" parameterType="map"
+		flushCache="true" useCache="false">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		account T
+		<include refid="querycondition" /> 
+		<include refid="Sql.pager" />
+	</select>
+
+	<sql id="querycondition">
+		<trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="">
+			<if test="t !=null">
+				<if test="t.accountName !=null and t.accountName!=''">
+					AND (instr(T.account_NAME,#{t.accountName})&gt;0)
+				</if>
+				<if test="t.accountType !=null">
+					AND account_TYPE = #{t.accountType}
+				</if>
+				<if test="t.available!= null">
+					AND T.available=#{t.available}
+				</if>
+			</if>
+		</trim>
+	</sql> -->
+  
+</mapper>

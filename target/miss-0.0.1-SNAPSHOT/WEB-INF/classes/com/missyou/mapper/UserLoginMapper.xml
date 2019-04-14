@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UserLoginDao">
+  <resultMap id="userLogin" type="userLogin">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="login_time"  property="loginTime" />
+    <result column="user_type"  property="userType" />
+    <result column="ext_1"  property="ext1" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, login_time,user_type,ext_1</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{loginTime},#{userType},#{ext1}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="userLogin" flushCache="true">
+		INSERT INTO user_login(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="userLogin" flushCache="true">
+		UPDATE	user_login T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="loginTime != null">T.login_time=#{loginTime},</if>
+			<if test="userType != null">T.user_type=#{userType},</if>
+			<if test="ext1 != null">T.ext_1=#{ext1},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="userLogin">
+		SELECT
+		<include refid="keyColumns" />
+		FROM user_login WHERE ID=#{id}
+	</select>
+	
+
+	<select id="find" parameterType="userLogin" resultMap="userLogin">
+		SELECT
+		<include refid="keyColumns" />
+		FROM user_login T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userId != null"> and T.user_id=#{userId}</if>
+			<if test="loginTime != null">and T.login_time&gt;=#{loginTime}</if>
+			<if test="userType != null">and T.user_type=#{userType}</if>
+			<if test="ext1 != null">and T.ext_1>=#{ext1}</if>
+		</trim>
+		</where>
+	</select>
+	
+	<!-- 活跃主播查询  -->
+	<select id="getLoginCntList"  resultMap="userLogin">
+	    <!-- SELECT * FROM 
+		(
+			SELECT * FROM 
+			(
+				SELECT COUNT(*) ext_1,t.`user_id`  FROM user_login t ,USER t1
+				    WHERE t.`user_id`=t1.`id` AND (t1.`on_line`=1 OR t1.`on_line`=2) AND t.`user_type` = '1' AND t1.`is_anchor`=1 
+				    <if test="sex==1">
+					    AND t1.SEX = 1 
+				    </if>
+					<if test="sex==2">
+						AND (t1.SEX = 2 or t1.SEX is null)  
+					</if>
+				    <if test="userLogin.startDate != null">
+					   and T.login_time &gt;#{userLogin.startDate}
+					</if>  
+					<if test="userLogin.endDate != null">
+					   and T.login_time &lt;#{userLogin.endDate}
+					</if>  
+				    GROUP BY t.`user_id`  
+			) a WHERE a.ext_1&gt;#{userLogin.ext1} ORDER BY a.ext_1 DESC LIMIT #{pager.current},#{pager.size}
+		) b ORDER BY RAND() -->
+		SELECT * FROM 
+			(
+				SELECT 1 as ext_1,t1.`id` as user_id,t1.`on_line`  FROM USER t1
+				    WHERE t1.income='3'
+					   AND (t1.`on_line`=1 OR t1.`on_line`=2)
+				     AND t1.`is_anchor`=1 
+				    <if test="sex==1">
+					    AND t1.SEX = 1 
+				    </if>
+					<if test="sex==2">
+						AND (t1.SEX = 2 or t1.SEX is null)  
+					</if> 
+					 LIMIT #{pager.current},#{pager.size}
+			)  	a	
+ 			ORDER BY RAND()  
+	</select>
+
+	<delete id="delete">
+		DELETE FROM user_login WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+  
+</mapper>

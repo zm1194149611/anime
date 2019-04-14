@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+		   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>che</display-name>
+	<distributable />
+	<!--spring监听器容器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/config/spring/applicationContext.xml
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<!-- redis session 共享 -->
+	<!-- <filter>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+
+
+	<!-- session监听 -->
+	<listener>
+		<listener-class>com.ming.listener.SessionListener</listener-class>
+	</listener>
+
+
+
+
+
+
+	<!-- 载入log4j配置文件 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:/config/log4j.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>60000</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+
+
+
+
+	<!--字符编码 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+	<!-- 启用Web监控统计功能需要在Web应用的web.xml中加入这个Servlet声明 -->
+	<!-- <servlet> <servlet-name>DruidStatView</servlet-name> <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class> 
+		<init-param> 是否允许清空统计数据，不写时默认true <param-name>resetEnable</param-name> <param-value>true</param-value> 
+		</init-param> <init-param> 用户名，用户名和密码可以不写，不写时不需要输入，直接登录 <param-name>loginUsername</param-name> 
+		<param-value>druid</param-value> </init-param> <init-param> 密码 <param-name>loginPassword</param-name> 
+		<param-value>123456</param-value> </init-param> </servlet> <servlet-mapping> 
+		<servlet-name>DruidStatView</servlet-name> <url-pattern>/druid/*</url-pattern> 
+		</servlet-mapping> -->
+
+
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:config/spring/springmvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+	<!--默认跳转到的首页 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<!--session过时时间 -->
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+
+
+</web-app>

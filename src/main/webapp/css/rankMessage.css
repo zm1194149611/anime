@@ -1,0 +1,250 @@
+html{
+    height: 100%;
+}
+body{
+    background-image: url("../image/winBg.jpg");
+    background-size: 100%!important;
+    background-color: #91bbf4;
+}
+header ,article{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+header div,.content{
+    background-color: rgba(255,255,255,0.9);
+    width: 80%;
+    height: auto;
+    overflow: auto;
+}
+.boder{
+    width: 100%;
+    opacity: 0.9;
+    display: block;
+}
+header div img{
+    width: 14%;
+    float: left;
+}
+header div p{
+    width: 82%;
+    float: left;
+    margin-left: 4%;
+    border-bottom: 1px solid #e0485e;
+}
+.content{
+    padding: 0 !important;
+    width: 100% !important;
+}
+.font,.form,.submit{
+    width: 80%;
+    position: relative;
+    margin: 16px auto 0 auto;
+    background-color: #fbf8e4;
+    text-align: justify;
+    color: #686866;
+}
+.font::after,.form::after{
+    content: " ";
+    position: absolute;
+    left: 40%;
+    z-index: 1;
+}
+.font p:last-of-type{
+    text-indent: 2em;
+}
+.form{
+    margin-top: 0!important;
+    background-color: #aaa !important;
+}
+textarea{
+    width: 100%;
+    background-color: #fbf8e4;
+}
+article{
+    height: auto;
+    overflow: auto;
+    margin-top: 5%;
+}
+header{
+    padding-top: 25%;
+}
+.form p{
+    color: #fbf8e4;
+    width: 100%;
+    text-align: right;
+}
+.form p label{
+    color: #ffffff;
+    font-weight: bold;
+}
+.imgBox{
+    width: 86%;
+    background-color:#fbf8e4;
+    position: relative;
+}
+input[type = "file"]{
+    width: 100%;
+    position: absolute;
+    display: block;
+    opacity: 0;
+}
+.imgBox img{
+    display: inline-block;
+}
+#submit{
+    width: 100%;
+    background-color:#e0485e;
+    color: #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+@media (max-height: 600px) {
+    header div,.content{
+        padding: 6px 10% 4px 10%;
+    }
+    header div p{
+        height: 30px;
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: 4px;
+    }
+    .font,.form,.submit{
+        padding: 20px 5% 12px 5%;
+        margin: 16px auto 0 auto;
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .form{
+        font-size: 13px !important;
+    }
+    .font::after,.form::after{
+        border-top: 12px solid #fbf8e4;
+        border-left: 26px solid transparent;
+        border-right: 26px solid transparent;
+        bottom: -12px;
+    }
+    .form::after{
+        border-top: 12px solid #aaa;
+    }
+    .form{
+        padding-bottom: 20px;
+        margin-bottom: 16px;
+    }
+    .submit{
+        margin: -16px auto 20px auto!important;
+    }
+    textarea{
+        padding: 10px 5%;
+        height: 90px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+    article{
+        padding-bottom: 40px !important;
+    }
+    .form p{
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .imgBox{
+        padding: 20px 7% 10px 7%!important;
+        border-radius: 6px;
+    }
+    input[type = "file"]{
+        top: 20px;
+        height: 36px;
+    }
+    .imgBox div{
+        height: 36px;
+        line-height: 36px;
+    }
+    .imgBox img{
+        height: 36px;
+    }
+    #submit{
+        margin: 10px 0;
+        height: 36px;
+        line-height: 36px;
+        letter-spacing: 4px;
+        border-radius: 6px;
+    }
+    .foot-fill{
+        height: 40px;
+    }
+}
+@media (min-height: 600px) {
+    header div,.content{
+        padding: 6px 10%;
+    }
+    header div img{
+        width: 12%;
+        float: left;
+    }
+    header div p{
+        height: 30px;
+        font-size: 22px;
+        line-height: 30px;
+        letter-spacing: 4px;
+    }
+    .font,.form,.submit{
+        padding: 20px 5% 12px 5%;
+        margin: 16px auto 0 auto;
+        font-size: 17px;
+        line-height: 30px;
+    }
+    .font::after,.form::after{
+        border-top: 12px solid #fbf8e4;
+        border-left: 26px solid transparent;
+        border-right: 26px solid transparent;
+        bottom: -12px;
+    }
+    .form::after{
+        border-top: 12px solid #aaa;
+    }
+    .form{
+        padding-bottom: 20px;
+        margin-bottom: 16px;
+    }
+    .submit{
+        margin: -16px auto 20px auto!important;
+    }
+    textarea{
+        padding: 10px 5%;
+        border-radius: 6px;
+        font-size: 15px;
+        line-height: 26px;
+    }
+    article{
+        padding-bottom: 40px !important;
+    }
+    .form p{
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .imgBox{
+        padding: 20px 7% 10px 7%!important;
+        border-radius: 6px;
+    }
+    input[type = "file"]{
+        top: 20px;
+        height: 36px;
+    }
+    .imgBox div{
+        height: 36px;
+        line-height: 36px;
+    }
+    .imgBox img{
+        height: 36px;
+    }
+    #submit{
+        margin: 10px 0;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 6px;
+    }
+    .foot-fill{
+        height: 50px;
+    }
+}

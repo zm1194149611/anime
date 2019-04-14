@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UserDao">
+	<resultMap id="user" type="user">
+		<result column="id" property="id" />
+		<result column="user_name" property="userName" />
+		<result column="user_no" property="userNo" />
+		<result column="alias" property="alias" />
+		<result column="phone" property="phone" />
+		<result column="age" property="age" />
+		<result column="sex" property="sex" />
+		<result column="profession" property="profession" />
+		<result column="hobby" property="hobby" />
+		<result column="birthday" property="birthday" />
+		<result column="level" property="level" />
+		<result column="password" property="password" />
+		<result column="wx_no" property="wxNo" />
+		<result column="yx_token" property="yxToken" />
+		<result column="remark" property="remark" />
+		<result column="head_url" property="headUrl" />
+		<result column="invitor" property="invitor" />
+		<result column="create_time" property="createTime" />
+		<result column="modify_time" property="modifyTime" />
+		<result column="on_line" property="onLine" />
+
+		<result column="is_anchor" property="isAnchor" />
+		<result column="channel" property="channel" />
+		<result column="stature" property="stature" />
+		<result column="weight" property="weight" />
+		<result column="address" property="address" />
+		<result column="constellation" property="constellation" />
+		<result column="head_image_id" property="headImageId" />
+		<result column="vip" property="vip" />
+		<result column="distance" property="distance" />
+		<result column="education" property="education" />
+		<result column="income" property="income" />
+		<result column="friend_purpose" property="friendPurpose" />
+		<result column="open_vedio" property="openVedio" />
+		<result column="open_voice" property="openVoice" />
+		<result column="open_message" property="openMessage" />
+		<result column="open_online_notice" property="openOnlineNotice" />
+		
+		<result column="near_dis" property="nearDis" />
+		<result column="chart_amount" property="chartAmount" />
+
+
+
+	</resultMap>
+
+
+	<sql id="keyColumns">ID,USER_NAME,USER_NO,PHONE,ALIAS,AGE,SEX,PROFESSION,HOBBY,BIRTHDAY,LEVEL,
+		PASSWORD,WX_NO,YX_TOKEN,REMARK,HEAD_URL,INVITOR,CREATE_TIME,MODIFY_TIME,ON_LINE,IS_ANCHOR,CHANNEL,
+		STATURE,WEIGHT,ADDRESS,CONSTELLATION,HEAD_IMAGE_ID,VIP,DISTANCE,EDUCATION,INCOME,FRIEND_PURPOSE,OPEN_VEDIO,OPEN_VOICE,OPEN_MESSAGE,
+		OPEN_ONLINE_NOTICE
+	</sql>
+	<sql id="valueColumns">#{id},#{userName},#{userNo},#{phone},#{alias},#{age},#{sex},#{profession},
+		#{hobby},#{birthday},#{level},#{password},#{wxNo},#{yxToken},#{remark},#{headUrl},#{invitor},
+		#{createTime},#{modifyTime},#{onLine},#{isAnchor},#{channel},#{stature},#{weight},#{address},
+		#{constellation},#{headImageId},#{vip},#{distance},#{education},#{income},#{friendPurpose},#{openVedio},#{openVoice},#{openMessage},
+		#{openOnlineNotice}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="user" flushCache="true">
+		INSERT INTO USER(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="user" flushCache="true">
+		UPDATE USER T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userName != null">T.USER_NAME=#{userName},</if>
+			<if test="userNo != null">T.USER_NO=#{userNo},</if>
+			<if test="alias != null">T.ALIAS=#{alias},</if>
+			<if test="phone != null">T.PHONE=#{phone},</if>
+			<if test="age != null">T.AGE=#{age},</if>
+			<if test="sex != null">T.SEX=#{sex},</if>
+			<if test="profession != null">T.PROFESSION=#{profession},</if>
+			<if test="hobby != null">T.HOBBY=#{hobby},</if>
+			<if test="birthday != null">T.BIRTHDAY=#{birthday},</if>
+			<if test="level != null">T.LEVEL=#{level},</if>
+			<if test="password != null">T.PASSWORD=#{password},</if>
+			<if test="wxNo != null">T.WX_NO=#{wxNo},</if>
+			<if test="yxToken != null">T.YX_TOKEN=#{yxToken},</if>
+			<if test="remark != null">T.REMARK=#{remark},</if>
+			<if test="headUrl != null">T.HEAD_URL=#{headUrl},</if>
+			<if test="modifyTime != null">T.modify_time=#{modifyTime},</if>
+			<if test="onLine != null">T.on_line=#{onLine},</if>
+			<if test="isAnchor != null">T.is_anchor=#{isAnchor},</if>
+			<if test="stature != null">T.stature=#{stature},</if>
+			<if test="weight != null">T.weight=#{weight},</if>
+			<if test="address != null">T.address=#{address},</if>
+			<if test="constellation != null">T.constellation=#{constellation},</if>
+			<if test="headImageId != null">T.head_image_id=#{headImageId},</if>
+			<if test="vip != null">T.vip=#{vip},</if>
+			<if test="distance != null">T.distance=#{distance},</if>
+			<if test="education != null">T.education=#{education},</if>
+			<if test="income != null">T.income=#{income},</if>
+			<if test="friendPurpose != null">T.friend_purpose=#{friendPurpose},</if>
+			<if test="openVedio != null">T.open_vedio=#{openVedio},</if>
+			<if test="openVoice != null">T.open_voice=#{openVoice},</if>
+			<if test="openMessage != null">T.open_message=#{openMessage},</if>
+			<if test="openOnlineNotice != null">T.open_online_notice=#{openOnlineNotice},</if>
+            <if test="channel != null">T.channel=#{channel},</if>
+            <if test="invitor != null">T.invitor=#{invitor},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" resultMap="user">
+		SELECT 
+		<include refid="keyColumns" />
+		FROM USER WHERE ID=#{id}
+	</select>
+
+
+	<select id="getByPhone" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE phone=#{phone}
+	</select>
+	
+	<select id="getByUserNo" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE user_no=#{userNo}
+	</select>
+
+	<select id="getAliasAndHeadPicUrlbyUserId" resultMap="user">
+		SELECT head_image_id,alias  
+		FROM USER WHERE ID=#{userId}
+	</select>
+
+	<select id="getByIds" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getByWxNo" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE WX_NO = #{wxNo}
+	</select>
+
+	<select id="getByUserName" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE USER_NAME = #{userName}
+	</select>
+	
+	<select id="getByUserPhone" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE phone = #{phone}
+	</select>
+
+
+
+
+	<delete id="delete">
+		DELETE FROM USER WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="getAttentionOfUser" resultMap="user">
+		SELECT U.* FROM USER U,ATTENTION A WHERE A.USER_ID=#{userId} and
+		U.ID=A.ATTENTION_ID
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND U.ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY U.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	<select id="getFansOfUser" resultMap="user">
+		SELECT U.* FROM USER U,ATTENTION A WHERE A.ATTENTION_ID=#{userId} and
+		U.ID=A.USER_ID
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND U.ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY U.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	<select id="getBlackListOfUser" resultMap="user">
+		SELECT U.* FROM USER U,BLACK_LIST B WHERE B.USER_ID=#{userId} and
+		U.ID=A.BLACK_ID
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND U.ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY U.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+
+
+	<select id="getAllUserIdNotAnchor" resultType="long">
+		select t.id from 
+		user t,account t1 where t.`id`=t1.`user_id` AND t1.`recharge_cnt`=0 and t.is_anchor=0 
+		<if test="user.startDate != null">and T.create_time &gt;=#{user.startDate}</if>
+		<if test="user.endDate != null">and T.create_time &lt;= #{user.endDate}</if>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND t.ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY t.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	<select id="getAllUserId" resultType="long">
+		select id from user where
+		is_anchor!=-1
+	</select>
+
+	<select id="getRandomUserOnLineHasNoAccount" resultMap="user">
+		SELECT u.* FROM USER u,account f where on_line = 1 and is_anchor = 0
+		and u.id=f.user_id and (f.`chat_coin` &lt;=0 or f.`chat_coin` is null)
+		order by rand() limit 0,#{userCnt}
+	</select>
+	
+	
+	<select id="getRandomUserOnLineHasNoAcc"  resultMap="user">
+		SELECT * FROM USER  where on_line = 1 and is_anchor = 0
+		<if test="user.sex==2">
+			    AND (SEX = 1 or SEX is null)
+		</if>
+		<if test="user.sex==1">
+				AND (SEX = 2)
+		</if>
+		order by rand() limit 0,#{userCnt}
+	</select>
+	
+	<!-- 主播登录进入首页用户推荐页面列表  -->
+	<select id="getRandomOnLineUser"  resultMap="user">
+	   select * from
+	    (
+			SELECT u.* FROM USER u where u.is_anchor!=-1 and is_anchor = 0 
+			
+			<if test="online!=null and online!='' and online==1">
+			    AND (u.`on_line`=1 OR u.`on_line`=2)  
+			 </if>
+			<if test="user.sex==1">
+			    AND U.SEX = 1
+		    </if>
+			<if test="user.sex==2">
+				AND (U.SEX = 2 or U.SEX is null)
+			</if>
+			ORDER BY u.`on_line` desc 
+			LIMIT #{pager.current},#{pager.size}
+		) a
+		order by rand()
+		
+		<!-- SELECT * FROM 
+		(
+			SELECT COUNT(*) chatCnt,t1.*  FROM expend_record t,user t1 
+			WHERE t.`user_id`=t1.`id` 
+			<if test="user.sex==1"> AND t1.SEX = 1</if>
+			<if test="user.sex==2"> AND (t1.SEX = 2 or t1.SEX is null) </if>
+			<if test="user.startDate != null">and t.create_date &gt;=#{user.startDate}</if>
+			<if test="user.endDate != null">and t.create_date &lt;= #{user.endDate}</if>
+			 GROUP BY t.`user_id` ORDER BY chatCnt DESC
+			 LIMIT #{pager.current},#{pager.size}
+		) a ORDER BY on_line DESC -->
+		
+		
+	</select>
+	
+	<!-- 查找最近两小时在平台有收入的在线主播 -->
+	<select id="queryOnlineHotPushAnchor" parameterType="user" resultMap="user">
+	    SELECT * FROM
+		(
+			SELECT COUNT(*) chatCnt,t1.* FROM recharge_history t,user t1 WHERE 
+			 t.`user_id`=t1.`id` and  t1.`is_anchor`=1
+			 <if test="startDate != null"> AND t.recharge_time &gt;= #{startDate}</if>
+			  AND (t1.`on_line`=1 OR t1.`on_line`=2)  GROUP BY t.`user_id` 
+		) a ORDER BY a.chatCnt DESC;
+	</select>
+
+
+
+	<select id="getPagerOfUser" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER u where is_anchor!=-1
+		<if test="user.sex==1">
+			AND U.SEX = 1
+		</if>
+		<if test="user.sex==2">
+			AND (U.SEX = 2 or U.SEX is null)
+		</if>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND U.ID &lt; #{pager.lastId}
+		</if>
+
+		ORDER BY u.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getInvitorUserAcc" resultMap="user">
+		SELECT t1.*,t2.`recharge_cnt` as rechargeCnt,t2.anchor_earn_cnt as anchorEarnCnt FROM user t1 ,account t2 WHERE t1.`id` = t2.`user_id` AND t1.`invitor`=#{user.invitor}
+		<if test="user.isAnchor==null or user.isAnchor=='' or user.isAnchor==0">
+		    AND t1.is_anchor=0 
+		</if>
+		<if test="user.isAnchor!=null and user.isAnchor!='' and user.isAnchor==1">
+		    AND t1.is_anchor=1 
+		</if>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND t1.ID &lt; #{pager.lastId}
+		</if>
+		order by t1.id desc 
+		limit 0,#{pager.size}
+	</select>
+	
+	<select id="getInvitorUserOrder" resultMap="user">
+		SELECT t2.*,t1.`amount`,t1.`vip` as payType,t1.`create_time` as payTime  FROM `order` t1,`user` t2 WHERE t1.`user_id`=t2.`id` and t1.`payed`=1 AND t2.`invitor`=#{user.invitor}
+		ORDER BY t1.`amount`  DESC 
+		limit 0,#{pager.size}
+	</select>
+
+
+	<select id="getPagerOfUserPage" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER u where u.is_anchor!=-1
+		<if test="user.sex==1">
+			AND U.SEX = 1
+		</if>
+		<if test="user.sex==2">
+			AND (U.SEX = 2 or U.SEX is null)
+		</if>
+
+		ORDER BY u.ID DESC
+		<include refid="Sql.pager"></include>
+	</select>
+	
+	
+	<select id="find" parameterType="user" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="alias != null"> AND alias= #{alias}</if>
+			<if test="userName != null"> AND user_name= #{userName}</if>
+			<if test="userNo != null"> AND user_no= #{userNo}</if>
+			<if test="invitor != null"> AND invitor= #{invitor}</if>
+			<if test="phone != null"> AND phone= #{phone}</if>
+			<if test="isAnchor != null and isAnchor==1"> AND is_anchor= #{isAnchor}</if>
+			<if test="isAnchor != null and isAnchor==0"> AND is_anchor= 0  </if>
+		</trim>
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getByUser" parameterType="user" resultMap="user">
+	   SELECT
+	   <include refid="keyColumns" />
+	   FROM USER
+	   <include refid="getUserlistCondition"></include>
+	   ORDER BY create_time DESC
+	</select>
+	
+	
+	<sql id="getUserlistCondition">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			is_anchor!=-1
+			<if test="alias != null"> AND (alias LIKE CONCAT(CONCAT('%', #{alias}), '%') or user_no=#{alias})</if>
+			<if test="phone != null"> AND phone LIKE CONCAT(CONCAT('%', #{phone}), '%')</if>
+			<if test="isAnchor != -1">
+				<if test="isAnchor == 1">
+					AND is_anchor= 1
+				</if>
+				<if test="isAnchor == 0">
+					AND is_anchor=0 
+				</if>
+			</if>
+			<if test="userNo != null"> AND user_no= #{userNo}</if>
+			<if test="invitor != null"> AND invitor= #{invitor}</if>
+			<if test="channel != null and channel !='' and channel !='-1'"> AND channel= #{channel}</if>
+		</trim>
+	</sql>
+	
+	<!-- 查找附近的主播 -->
+	<select id="queryNearbyUser" parameterType="user" resultMap="user">
+	select * from (select 
+		u.*,
+		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) near_dis 
+ 	from 
+ 		user u 
+ 	where 
+ 		 u.is_anchor = 0 
+ 		<if test="user.sex != null">and sex=#{user.sex} </if>
+ 		<if test="user.stature != null">
+ 		 and 
+ 		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) is not null  
+		</if>
+	order by 
+		u.on_line desc,
+		near_dis asc
+		) as t1
+		union
+		select * from 
+		(select 
+		u.*,
+		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) near_dis 
+ 	from 
+ 		user u
+ 	where 
+ 		u.is_anchor = 0 
+ 		<if test="user.sex != null">and sex=#{user.sex} </if>
+ 		<if test="user.stature != null">
+ 		 and 
+ 		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) is null  
+		</if>
+	order by 
+		u.on_line desc
+		) as t2
+		LIMIT #{pager.current},#{pager.size}
+	</select>
+	<!-- 查询土豪榜-->
+	<select id="queryRichChart" resultMap="user">
+		<!-- select u.*,sum(o.amount) chart_amount from `ORDER` o,user u where u.id=o.user_id and o.payed=1
+		GROUP BY o.user_id 
+		order by chart_amount desc
+		limit 0,10 -->
+		select u.*,a.recharge_cnt chart_amount from account a ,user u where u.id = a.user_id and a.recharge_cnt is not null
+		and u.is_anchor=0 
+		and u.id not in (select k.user_id from user_kill k where k.kill_time&gt;0)
+		order by chart_amount desc
+		limit 0,10
+		
+	</select>
+	<!-- 查询女神榜-->
+	<select id="queryGoddessChart" resultMap="user">
+		<!-- select u.*,sum(w.withdrawals_money) chart_amount from withdrawals_cash_record w,user u where u.id = w.user_id and w.status=1 and u.sex=2 and u.is_anchor=1
+		GROUP BY w.user_id
+		order by chart_amount desc
+		limit 0,10 -->
+		
+		select u.*,a.anchor_earn_cnt chart_amount from account a ,user u where u.id = a.user_id and u.sex=2 and u.is_anchor=1 and a.anchor_earn_cnt is not null 
+		and u.id not in (select k.user_id from user_kill k where k.kill_time&gt;0)
+		order by chart_amount desc
+		limit 0,10
+	</select>
+	<!-- 通过用户ids查询在线用户 -->
+	<select id="queryOnlineUserByIds" resultMap="user">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER WHERE ON_LINE>0 AND ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+
+</mapper>

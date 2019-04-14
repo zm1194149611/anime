@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.2.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+         http://www.springframework.org/schema/aop 
+         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+         >
+	 
+	<!--配置阿里巴巴数据源 -->
+	<!-- 阿里 druid 数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<!-- 数据库基本信息配置 -->
+		<property name="url" value="${ds.url}" />
+		<property name="username" value="${ds.username}" />
+		<property name="password" value="${ds.password}" />
+		<property name="driverClassName" value="${ds.driverClassName}" />
+		<property name="filters" value="${ds.filters}" />
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${ds.maxActive}" />
+		<!-- 初始化连接数量 -->
+		<property name="initialSize" value="${ds.initialSize}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${ds.maxWait}" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${ds.minIdle}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${ds.timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${ds.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${ds.validationQuery}" />
+		<property name="testWhileIdle" value="${ds.testWhileIdle}" />
+		<property name="testOnBorrow" value="${ds.testOnBorrow}" />
+		<property name="testOnReturn" value="${ds.testOnReturn}" />
+		<property name="maxOpenPreparedStatements" value="${ds.maxOpenPreparedStatements}" />
+		<!-- 打开 removeAbandoned 功能 -->
+		<property name="removeAbandoned" value="${ds.removeAbandoned}" />
+		<!-- 1800 秒，也就是 30 分钟 -->
+		<property name="removeAbandonedTimeout" value="${ds.removeAbandonedTimeout}" />
+		<!-- 关闭 abanded 连接时输出错误日志 -->
+		<property name="logAbandoned" value="${ds.logAbandoned}" />
+	</bean>
+	<!-- 配置MYBATIS SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource">
+			<!--使用阿里巴巴数据源 -->
+			<ref bean="dataSource" />
+		</property>
+		<property name="configLocation">
+			<value>classpath:/config/mybatis.xml</value>
+		</property>
+        <property name="mapperLocations" value="classpath:com/ming/mapper/*.xml"></property>  
+	</bean>
+
+	 
+
+	<!-- 扫描文件 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ming" />
+		<property name="annotationClass" value="org.springframework.stereotype.Repository"></property>
+	</bean>
+	
+	
+	
+	<!-- ================================事务相关控制=================================================-->
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>
+     
+ 
+</beans>

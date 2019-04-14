@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.WithdrawalsCashRecordDao">
+  <resultMap id="withdrawalsCashRecord" type="withdrawalsCashRecord">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="account_id"  property="accountId" />
+    <result column="acc_type"  property="accType" />
+    <result column="withdrawals_count"  property="withdrawalsCount" />
+    <result column="withdrawals_money"  property="withdrawalsMoney" />
+    <result column="withdrawals_type"  property="withdrawalsType" />
+    <result column="create_date"  property="createDate" />
+    <result column="lastup_date"  property="lastupDate" />
+    <result column="status"  property="status" />
+    <result column="ext_1"  property="ext1" />
+    <result column="ext_2"  property="ext2" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, account_id,acc_type,withdrawals_count,withdrawals_money,withdrawals_type,create_date,lastup_date,status,ext_1,ext_2</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{accountId},#{accType},#{withdrawalsCount},#{withdrawalsMoney},#{withdrawalsType},#{createDate},#{lastupDate},#{status},#{ext1},#{ext2}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="withdrawalsCashRecord" flushCache="true">
+		INSERT INTO WITHDRAWALS_CASH_RECORD(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="withdrawalsCashRecord" flushCache="true">
+		UPDATE	WITHDRAWALS_CASH_RECORD T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="withdrawalsCount != null">T.withdrawals_count=#{withdrawalsCount},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+			<if test="status != null">T.status=#{status},</if>
+			<if test="ext1 != null">T.ext_1=#{ext1},</if>
+			<if test="ext2 != null">T.ext_2=#{ext2},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+
+	<select id="find" parameterType="withdrawalsCashRecord" resultMap="withdrawalsCashRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM WITHDRAWALS_CASH_RECORD
+		<trim prefix="where" prefixOverrides="and">
+			<if test="status != null and status ==0"> and (status=0 or status is null)</if>
+			<if test="status != null and status !=0"> and status= #{status}</if>
+			<if test="userId != null"> and user_id = #{userId}</if>
+			<if test="withdrawalsType != null"> and withdrawals_type = #{withdrawalsType}</if>
+		</trim>
+		order by create_date DESC
+	</select>
+	
+	
+	<select id="getById" parameterType="long" resultMap="withdrawalsCashRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM WITHDRAWALS_CASH_RECORD WHERE ID=#{id}
+	</select>
+	
+
+	<select id="getByIds" parameterType="long" resultMap="withdrawalsCashRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM WITHDRAWALS_CASH_RECORD WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+
+	<delete id="delete">
+		DELETE FROM WITHDRAWALS_CASH_RECORD WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	
+	<select id="getWithdrawalsCashRecordlist" resultMap="withdrawalsCashRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM  WITHDRAWALS_CASH_RECORD  WHERE USER_ID=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY create_date DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getWithdrawalsRecordlist"  resultMap="withdrawalsCashRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM WITHDRAWALS_CASH_RECORD   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="withdrawalsCashRecord.userId != null"> AND user_id= #{withdrawalsCashRecord.userId}</if>
+			<if test="withdrawalsCashRecord.startDate != null"> AND create_date &gt;= #{withdrawalsCashRecord.startDate}</if>
+			<if test="withdrawalsCashRecord.endDate != null"> AND create_date &lt;= #{withdrawalsCashRecord.endDate}</if>
+			<if test="withdrawalsCashRecord.status != null"> AND status = #{withdrawalsCashRecord.status}</if>
+			<if test="withdrawalsCashRecord.withdrawalsType != null"> AND withdrawals_type = #{withdrawalsCashRecord.withdrawalsType}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getTotalWithdrawals" parameterType="withdrawalsCashRecord" resultMap="withdrawalsCashRecord">
+		SELECT SUM(withdrawals_money) withdrawals_count  from WITHDRAWALS_CASH_RECORD  
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="startDate != null"> AND create_date &gt;= #{startDate}</if>
+			<if test="endDate != null"> AND create_date &lt;= #{endDate}</if>
+			<if test="status != null"> AND status = #{status}</if>
+			<if test="withdrawalsType != null"> AND withdrawals_type = #{withdrawalsType}</if>
+		</trim>
+	</select>
+
+    <select id="getNowDayCount" resultType="int">
+    	select count(1) from withdrawals_cash_record r where r.user_id=#{userId} and DATE(create_date)=DATE(NOW())
+    </select>
+
+	<!-- <select id="getCount" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		account T
+		<include refid="querycondition" />
+	</select> -->
+
+	<!-- <select id="getWithCondition" resultMap="account" parameterType="map"
+		flushCache="true" useCache="false">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		account T
+		<include refid="querycondition" /> 
+		<include refid="Sql.pager" />
+	</select>
+
+	<sql id="querycondition">
+		<trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="">
+			<if test="t !=null">
+				<if test="t.accountName !=null and t.accountName!=''">
+					AND (instr(T.account_NAME,#{t.accountName})&gt;0)
+				</if>
+				<if test="t.accountType !=null">
+					AND account_TYPE = #{t.accountType}
+				</if>
+				<if test="t.available!= null">
+					AND T.available=#{t.available}
+				</if>
+			</if>
+		</trim>
+	</sql> -->
+  
+</mapper>

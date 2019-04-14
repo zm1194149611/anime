@@ -1,0 +1,292 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #ffffff;
+}
+header{
+    width: 100%;
+}
+header p{
+    display: inline-block;
+    width: 30%;
+    margin-left: 25%;
+    text-align: center;
+}
+header span{
+    display: inline-block;
+    float: right;
+    width: 16%;
+    margin-right: 3%;
+    text-align: center;
+    color: #999999;
+}
+header img{
+    width: 3%;
+    margin-left: 7%;
+    vertical-align: middle;
+}
+section{
+    width: 100%;
+    overflow: hidden;
+}
+.left{
+    float: left;
+    width: 12%;
+}
+.right{
+    float: right;
+    width: 84%;
+    height: auto;
+}
+.footprint-right{
+    position: relative;
+    float: right;
+    width: 90%;
+    background-color: #f0eff5;
+    margin: 0 4% 0 2%;
+    border-radius: 8px;
+}
+.footprint-right:before{
+    content:"";
+    display:block;
+    position:absolute;
+    border-style: dashed solid dashed dashed;
+    border-color: transparent #f0eff5 transparent transparent;
+}
+.right-head,.right-world,.zan{
+    width: 96%;
+    margin: 0 auto;
+}
+.head-left{
+    position: relative;
+    float: left;
+}
+.my{
+    display: block;
+}
+.dao{
+    position: absolute;
+    width: 34% !important;
+    z-index: 9;
+    bottom: 0;
+    right: 0;
+}
+.head-right{
+    float: right;
+    width: 80%;
+}
+.head-right img:first-of-type{
+    width: 16% !important;
+}
+.head-right img{
+    width: 10%;
+    margin-right: -2px;
+}
+.right-picture{
+    width: 98%;
+    margin-left: 2%;
+}
+.right-picture img{
+    width: 48%;
+}
+.zan img{
+    float: right;
+    width: 23%;
+}
+.zan span,.zan label{
+    color: #2f5e9b;
+}
+.right-head{
+	overflow: hidden;
+}
+.right-world span{
+	display:block;
+	margin-left: 2%;
+    margin-right: 2%;
+    text-indent:2em; 
+}
+@media (max-height: 600px) {
+    header {
+        padding: 10px 0 20px;
+        height: 30px;
+    }
+    header p{
+        font-size: 16px;
+        line-height: 30px;
+        height: 30px;
+        vertical-align: top;
+    }
+    header span{
+        font-size: 15px;
+        line-height: 30px;
+        height: 30px;
+    }
+    .year{
+        display: block;
+        font-size: 14px;
+        height: 20px;
+        color: #576a8b;
+        margin-left: 15%;
+        margin-bottom: 28px;
+    }
+    .month{
+        display: block;
+        font-size: 14px;
+        color: #576a8b;
+        margin-left: 15%;
+    }
+    .right{
+        border-left: 2px solid #eeeeee;
+    }
+    .footprint-left{
+        float: left;
+        width: 10px;
+    }
+    .yuan{
+        display: block;
+        width: 150%;
+        margin-left: -85%;
+    }
+    .dian{
+        display: block;
+        margin-top: 38px;
+        width: 100%;
+        margin-left: -60%;
+    }
+    .footprint-right:before{
+        top: 52px;
+        border-width:8px;
+        left: -16px;
+    }
+    .right-head{
+        padding-top: 8px;
+    }
+    .my{
+        width: 42px;
+        height: 42px;
+        border-radius: 50px;
+    }
+    .head-left{
+        width: 42px;
+        height: 42px;
+    }
+    .head-right{
+        margin-top: 10px;
+    }
+    .right-world span{
+        font-size: 14px;
+        text-align: justify;
+    }
+    .right-picture{
+        margin-top: 10px;
+    }
+    .right-picture img{
+        height: 80px;
+    }
+    .zan{
+        padding: 15px 0;
+        height: 30px;
+    }
+    .zan label,.zan span{
+        line-height: 30px;
+        font-size: 15px;
+    }
+    .fill{
+        clear: both;
+        height: 20px;
+    }
+}
+@media (min-height: 600px) {
+    header {
+        padding: 15px 0 25px;
+        height: 35px;
+    }
+    header p{
+        font-size: 18px;
+        height: 35px;
+        line-height: 35px;
+    }
+    header span{
+        font-size: 16px;
+        height: 35px;
+        line-height: 35px;
+    }
+    .year{
+        display: block;
+        font-size: 16px;
+        height: 20px;
+        color: #576a8b;
+        margin-left: 20%;
+        margin-bottom: 30px;
+    }
+    .month{
+        display: block;
+        font-size: 15px;
+        color: #576a8b;
+        margin-left: 25%;
+    }
+    .right{
+        border-left: 2px solid #eeeeee;
+    }
+    .footprint-left{
+        float: left;
+        width: 12px;
+    }
+    .yuan{
+        width: 170%;
+        margin-left: -90%;
+    }
+    .dian{
+        margin-top: 35px;
+        width: 100%;
+        margin-left: -60%;
+    }
+    .footprint-right:before{
+        top: 52px;
+        border-width:10px;
+        left: -20px;
+    }
+    .right-head{
+        padding-top: 8px;
+    }
+    .my{
+        width: 52px;
+        height: 52px;
+        border-radius: 60px;
+    }
+    .head-left{
+        width: 52px;
+        height: 52px;
+    }
+    .head-right{
+        margin-top: 15px;
+    }
+    .right-world span{
+        font-size: 16px;
+        text-align: justify;
+    }
+    .right-picture{
+        margin-top: 15px;
+    }
+    .right-picture img{
+        height: 100px;
+    }
+    .zan{
+        padding: 15px 0;
+        height: 36px;
+    }
+    .zan label,.zan span{
+        line-height: 36px;
+        font-size: 16px;
+    }
+    .fill{
+        clear: both;
+        height: 30px;
+    }
+}
+

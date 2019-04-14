@@ -1,0 +1,382 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-image: url("../image/home-bkgimg.png");
+    background-repeat: repeat;
+ }
+.map{
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.map img{
+    opacity: 1;
+}
+.sichuan{
+    position: relative;
+    display: block;
+    width: 100%;
+    opacity: 0 !important;
+}
+.chengdu{
+    position: absolute;
+    z-index: 9;
+    width: 26.28%;
+    margin-left: 50.8%;
+    top: 14.25%;
+}
+.chuandong{
+    position: absolute;
+    z-index: 6;
+    width: 36%;
+    margin-left: 63.8%;
+    bottom: 52.2%;
+}
+.chuanxi{
+    position: absolute;
+    z-index: 1;
+    width: 62%;
+    margin-left: 0;
+    bottom: 23%;
+}
+.chuannan{
+    position: absolute;
+    z-index: 8;
+    width: 32.7%;
+    margin-left: 52%;
+    bottom: 22.5%;
+}
+.chuanbei{
+    position: absolute;
+    z-index: 3;
+    width: 33.1%;
+    bottom: 0.6%;
+    margin-left: 27.2%;
+}
+.notice{
+    position: fixed;
+    width: 96%;
+    margin-left: 4%;
+    text-align: left;
+}
+.notice_left{
+    float: left;
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.notice_left img{
+    width: 60%;
+    display: inline-block;
+    margin-left: 20%;
+    vertical-align: middle;
+}
+#moocBox {
+    width: 90%;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+#moocBox ul li a{
+    text-decoration: none;
+    color: #79a8f8;
+}
+.phone{
+    position: absolute;
+    z-index: 9;
+    right: 2%;
+    bottom: 0;
+}
+@media (max-height: 600px) {
+    header{
+        height: 130px;
+        margin-bottom: 18px;
+        background-color: #3e82f7;
+    }
+    header ul{
+        height: 130px;
+        width: 100%;
+        list-style: none;
+    }
+    header ul li{
+        display: inline-block;
+        width: 33.3%;
+        float: left;
+        height: 130px;
+    }
+    .one-total{
+        float: right;
+        width: 90px;
+        text-align: center;
+    }
+    .one-total p,.three-total p{
+        font-size: 12px;
+        color: #ffffff;
+        margin-top: 5px;
+    }
+    .one, .three{
+        width: 55px;
+        height: 55px;
+        border-radius: 50px;
+        background-color: #78a8f9;
+        text-align: center;
+        margin: 40px auto 0;
+    }
+    .one span,.three span{
+        font-size: 14px;
+        line-height: 55px;
+        color: #f6ff00;
+    }
+    .three-total{
+        float: left;
+        width: 90px;
+        text-align: center;
+    }
+    .fund{
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-image: url("../image/home-fund.png");
+        background-size: 100% 100%;
+        margin: 10px auto 20px;
+        text-align: center;
+    }
+    header ul li label{
+        display: block;
+        padding-top: 38px;
+        font-size: 15px;
+    }
+    .compass{
+        position: absolute;
+        z-index: 9;
+        width: 40px;
+        height: 40px;
+        right: 2%;
+        top: 138px;
+    }
+    .phone{
+        width: 40px;
+        height: 40px;
+    }
+    .precinct{
+        height: 56px;
+        width: 80%;
+        margin: 10px auto 5px;
+    }
+    .precinct ul{
+        height: 56px;
+    }
+    .precinct ul li{
+        display: inline-block;
+        height: 56px;
+        float: left;
+        width: 38%;
+        background-color: #05be03;
+        border-radius: 6px;
+    }
+    .precinct ul li:first-of-type,.precinct ul li:last-of-type{
+        height: 46px !important;
+        width: 29% !important;
+        margin-top: 5px;
+        text-align: center;
+        background-color: #ffffff !important;
+        border: 1px solid #bbbbbb;
+    }
+    .precinct ul li:first-of-type img,.precinct ul li:last-of-type img{
+        display: inline-block;
+        height: 14px;
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
+    .precinct ul li:first-of-type img{
+        margin-right: 8px;
+    }
+    .precinct ul li:last-of-type img{
+        margin-left: 8px;
+    }
+    .precinct ul li:first-of-type span,.precinct ul li:last-of-type span{
+        display: inline-block;
+        height: 46px;
+        font-size: 14px;
+        line-height: 46px;
+    }
+    .second{
+        text-align: center;
+        border-right: 2px solid #838082 !important;
+        border-bottom: 2px solid #838082 !important;
+    }
+    .second img{
+        display: inline-block;
+        height: 36px;
+        margin-right: 8px;
+        margin-bottom: 5px;
+        vertical-align: middle;
+    }
+    .second span{
+        display: inline-block;
+        font-size: 16px;
+        line-height: 56px;
+        color: #ffffff;
+    }
+    .precinct ul li:first-of-type{
+        border-radius:6px 0 0 6px !important;
+    }
+    .precinct ul li:last-of-type{
+        border-radius: 0 6px 6px 0 !important;
+    }
+    .fill{
+        height: 100px;
+    }
+    .notice{
+        bottom: 65px;
+    }
+}
+@media (min-height: 600px) {
+    header{
+        height: 160px;
+        margin-bottom: 20px;
+        background-color: #3e82f7;
+    }
+    header ul{
+        height: 160px;
+        width: 100%;
+        list-style: none;
+    }
+    header ul li{
+        display: inline-block;
+        width: 33.3%;
+        float: left;
+        height: 160px;
+    }
+    .one-total{
+        float: right;
+        width: 110px;
+        text-align: center;
+    }
+    .one-total p,.three-total p{
+        font-size: 14px;
+        color: #ffffff;
+        margin-top: 8px;
+    }
+    .one, .three{
+        width: 65px;
+        height: 65px;
+        border-radius: 60px;
+        background-color: #78a8f9;
+        text-align: center;
+        margin: 50px auto 0;
+    }
+    .one span,.three span{
+        font-size: 16px;
+        line-height: 65px;
+        color: #f6ff00;
+    }
+    .three-total{
+        float: left;
+        width: 110px;
+        text-align: center;
+    }
+    .fund{
+        display: block;
+        width: 120px;
+        height: 120px;
+        background-image: url("../image/home-fund.png");
+        background-size: 100% 100%;
+        margin: 15px auto 25px;
+        text-align: center;
+    }
+    header ul li label{
+        display: block;
+        padding-top: 48px;
+        font-size: 18px;
+    }
+    .compass{
+        position: absolute;
+        z-index: 9;
+        width: 50px;
+        height: 50px;
+        right: 2%;
+        top: 168px;
+    }
+    .phone{
+        width: 50px;
+        height: 50px;
+    }
+    .precinct{
+        height: 66px;
+        width: 80%;
+        margin: 15px auto 5px;
+    }
+    .precinct ul{
+        height: 66px;
+    }
+    .precinct ul li{
+        display: inline-block;
+        height: 66px;
+        float: left;
+        width: 38%;
+        background-color: #05be03;
+        border-radius: 7px;
+    }
+    .precinct ul li:first-of-type,.precinct ul li:last-of-type{
+        height: 56px !important;
+        width: 29% !important;
+        margin-top: 5px;
+        text-align: center;
+        background-color: #ffffff !important;
+        border: 1px solid #bbbbbb;
+    }
+    .precinct ul li:first-of-type img,.precinct ul li:last-of-type img{
+        display: inline-block;
+        height: 18px;
+        vertical-align: middle;
+        margin-bottom: 5px;
+    }
+    .precinct ul li:first-of-type img{
+        margin-right: 10px;
+    }
+    .precinct ul li:last-of-type img{
+        margin-left: 10px;
+    }
+    .precinct ul li:first-of-type span,.precinct ul li:last-of-type span{
+        display: inline-block;
+        height: 56px;
+        font-size: 16px;
+        line-height: 56px;
+    }
+    .second{
+        text-align: center;
+        border-right: 3px solid #838082 !important;
+        border-bottom: 3px solid #838082 !important;
+    }
+    .second img{
+        display: inline-block;
+        height: 40px;
+        margin-right: 10px;
+        margin-bottom: 8px;
+        vertical-align: middle;
+    }
+    .second span{
+        display: inline-block;
+        font-size: 20px;
+        line-height: 66px;
+        color: #ffffff;
+    }
+    .precinct ul li:first-of-type{
+        border-radius:7px 0 0 7px !important;
+    }
+    .precinct ul li:last-of-type{
+        border-radius: 0 7px 7px 0 !important;
+    }
+    .fill{
+        height: 120px;
+    }
+    .notice{
+        bottom: 75px;
+    }
+}

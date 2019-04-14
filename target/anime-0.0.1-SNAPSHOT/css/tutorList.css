@@ -1,0 +1,583 @@
+* {
+    margin: 0;
+    padding: 0;            /*  去掉所有标签的marign和padding的值  */
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #ffffff;
+}
+ul {
+    list-style: none;           /*  去掉ul标签默认的点样式  */
+}
+a img {
+    border: none;        /*  超链接下，图片的边框  */
+}
+a {
+    color: #333;
+    text-decoration: none;     /* 超链接样式 */
+}
+a:hover {
+    color: #ff0000;
+}
+header{
+    position: relative;
+    width: 100%;
+}
+article{
+    position: relative;
+    width: 96%;
+    margin: 0 auto;
+}
+.picBox{
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+    background-size: 100% 100%;
+}
+.selectedSpan{
+    border: 1px solid #ffffff;
+}
+.picBox li{
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.picBox img{
+    width: 100%;
+}
+.boxFont{
+    width: 96%;
+    padding-left: 4%;
+    background-color: rgba(0,0,0,0.5);
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+}
+.bgBox{
+    width: 100%;
+    position: relative;
+}
+.picIndex{
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+}
+.picIndex span{
+    display: inline-block;
+    background-color: #ffffff;
+}
+
+.selected{
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+
+.selectedP{
+    line-height: 40px;
+    padding: 0 3%;
+    background-color: #eee;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+.selectedP span{
+    padding: 4px 8px;
+    background-color: #e0485e;
+    font-size: 12px !important;
+    color: #ffffff;
+    margin-left: 8px;
+}
+/* 通知公告部分 */
+.notice{
+    width: 100%;
+    border-bottom: 1px solid #e1e1e1;
+    text-align: left;
+}
+.notice_left{
+    float: left;
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.notice_left img{
+    width: 60%;
+    display: inline-block;
+    margin-left: 20%;
+    vertical-align: middle;
+}
+#moocBox {
+    width: 88%;
+    margin-right: 2%;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;    /*  这个一定要加，超出的内容部分要隐藏，免得撑高中间部分 */
+}
+/* 搜索框 */
+.search{
+    width:96%;
+    border: 1px solid #e1e1e1;
+}
+.search input {
+    float: left;
+    width: 75%;
+    border: none;
+    color: #999;
+    outline: none;
+}
+.search img{
+    width: 50%;
+    margin: 10% 0 0 30%;
+}
+.kuang{
+	display: inline-block;
+	float: right;
+	width: 15%;
+}
+/* list部分 */
+section{
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+}
+.left img{
+        display: block;
+        width: 100%;
+    }
+.right{
+    float:right;
+    width: 84%;
+}
+.write{
+    display: block;
+    position: fixed;
+    z-index: 9;
+    width: 14%;
+    right: 0;
+    bottom: 20%;
+}
+.fill{
+    width: 100%;
+    clear: both;
+    height: 5px;
+    margin: 15px auto;
+    border-bottom: 1px solid #e5e5e5;
+}
+.introduce{
+	overflow: hidden;
+}
+.introduce-left{
+    float: left;
+    width: 50%;
+}
+.introduce-left img{
+    width: 14%;
+    margin-right: -2px;
+}
+.introduce-left img:first-of-type{
+    width: 23%!important;
+}
+.introduce-right{
+    float: right;
+    width: 50%;
+    text-align: right;
+    overflow: hidden;
+}
+.statistical{
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.statistical p{
+    display: inline-block;
+}
+.statistical p:first-of-type{
+    float: left;
+}
+.statistical p:last-of-type{
+    float: right;
+    margin-right: 10px;
+
+}
+.statistical p img{
+    -webkit-transform:scale(0.6);
+    display: inline-block;
+    vertical-align: middle;
+}
+.statistical p span{
+    font-size: 12px;
+    color: #2f5e9b;
+    line-height: 26px;
+    display: inline-block;
+}
+.icon{
+     width: 100%;
+     background-color: #ffffff;
+     list-style: none;
+     overflow: hidden;
+}
+.icon li{
+     width: 33%;
+     float: left;
+     text-align: center;
+}
+.icon li img,.icon li label{
+      display: inline-block;
+}
+.browse {
+	opacity: 0.5;
+}
+.shareCout {
+	opacity: 0.5;
+}
+@media (max-height: 600px) {
+    #showMore a{
+        font-size:12px;
+        padding:10px 0;
+    }
+    .picBox{
+        height: 180px;
+    }
+    .picBox img{
+        height: 180px;
+    }
+    .boxFont{
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .picIndex{
+        right: 10px;
+        padding-bottom: 12px;
+        height: 6px;
+        line-height: 6px;
+    }
+    .picIndex span{
+        width: 4px;
+        height: 4px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    .selected{
+        margin-left: 4px;
+        border-bottom: 6px solid #e0485e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+    }
+    .indexPic{
+        height: 80px;
+        box-shadow: 1px 1px 2px #ccc;
+        border-radius: 6px;
+    }
+    .left{
+        float: left;
+        width: 46px;
+        height: 46px;
+    }
+    .left img{
+        width: 46px;
+        height: 46px;
+        border-radius:55px;
+    }
+    .name{
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 3px;
+    }
+    .industry {
+        position: relative;
+        clear: both;
+        width: 100%;
+        margin-bottom: 2px;
+    }
+    .introduce-right span{
+        font-size: 13px;	  
+    }
+    .industry span{
+        font-size: 14px;
+        -webkit-transform:scale(0.8);
+        display: inline-block;
+        padding: 0 4px;
+        margin: 0 -6px ;
+        border-radius: 4px;
+        background-color: #a2bed9;
+        color: #ffffff;
+    }
+    .company{
+        margin-bottom: 4px;
+    }
+    .company label,.rank{
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 5px;
+        margin-left: -4px;
+        padding: 1px 8px;
+        border-radius: 4px;
+        background-color: #cfead7;
+        color: #ffffff;
+        font-size: 14px;
+        -webkit-transform: scale(0.8);
+    }
+    .company label{
+         background-color: #cfead7;
+    }
+    .position label{
+         background-color: #b6c1de !important;
+    }
+    .rank{
+         background-color: #f2ac9f;
+    }
+    .company img{
+        display: inline-block;
+        width: 15px;
+        margin: 0 8px -2px 8%;
+    }
+    .position img{
+        width: 15px !important;
+    }
+    .company span{
+        font-size: 12px;
+        color: #6d6a6b;
+    }
+    .word{
+        padding: 0 0 6px 0;        
+    }
+    .word img{
+        display:inline-block;
+        width: 14px;
+        margin: 0 5px -1px 8%;
+    }
+    .word p{
+        display:inline-block;
+        font-size: 12px;
+        color: #6d6a6b;
+    }
+    .interact{
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .interact img:last-of-type{
+        display: inline-block;
+        float: right;
+        width: 20%;
+        margin-right: 10px;
+    }
+    .interact span{
+        display: inline-block;
+        margin-top: 5px;
+        color: #999999;
+    }
+    .search{
+        height: 30px;
+        margin: 5px auto 20px;
+        border-radius: 5px;
+    }
+    .search input{
+        height: 30px;
+        font-size: 14px;
+        margin-left: 8px;
+    }
+    .kuang{
+        height: 30px;
+        background-color: #a2bed9;
+        border-radius: 0 5px 5px 0;
+    }
+    .notice{
+        height: 25px;
+        margin: 5px 0;
+    }
+    .right{
+        margin-bottom: 5px;
+    }
+    .icon{
+        height: 25px;
+    }
+     .icon li{
+         height: 25px;
+    }
+     .icon li img{
+         width: 20px;
+         margin-right:1px;
+         margin-bottom: -1px;
+    }
+     .vote{
+         width: 15px!important;
+         opacity:1;
+    }
+     .icon li label{
+         font-size: 14px;
+         line-height: 25px;
+     }
+}
+@media (min-height: 600px) {
+    #showMore a{
+        font-size:14px;
+        padding:14px 0;
+    }
+    .picBox{
+        height: 200px;
+    }
+    .picBox img{
+        height: 200px;
+    }
+    .boxFont{
+        height: 36px;
+        line-height: 36px;
+        font-size: 13px;
+    }
+    .picIndex{
+        right: 14px;
+        height: 7px;
+        padding-bottom: 13px;
+        line-height: 7px;
+    }
+    .picIndex span{
+        width: 5px;
+        height: 5px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    .selected{
+        margin-left: 5px;
+        border-bottom: 7px solid #e0485e;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+    .left{
+        float: left;
+        width: 55px;
+        height: 55px;       
+    }
+    .left img{
+        width: 55px;
+        height: 55px;
+        border-radius:65px;
+    }
+    .name{
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 3px;
+    }
+    .industry {
+        position: relative;
+        clear: both;
+        width: 100%;
+        margin-bottom: 2px;
+    }
+    .introduce-right span{
+        font-size: 15px;	  
+    }
+    .industry span{
+        font-size: 16px;
+        -webkit-transform:scale(0.8);
+        display: inline-block;
+        padding: 2px 6px;
+        margin: 0 -6px ;
+        border-radius: 4px;
+        background-color: #a2bed9;
+        color: #ffffff;
+    }
+    .company{
+        margin-bottom: 6px;
+    }
+    .company label,.rank{
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 6px;
+        margin-left: -4px;
+        padding: 1px 8px;
+        border-radius: 4px;
+        background-color: #cfead7;
+        color: #ffffff;
+        font-size: 17px;
+        -webkit-transform: scale(0.8);
+    }
+    .company label{
+         background-color: #cfead7;
+    }
+    .position label{
+         background-color: #b6c1de !important;
+    }
+    .rank{
+         background-color: #f2ac9f;
+    }
+    .company span{
+        font-size: 14px;
+        color: #6d6a6b;
+    }
+    .company img{
+        display: inline-block;
+        width: 18px;
+        margin: 0 8px -3px 8%;
+    }
+    .position img{
+        width: 18px;
+    }
+    .word{
+        padding: 0 0 6px 0;        
+    }
+    .word img{
+        display:inline-block;
+        width: 16px;
+        margin: 0 5px -1px 8%;
+    }
+    .word p{
+        display:inline-block;
+        font-size: 14px;
+        color: #6d6a6b;
+    }
+    .interact{
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .interact img:last-of-type{
+        display: inline-block;
+        float: right;
+        width: 20%;
+        margin-right: 10px;
+    }
+    .search{
+        height: 35px;
+        margin: 5px auto 25px;
+        border-radius: 8px;
+    }
+    .search input{
+        height: 35px;
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    .kuang{
+        height: 35px;
+        background-color: #a2bed9;
+        border-radius: 0 8px 8px 0;
+    }
+    .notice{
+        height: 25px;
+        margin: 8px 0;
+    }
+    .right{
+        margin-bottom: 10px;
+    }
+    .icon {
+		height: 30px;
+	}
+	.icon li {
+		height: 30px;
+	}
+	.icon li img {
+		width: 25px;
+		margin-right: 2px;
+		margin-bottom:-2px;
+	}
+	.vote {
+		width: 18px !important;
+		opacity:1;
+	}
+	.icon li label {
+		font-size: 15px;
+		line-height: 30px;
+	}
+}

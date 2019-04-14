@@ -1,0 +1,45 @@
+.pointPeopelDetails{
+	width: 94%;
+	padding:0 3%;
+	text-align: center;
+	background-color: #ffffff;
+	border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+.pointPeopelDetails p{
+	color: #526a84;
+	text-align: justify;
+}
+.pointPeopelDetails p a{
+	text-decoration: none;
+	color: #526a84;
+	text-align: justify;
+}
+.pointPeopelDetails img{
+	margin-right: 1%;	
+	margin-bottom: -1px;
+}
+@media (max-height:600px){
+	.pointPeopelDetails{
+	    margin: 10px 0;
+	}
+	.pointPeopelDetails img{
+	    height: 15px;
+	}
+	.pointPeopelDetails p{
+	    padding: 8px 0;
+	    font-size: 14px;
+	}
+}
+@media (min-height:600px){
+	.pointPeopelDetails{
+	    margin: 12px 0;
+	}
+	.pointPeopelDetails img{
+	    height: 18px;
+	}
+	.pointPeopelDetails p{
+	    padding: 10px 0;
+	    font-size: 16px;
+	}
+}

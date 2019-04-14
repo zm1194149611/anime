@@ -1,0 +1,85 @@
+
+
+.BigContent{
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin: 30px 0;
+}
+.BigContent ul{
+    list-style: none;
+    width: 96%;
+    position: relative;
+    margin: 0 auto;
+}
+.BigContent ul li{
+    width: 100%;
+    padding: 30px 0;
+    height: auto;
+    overflow: auto;
+}
+.BigContent ul li:nth-of-type(2n){
+    background-color: #f5f5f5;
+}
+.image{
+    width: 20%;
+    height: 160px;
+    float: left;
+}
+.messageFont{
+    width: 78%;
+    margin-left: 2%;
+    float: left;
+}
+.messageFont p:first-of-type{
+    height: 40px;
+    line-height: 40px;
+}
+.messageFont p:first-of-type span{
+    display: inline-block;
+    margin-right: 40px;
+    color: #187fce;
+}
+.messageFont p:first-of-type span label{
+    color: #666666;
+}
+.messageFont .block1{
+    height: 40px;
+    line-height: 40px;
+}
+.messageFont .block1 span{
+    display: inline-block;
+    margin-right: 40px;
+    color: #187fce;
+}
+.messageFont .block1 span label{
+    color: #666666;
+}
+.messageText span{
+    margin-bottom: 4px;
+    display: block;
+    color: #187fce;
+}
+.messageText label{
+    text-indent: 2em;
+    display: block;
+}
+.emphasis-focus{
+	font-weight: bold;
+	color: #f00 !important;
+}
+.Btn{
+    margin-top: 10px;
+    height: 36px;
+    width: 100px;
+    margin-left: 10px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 36px;
+    float: right;
+}
+.ok{
+    background-color: #e0485e;
+}
+.no{
+    background-color: #666;
+}

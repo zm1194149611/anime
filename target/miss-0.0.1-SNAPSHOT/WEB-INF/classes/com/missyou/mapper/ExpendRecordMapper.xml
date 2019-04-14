@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ExpendRecordDao">
+  <resultMap id="expendRecord" type="expendRecord">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="vedio_userId"  property="vedioUserId" />
+    <result column="account_id"  property="accountId" />
+    <result column="expend_project"  property="expendProject" />
+    <result column="expend_type"  property="expendType" />
+    <result column="expend_count"  property="expendCount" />
+    <result column="create_date"  property="createDate" />
+    <result column="system_type"  property="systemType" />
+    <result column="vedio_time" property="vedioTime" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id,vedio_userId, account_id,expend_project,expend_type,expend_count,create_date,system_type,lastup_date,vedio_time</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{vedioUserId}, #{accountId},#{expendProject},#{expendType},#{expendCount},#{createDate},#{systemType},#{lastupDate},#{vedioTime}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="expendRecord" flushCache="true">
+		INSERT INTO expend_record(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="expendRecord" flushCache="true">
+		UPDATE	expend_record T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="expendProject != null">T.expend_project=#{expendProject},</if>
+			<if test="expendType != null">T.expend_type=#{expendType},</if>
+			<if test="expendCount != null">T.expend_count=#{expendCount},</if>
+			<if test="systemType != null">T.system_type=#{systemType},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+			<if test="vedioTime != null">T.vedio_time = #{vedioTime},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="expendRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM expend_record WHERE ID=#{id}
+	</select>
+
+ 
+
+	<select id="getByIds" parameterType="long" resultMap="expendRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM expend_record WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+
+
+	<delete id="delete">
+		DELETE FROM expend_record WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	
+	<select id="getExpendRecordlist"  resultMap="expendRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM expend_record   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="expendRecord.userId != null"> AND user_id= #{expendRecord.userId}</if>
+			<if test="expendRecord.startDate != null"> AND create_date &gt;= #{expendRecord.startDate}</if>
+			<if test="expendRecord.endDate != null"> AND create_date &lt;= #{expendRecord.endDate}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY create_date DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getUserTotalExpend" parameterType="expendRecord" resultMap="expendRecord">
+		SELECT SUM(expend_count) expend_count  from expend_record  
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="startDate != null"> AND create_date &gt;= #{startDate}</if>
+			<if test="endDate != null"> AND create_date &lt;= #{endDate}</if>
+		</trim>
+	</select>
+	
+	<select id="getUserVedioList"  resultMap="expendRecord">
+		SELECT * FROM expend_record   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		and expend_type in (1,2)
+		ORDER BY create_date DESC
+		LIMIT 0,#{pager.size}
+	</select>
+
+
+	<!-- <select id="getCount" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		account T
+		<include refid="querycondition" />
+	</select> -->
+
+	<!-- <select id="getWithCondition" resultMap="account" parameterType="map"
+		flushCache="true" useCache="false">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		account T
+		<include refid="querycondition" /> 
+		<include refid="Sql.pager" />
+	</select>
+
+	<sql id="querycondition">
+		<trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="">
+			<if test="t !=null">
+				<if test="t.accountName !=null and t.accountName!=''">
+					AND (instr(T.account_NAME,#{t.accountName})&gt;0)
+				</if>
+				<if test="t.accountType !=null">
+					AND account_TYPE = #{t.accountType}
+				</if>
+				<if test="t.available!= null">
+					AND T.available=#{t.available}
+				</if>
+			</if>
+		</trim>
+	</sql> -->
+  
+</mapper>

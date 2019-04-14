@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.MachinePushMsgConfigDao">
+	<resultMap id="machinePushMsgConfig" type="machinePushMsgConfig">
+		<result column="id"  property="id" />
+		<result column="push_id" property="pushId" />
+		<result column="message_id" property="messageId" />
+		<result column="create_date" property="createDate" />
+	</resultMap>
+
+	<sql id="keyColumns"> ID,PUSH_ID,MESSAGE_ID,CREATE_DATE
+	</sql>
+	<sql id="valueColumns"> #{id},#{pushId},#{messageId},#{createDate}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="machinePushMsgConfig" flushCache="true">
+		INSERT INTO MACHINE_PUSH_MSG_CONFIG(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="machinePushMsgConfig" flushCache="true">
+		UPDATE	MACHINE_PUSH_MSG_CONFIG T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="pushId != null">T.push_id=#{pushId},</if>
+			<if test="messageId != null">T.message_id=#{messageId},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="delete">
+		DELETE FROM MACHINE_PUSH_MSG_CONFIG WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<!-- 查询  -->
+	<select id="find" parameterType="machinePushMsgConfig" resultMap="machinePushMsgConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_PUSH_MSG_CONFIG T
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+		    <if test="pushId != null"> and T.push_id=#{pushId}</if>
+			<if test="messageId != null"> and T.message_id=#{messageId}</if>
+		</trim>
+		</where>
+	</select>
+
+
+</mapper>

@@ -1,0 +1,227 @@
+@import"public.css";
+body{
+    background-color: #eeeeee;
+}
+section{
+    background-color: #ffffff;
+}
+section ul{
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    list-style: none;
+}
+section ul li{
+    border-bottom: 1px solid #eee;
+}
+ul li div{
+    height: auto;
+}
+input[type=text]{
+    width: 80%;
+}
+.up{
+    text-align: right;
+    float: right;
+    display: inline-block
+vertical-align: bottom;
+}
+.radio,.radio3{
+    background-color: #fbf8e4;
+    width: 90%;
+    height: auto;
+    overflow: auto;
+}
+.radio span{
+    width: 33%;
+    display: block;
+    float: left;
+    vertical-align: middle;
+}
+.radio3 span{
+    width: 50%;
+    display: block;
+    float: left;
+}
+input[type=radio]{
+    vertical-align: middle;
+}
+textarea~span,input[type=file]~label{
+    width: 100%;
+    display: block;
+    text-align: right;
+    color: #a7a7a7;
+}
+textarea~span label{
+    color: #e0485e;
+}
+textarea{
+    width: 100%;
+    background-color: #fbf8e4;
+    color: #555;
+    overflow:hidden!important;
+    margin-bottom:10px !important;
+}
+.form p label{
+    color: #ffffff;
+    font-weight: bold;
+}
+.imgBox{
+    width: 86%;
+    background-color:#f5f5f5;
+    position: relative;
+    border-radius: 4px!important;
+    color: #999999;
+}
+input[type = "file"]{
+    width: 100%;
+    position: absolute;
+    display: block;
+    opacity: 0;
+}
+.imgBox img{
+    display: inline-block;
+}
+#submit{
+    background-color: #e0485e;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    color: #ffffff;
+    width: 80%;
+}
+@media (max-height: 600px) {
+    section{
+        margin-top: 14px;
+        padding-bottom: 25px;
+    }
+    section ul li{
+        padding-top: 30px;
+        font-size: 14px;
+    }
+    ul li div{
+        margin: 10px 0 6px 0;
+    }
+    input,textarea{
+        font-size: 14px;
+    }
+    .up{
+        width: 20px !important;
+    }
+    section ul li img{
+        width: 26px;
+        margin-right: 6px;
+    }
+    .radio,.radio3{
+        line-height: 30px;
+        padding: 10px 5%;
+        margin-bottom: 6px;
+        font-size: 12px;
+    }
+    input[type=radio]{
+        margin-right: 4px;
+    }
+    textarea~span,input[type=file]~label{
+        font-size: 10px;
+    }
+    textarea{
+        padding: 10px 5%;
+        line-height: 22px;
+        height: 120px;
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+    #projIntroduce{
+        height: 40px !important;
+    }
+    .imgBox{
+        padding: 10px 7% !important;
+        border-radius: 6px;
+        font-size: 12px;
+    }
+    input[type = "file"]{
+        top: 10px;
+        height: 26px;
+    }
+    .imgBox div{
+        height: 26px;
+        line-height: 26px;
+    }
+    .imgBox img{
+        height: 26px;
+    }
+    #submit{
+        margin: 30px 0 30px 10%;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+@media (min-height: 600px) {
+    section{
+        margin-top: 20px;
+        padding-bottom: 25px;
+    }
+    section ul li{
+        padding-top: 30px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    ul li div{
+        margin: 10px 0 6px 0;
+    }
+    input,textarea{
+        font-size: 16px;
+    }
+    .up{
+        width: 20px !important;
+    }
+    section ul li img{
+        width: 26px;
+        margin-right: 6px;
+    }
+    .radio,.radio3{
+        line-height: 30px;
+        padding: 10px 5%;
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+    input[type=radio]{
+        margin-right: 4px;
+    }
+    textarea~span,input[type=file]~label{
+        font-size: 13px;
+    }
+    textarea{
+        padding: 10px 5%;
+        line-height: 22px;
+        height: 120px;
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+    #projIntroduce{
+        height: 40px !important;
+    }
+    .imgBox{
+        padding: 10px 7% !important;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+    input[type = "file"]{
+        top: 10px;
+        height: 40px;
+    }
+    .imgBox div{
+        height: 40px;
+        line-height: 40px;
+    }
+    .imgBox img{
+        height: 40px;
+        width: 40px;
+    }
+    #submit{
+        margin: 30px 0 50px 10%;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+    }
+}

@@ -1,0 +1,87 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+}
+  
+@media (max-height: 600px) {
+    .wechattop{
+        width: 100%;
+        height:300px;
+        padding-top: 10px;
+        background:#3caf6c;
+    }
+    .wechattop img{
+        width: 35%;
+        display: block;
+        margin: 20px auto 0;
+    }
+    .bdbtn{
+        margin-top: 20px;
+        margin-bottom: 65px;
+    }
+    .bdbtn p{
+        display: block;
+        margin: 0 auto;
+        line-height: 50px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .bdbtn p:first-of-type{
+        width: 90%;
+        height: 50px;
+        background:#3caf6c;
+        color: #FFFFFF;
+    }
+    .bdbtn p:last-of-type{
+        width: 89%;
+        height: 48px;
+        margin-top: 10px;
+        border: 1px solid #c0c0c0;
+        color: #888888;
+    }
+}
+@media (min-height: 600px) {
+    .wechattop{
+        width: 100%;
+        height:375px;
+        padding-top: 10px;
+        background:#3caf6c;
+    }
+    .wechattop img{
+        width: 35%;
+        display: block;
+        margin: 20px auto 0;
+    }
+    .bdbtn{
+        margin-top: 25px;
+        margin-bottom: 75px;
+    }
+    .bdbtn p{
+        display: block;
+        margin: 0 auto;
+        line-height: 60px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .bdbtn p:first-of-type{
+        width: 90%;
+        height: 60px;
+        background:#3caf6c;
+        color: #FFFFFF;
+    }
+    .bdbtn p:last-of-type{
+        width: 89%;
+        height: 58px;
+        margin-top: 15px;
+        border: 1px solid #c0c0c0;
+        color: #888888;
+        
+    }
+}

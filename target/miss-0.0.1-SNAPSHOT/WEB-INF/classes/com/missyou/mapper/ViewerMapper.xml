@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ViewerDao">
+	<resultMap id="viewer" type="viewer">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="viewer_id" property="viewerId" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">id, user_id, viewer_id, create_time</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{viewerId}, #{createTime}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="viewer" flushCache="true">
+		INSERT INTO VIEWER(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+    </insert>
+
+
+	<select id="getByUserId" parameterType="long" resultMap="viewer">
+		SELECT
+		<include refid="keyColumns" />
+		FROM VIEWER WHERE USER_ID=#{userId}
+	</select>
+
+	<select id="find" parameterType="viewer" resultMap="viewer">
+		SELECT
+		<include refid="keyColumns" />
+		FROM VIEWER  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="userId != null"> and user_id= #{userId}</if>
+			<if test="viewerId != null"> and viewer_id= #{viewerId}</if>
+		</trim>
+	</select>
+	
+
+
+	<select id="getById" parameterType="long" resultMap="viewer">
+		SELECT
+		<include refid="keyColumns" />
+		FROM VIEWER WHERE ID=#{id}
+	</select>
+
+
+
+	<select id="getByIds" parameterType="long" resultMap="viewer">
+		SELECT
+		<include refid="keyColumns" />
+		FROM viewer WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+
+
+	<delete id="delete">
+		DELETE FROM VIEWER WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	
+	<select id="getVisitorOfPager" resultMap="viewer">
+		SELECT
+		<include refid="keyColumns" />
+		FROM VIEWER   WHERE  user_id=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY create_time DESC 
+		LIMIT 0,#{pager.size}
+	</select>
+
+	<select id="getVisitorCount" resultType="Integer" parameterType="viewer">
+		SELECT
+		count(1)
+		FROM VIEWER   v
+		<trim prefix="where" prefixOverrides="and">
+			<if test="viewer.userId != null"> and v.user_id= #{viewer.userId}</if>
+		</trim>
+	</select>
+ 
+ 	<update id="update" parameterType="viewer" flushCache="true">
+		UPDATE	VIEWER T	SET create_time=#{createTime} 
+		WHERE	T.ID=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.dao.CartoonBodyDao">
+	<resultMap id="cartoonBody" type="cartoonBody">
+		<result column="id" property="id" />
+		<result column="chapter_id" property="chapterId" />
+		<result column="cartoon_id" property="cartoonId" />
+		<result column="sequence" property="sequence" />
+		<result column="img_url" property="imgUrl" />
+		<result column="create_time" property="createTime" />
+
+	</resultMap>
+
+
+	<sql id="keyColumns">chapter_id,cartoon_id,sequence,img_url,create_time
+	</sql>
+	<sql id="valueColumns">#{chapterId},#{cartoonId},#{sequence},#{imgUrl},#{createTime}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="cartoonBody" flushCache="true">
+		INSERT INTO cartoon_body(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="cartoonBody" flushCache="true">
+		UPDATE cartoon_body T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="chapterId != null">T.chapter_id=#{chapterId},</if>
+			<if test="cartoon_id != null">T.title=#{cartoonId},</if>
+			<if test="imgUrl != null">T.img_url=#{imgUrl},</if>
+			<if test="sequence != null">T.chapter_id=#{sequence},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" resultMap="cartoonBody">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_body WHERE ID=#{id}
+	</select>
+
+	<select id="getByIds" resultMap="cartoonBody">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_body WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<delete id="delete">
+		DELETE FROM cartoon_body WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="find" parameterType="cartoonBody" resultMap="cartoonBody">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_body
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="cartoonId != null"> AND cartoon_id= #{cartoonId}</if>
+			<if test="needLogin != null"> AND need_login=#{needLogin}</if>
+			<if test="needCharge != null"> AND need_charge= #{needCharge}</if>
+			<if test="disable != null"> AND disable= #{disable}</if>
+		</trim>
+		ORDER BY id DESC
+	</select>
+
+	<select id="listByChapterId" parameterType="Long" resultMap="cartoonBody">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_body
+		where chapter_id= #{chapterId}
+		ORDER BY sequence asc
+	</select>
+	
+	<select id="listByPage" parameterType="cartoonBody" resultMap="cartoonBody">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_body
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="cartoonBody.chapterId != null"> AND chapter_id= #{cartoonBody.chapterId}</if>
+		</trim>
+		ORDER BY sequence asc
+		<include refid="Sql.pager"></include>
+	</select>
+	
+	<select id="getCount" parameterType="cartoonBody" resultType="Integer">
+		SELECT
+		count(1)
+		FROM cartoon_body
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="cartoonBody.chapterId != null"> AND chapter_id= #{cartoonBody.chapterId}</if>
+		</trim>
+	</select>
+	
+</mapper>

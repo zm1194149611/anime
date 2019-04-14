@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.RechargeHistoryDao">
+	<resultMap id="rechargeHistory" type="rechargeHistory">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="vedio_userId"  property="vedioUserId" />
+		<result column="recharge_channel" property="rechargeChannel" />
+		<result column="money" property="money" />
+		<result column="recharge_time" property="rechargeTime" />
+		<result column="recharge_project" property="rechargeProject" />
+		<result column="promotion_channel" property="promotionChannel" />
+		<result column="system_type" property="systemType" />
+		<result column="account_id" property="accountId" />
+		<result column="recharge_type" property="rechargeType" />
+		<result column="chat_coin" property="chatCoin" />
+		<result column="gift_code" property="giftCode" />
+		<result column="vedio_time" property="vedioTime" />
+		<result column="settle_status" property="settleStatus" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">ID, user_id,vedio_userId,
+		recharge_channel,money,recharge_time,recharge_project,promotion_channel,system_type,account_id,recharge_type,chat_coin,gift_code,vedio_time,settle_status
+	</sql>
+	<sql id="valueColumns">#{id}, #{userId},#{vedioUserId},
+		#{rechargeChannel},#{money},#{rechargeTime},#{rechargeProject},#{promotionChannel},#{systemType},#{accountId},#{rechargeType},#{chatCoin},#{giftCode},#{vedioTime},#{settleStatus}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="rechargeHistory" flushCache="true">
+		INSERT INTO recharge_history(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="rechargeHistory" flushCache="true">
+		UPDATE recharge_history T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="rechargeChannel != null">T.recharge_channel=#{rechargeChannel},</if>
+			<if test="money != null">T.money=#{money},</if>
+			<if test="rechargeTime != null">T.recharge_time=#{rechargeTime},</if>
+			<if test="rechargeProject != null">T.recharge_project=#{rechargeProject},</if>
+			<if test="promotionChannel != null">T.promotion_channel=#{promotionChannel},</if>
+			<if test="systemType != null">T.system_type=#{systemType},</if>
+			<if test="accountId != null">T.account_id=#{accountId},</if>
+			<if test="rechargeType != null">T.recharge_type=#{rechargeType},</if>
+			<if test="chatCoin != null">T.chat_coin=#{chatCoin},</if>
+			<if test="giftCode != null">T.gift_code=#{giftCode},</if>
+			<if test="startDate != null">T.recharge_time>=#{startDate},</if>
+			<if test="endDate != null">T.recharge_time &lt;= #{endDate},</if>
+			<if test="vedioTime != null">T.vedio_time = #{vedioTime},</if>
+			<if test="settleStatus != null">T.settle_status = #{settleStatus},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history WHERE ID=#{id}
+	</select>
+
+
+
+	<select id="getByIds" parameterType="long" resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getAll" parameterType="long" resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history
+	</select>
+
+	<select id="find" parameterType="rechargeHistory" resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history T
+		<where>
+			<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+				<if test="userId != null"> and T.user_id=#{userId}</if>
+				<if test="rechargeChannel != null"> and T.recharge_channel=#{rechargeChannel}</if>
+				<if test="money != null">and T.money=#{money}</if>
+				<if test="rechargeTime != null">and T.recharge_time=#{rechargeTime}</if>
+				<if test="rechargeProject != null">and T.recharge_project=#{rechargeProject}</if>
+				<if test="promotionChannel != null">and T.promotion_channel=#{promotionChannel}</if>
+				<if test="systemType != null">and T.system_type=#{systemType}</if>
+				<if test="accountId != null">and T.account_id=#{accountId}</if>
+				<if test="rechargeType != null">and T.recharge_type=#{rechargeType}</if>
+				<if test="chatCoin != null">and T.chat_coin=#{chatCoin}</if>
+				<if test="giftCode != null">and T.gift_code=#{giftCode}</if>
+				<if test="startDate != null">and T.recharge_time &gt;=#{startDate}</if>
+				<if test="endDate != null">and T.recharge_time &lt;= #{endDate}</if>
+				<if test="vedioTime != null">and T.vedio_time>=#{vedioTime}</if>
+				<if test="settleStatus != null">and T.settle_status>=#{settleStatus}</if>
+			</trim>
+		</where>
+		ORDER BY recharge_time DESC
+	</select>
+	
+	<select id="getAnchorEarnList"  resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="rechargeHistory.userId != null"> AND user_id= #{rechargeHistory.userId}</if>
+			<if test="rechargeHistory.startDate != null"> AND recharge_time &gt;= #{rechargeHistory.startDate}</if>
+			<if test="rechargeHistory.endDate != null"> AND recharge_time &lt;= #{rechargeHistory.endDate}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY recharge_time DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getAnchorEarnGiftList" parameterType="rechargeHistory" resultMap="rechargeHistory">
+		SELECT COUNT(gift_code) giftCnt,recharge_project,gift_code FROM recharge_history   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="rechargeType != null"> AND recharge_type= #{rechargeType}</if>
+		</trim>
+		GROUP BY gift_code 
+	</select>
+	
+	<select id="getAnchorVedioList"  resultMap="rechargeHistory">
+		SELECT * FROM recharge_history   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		and recharge_type in(1,2) 
+		ORDER BY recharge_time DESC
+		LIMIT 0,#{pager.size}
+	</select>
+
+
+
+	<delete id="delete">
+		DELETE FROM recharge_history WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="getRechargeHistorylist" resultMap="rechargeHistory">
+		SELECT
+		<include refid="keyColumns" />
+		FROM recharge_history WHERE USER_ID=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY recharge_time DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	<select id="summarybydate" resultType="map">
+		<!-- select
+		d.date,a.chatsum,b.vipsum from
+		(
+		select distinct date(recharge_time)
+		`date` from recharge_history where
+		recharge_type = 2
+		) d left join
+		(
+		select date(recharge_time) `date`,sum(money) chatsum from
+		recharge_history
+		where recharge_type = 2 and recharge_project = '聊币充值'
+		group by
+		date(recharge_time)
+		) a on d.date = a.date left join
+		(
+		select
+		date(recharge_time) `date`,sum(money) vipsum from recharge_history
+		where recharge_type = 2 and recharge_project = 'vip充值' group by
+		date(recharge_time)
+		) b on d.date = b.date where (a.chatsum is not null
+		and b.vipsum is not
+		null) order by d.date desc -->
+		SELECT
+		d.date,c.chatpaysum,a.chatsum,m.vippaysum, b.vipsum,n.paysum FROM
+		(
+		SELECT DISTINCT DATE(create_time)
+		`date` FROM `order` 
+		) d LEFT JOIN
+		(
+		SELECT DATE(create_time) `date`,SUM(amount) chatsum FROM
+		`order`
+		WHERE vip = 2 AND payed=1 
+		GROUP BY
+		DATE(create_time)
+		) a ON d.date = a.date LEFT JOIN
+		(
+		SELECT DATE(create_time) `date`,SUM(amount) chatpaysum FROM
+		`order`
+		WHERE vip = 2 
+		GROUP BY
+		DATE(create_time)
+		) c ON c.date = d.date LEFT JOIN
+		(
+		SELECT DATE(create_time) `date`,SUM(amount) vippaysum FROM
+		`order`
+		WHERE vip = 1 
+		GROUP BY
+		DATE(create_time)
+		) m ON d.date = m.date LEFT JOIN
+		(
+		SELECT
+		DATE(create_time) `date`,SUM(amount) vipsum FROM `order`
+		WHERE vip = 1 AND payed=1  GROUP BY
+		DATE(create_time)
+		) b ON d.date = b.date LEFT JOIN
+		(
+        SELECT
+		DATE(create_time) `date`,SUM(amount) paysum FROM `order`
+		WHERE payed=1  GROUP BY
+		DATE(create_time)		
+		) n ON d.date=n.date 
+		ORDER BY d.date DESC
+	</select>
+
+	<select id="rechargeOfDate" resultMap="rechargeHistory">
+
+		select * from recharge_history where recharge_type = 2 and
+		date(recharge_time) = #{date}
+	</select>
+	
+	<select id="getAnchorTotalRecharge" parameterType="rechargeHistory" resultMap="rechargeHistory">
+		SELECT SUM(chat_coin) chat_coin  from recharge_history  
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="startDate != null"> AND recharge_time &gt;= #{startDate}</if>
+			<if test="endDate != null"> AND recharge_time &lt;= #{endDate}</if>
+		</trim>
+	</select>
+	
+	<select id="getRechargeAnchorUserId" parameterType="rechargeHistory" resultType="long">
+		SELECT DISTINCT(user_id)  FROM recharge_history  
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="settleStatus != null"> AND settle_status= #{settleStatus}</if>
+			<if test="startDate != null"> AND recharge_time &gt;= #{startDate}</if>
+			<if test="endDate != null"> AND recharge_time &lt;= #{endDate}</if>
+		</trim>
+	</select>
+	
+
+
+	<!-- <select id="getCount" resultType="int"> SELECT COUNT(1) FROM rechargeHistory 
+		T <include refid="querycondition" /> </select> -->
+
+	<!-- <select id="getWithCondition" resultMap="rechargeHistory" parameterType="map" 
+		flushCache="true" useCache="false"> SELECT <include refid="keyColumns" /> 
+		FROM rechargeHistory T <include refid="querycondition" /> <include refid="Sql.pager" 
+		/> </select> <sql id="querycondition"> <trim prefix="WHERE" prefixOverrides="AND|OR" 
+		suffixOverrides=""> <if test="t !=null"> <if test="t.rechargeHistoryName 
+		!=null and t.rechargeHistoryName!=''"> AND (instr(T.rechargeHistory_NAME,#{t.rechargeHistoryName})&gt;0) 
+		</if> <if test="t.rechargeHistoryType !=null"> AND rechargeHistory_TYPE = 
+		#{t.rechargeHistoryType} </if> <if test="t.available!= null"> AND T.available=#{t.available} 
+		</if> </if> </trim> </sql> -->
+
+</mapper>

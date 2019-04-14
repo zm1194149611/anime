@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.FriendDao">
+	<resultMap id="friend" type="friend">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="friend_id" property="friendId" />
+		<result column="friend_alias" property="friendAlias" />
+		<result column="create_date" property="createDate" />
+		<result column="applied" property="applied" />
+
+
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">id,user_id,friend_id,friend_alias,create_date,applied
+	</sql>
+	<sql id="valueColumns">#{id},#{userId},#{friendId},#{friendAlias},#{createDate},#{applied}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="friend" flushCache="true">
+		INSERT INTO FRIEND(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="friend" flushCache="true">
+		UPDATE FRIEND T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="friendAlias != null">T.friend_alias= #{friendAlias},</if>
+			<if test="applied != null">T.applied=#{applied},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="friend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FRIEND WHERE ID=#{id}
+	</select>
+
+
+
+	<select id="find" parameterType="friend" resultMap="friend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FRIEND
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="friendId != null"> AND friend_id= #{friendId}</if>
+		</trim>
+	</select>
+
+
+	<select id="getByUserId" parameterType="long" resultMap="friend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FRIEND WHERE USER_ID=#{userId}
+	</select>
+
+	<select id="getByIds" parameterType="long" resultMap="friend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FRIEND WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+	<select id="applyList" resultMap="friend">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FRIEND where friend_id = #{userId} and applied = 0
+	</select>
+
+	<delete id="delete">
+		DELETE FROM FRIEND WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

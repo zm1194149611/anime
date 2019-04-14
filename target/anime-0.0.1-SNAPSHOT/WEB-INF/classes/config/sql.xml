@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 -->
+<mapper namespace="Sql">
+	<sql id="sql_count">select count(*)</sql>
+
+	<sql id="sql_select">select *</sql>
+
+	<sql id="sql_page">
+		<if test="start!=null and start!='' ">
+			<if test="end!=null and end!='' ">
+				<![CDATA[
+						limit #{start} ,#{end}
+						]]>
+			</if>
+		</if>
+	</sql>
+	<sql id="pager">
+		<if test="pager !=null">
+			limit #{pager.start},#{pager.size}
+		</if>
+	</sql>
+	<sql id="sql_limit">
+		<if test="start != null and count !=null">
+			limit #{start},#{count}
+		</if>
+	</sql>
+	<sql id="ora_pager_start">
+		<if test="pager !=null">
+			SELECT * FROM
+			(
+			SELECT ALL_INFO.*, ROWNUM RN
+			FROM (
+		</if>
+	</sql>
+	<sql id="ora_pager_end">
+		<if test="pager !=null">
+			) ALL_INFO
+			WHERE ROWNUM &lt;=
+			#{pager.current}+#{pager.size}-1
+			)
+			WHERE RN
+			>= #{pager.current}
+		</if>
+	</sql>
+
+	<sql id="ora_start">
+		<if test="start != null and count !=null">
+			SELECT * FROM
+			(
+			SELECT ALL_INFO.*, ROWNUM RN
+			FROM (
+		</if>
+	</sql>
+	<sql id="ora_end">
+		<if test="start != null and count !=null">
+			) ALL_INFO
+			WHERE ROWNUM &lt;= #{start}+#{count}-1
+			)
+			WHERE RN
+			>= #{start}
+		</if>
+	</sql>
+</mapper>

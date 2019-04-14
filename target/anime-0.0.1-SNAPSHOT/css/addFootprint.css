@@ -1,0 +1,284 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #ffffff;
+}
+header{
+    width: 100%;
+}
+header p{
+    display: inline-block;
+    width: 30%;
+    margin-left: 25%;
+    text-align: center;
+}
+header span{
+    display: inline-block;
+    float: right;
+    width: 16%;
+    margin-right: 3%;
+    text-align: center;
+    color: #999999;
+}
+header img{
+    width: 3%;
+    margin-left: 7%;
+    vertical-align: middle;
+}
+.time{
+    width: 90%;
+    padding: 5px 5%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+.section-head{
+    width: 100%;
+    height: auto;
+}
+.section-head img{
+    display: inline-block;
+    width: 1%;
+    margin-right: 2px;
+}
+.view{
+    background-color: #ffffff;
+}
+.view img{
+    display: inline-block;
+    width: 1%;
+    margin-right: 2px;
+    margin-bottom: -2px;
+}
+.text textarea{
+    width: 100%;
+    background-color: #fbf8e4;;
+    margin-bottom: 10px;
+    overflow: hidden;
+    letter-spacing: 1px;
+}
+.imgBox2{
+    width: 86%;
+    background-color:#f5f5f5;
+    position: relative;
+    border-radius: 4px!important;
+    color: #999999;
+}
+input[type = "file"]{
+    width: 100%;
+    position: absolute;
+    display: block;
+    opacity: 0;
+}
+.imgBox2 img{
+    display: inline-block;
+}
+@media (max-height: 600px) {
+    header {
+        padding: 10px 0 20px;
+        height: 30px;
+    }
+    header p {
+        font-size: 16px;
+        line-height: 30px;
+        height: 30px;
+        vertical-align: top;
+    }
+    header span {
+        font-size: 15px;
+        line-height: 30px;
+        height: 30px;
+    }
+    .section-head img{
+        margin-bottom: -2px;
+    }
+    .section-head label{
+        font-size: 15px;
+    }
+    .day{
+        display: block;
+        margin: 10px 0;
+    }
+    .day select{
+        width: 20%;
+        height: 25px;
+        color: black;
+        font-size: 15px;
+        background-color: #ffffff;
+    }
+    .day select:first-of-type{
+        width: 21%;
+    }
+    .view{
+        width: 90%;
+        clear: both;
+        padding: 10px 5%;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+    }
+    .view label{
+        font-size: 15px;
+    }
+    .limit{
+        font-size: 12px !important;
+        color: red;
+    }
+    .text{
+        margin: 10px 0 6px 0;
+    }
+    .text textarea{
+        padding: 10px 5%;
+        line-height: 22px;
+        height: 120px;
+        font-size: 14px;
+        color: #555;
+    }
+    .text span{
+        display: block;
+        width: 100%;
+        font-size: 12px !important;
+        text-align: right;
+        color: #a7a7a7;
+    }
+    .imgBox2{
+        margin-top: 20px;
+        padding: 10px 7% 10px 7%!important;
+        border-radius: 6px;
+    }
+    input[type = "file"]{
+        top: 20px;
+        height: 36px;
+    }
+    .imgBox2 div{
+        height: auto;
+        line-height: 36px;
+    }
+    .imgBox2 img{
+        height: 36px;
+        width: 36px!important;
+        margin: 5px 0;
+    }
+    .submit-footprint{
+        display:block;
+        position: relative;
+        clear: both;
+        height: 35px;
+        width: 70%;
+        margin: 35px auto;
+        background-color: red;
+        text-align: center;
+        text-decoration: none;
+    }
+    .submit-footprint span{
+        color: #ffffff;
+        font-size: 15px;
+        line-height: 35px;
+    }
+}
+@media (min-height: 600px) {
+    header {
+        padding: 15px 0 25px;
+        height: 35px;
+    }
+
+    header p {
+        font-size: 18px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    header span {
+        font-size: 16px;
+        height: 35px;
+        line-height: 35px;
+    }
+    .section-head img{
+        margin-bottom: -3px;
+    }
+    .section-head label{
+        font-size: 18px;
+    }
+    .day{
+        display: block;
+        margin: 15px 0;
+    }
+    .day select{
+        width: 20%;
+        height: 30px;
+        color: black;
+        font-size: 16px;
+        background-color: #ffffff;
+    }
+    .day select:first-of-type{
+        width: 25%;
+    }
+    .view{
+        width: 90%;
+        clear: both;
+        padding: 15px 5%;
+        font-size: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .view label{
+        font-size: 18px;
+    }
+    .limit{
+        font-size: 13px !important;
+        color: red;
+    }
+    .text{
+        margin: 12px 0 8px 0;
+    }
+    .text textarea{
+        padding: 10px 5%;
+        line-height: 22px;
+        height: 150px;
+        font-size: 15px;
+        color: #555;
+    }
+    .text span{
+        display: block;
+        width: 100%;
+        text-align: right;
+        font-size: 13px; !important;
+        color: #a7a7a7;
+    }
+    .imgBox2{
+        padding: 15px 7% 15px 7%!important;
+        border-radius: 6px;
+        margin-top: 25px;
+    }
+    input[type = "file"]{
+        top: 20px;
+        height: 36px;
+    }
+    .imgBox2 div{
+        height: auto;
+        line-height: 36px;
+    }
+    .imgBox2 img{
+        height: 40px;
+        width: 40px!important;
+        margin: 8px 0;   
+    }
+    .submit-footprint{
+        display:block;
+        position: relative;
+        clear: both;
+        height: 45px;
+        width: 70%;
+        margin: 45px auto;
+        background-color: red;
+        text-align: center;
+        text-decoration: none;
+    }
+    .submit-footprint span{
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 45px;
+    }
+}

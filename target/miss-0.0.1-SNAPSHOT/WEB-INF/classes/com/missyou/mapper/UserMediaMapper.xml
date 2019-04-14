@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UserMediaDao">
+	<resultMap id="usermedia" type="usermedia">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="file_id" property="fileId" />
+		<result column="type" property="type" />
+		<result column="create_date" property="createDate" />
+		<result column="lock" property="lock" />
+		<result column="sign_id" property="signId" />
+		<result column="vedio_file_id" property="vedioFileId" />
+		<result column="verify_status" property="verifyStatus" />
+		<result column="is_anchor_verify" property="isAnchorVerify" />
+		
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">id,user_id,file_id,type,create_date,`lock`,sign_id,vedio_file_id,verify_status,is_anchor_verify
+	</sql>
+	<sql id="valueColumns">#{id},#{userId},#{fileId},#{type},#{createDate},#{lock},#{signId},#{vedioFileId},#{verifyStatus},#{isAnchorVerify}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="usermedia" flushCache="true">
+		INSERT INTO USER_MEDIA(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	
+	<update id="update" parameterType="usermedia" flushCache="true">
+		UPDATE USER_MEDIA T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="lock != null">T.lock= #{lock},</if>
+			<if test="verifyStatus != null">T.verify_status=#{verifyStatus},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+
+	<select id="getById" parameterType="long" resultMap="usermedia">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_MEDIA WHERE ID=#{id}
+	</select>
+
+
+	<select id="find" parameterType="usermedia" resultMap="usermedia">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_MEDIA 
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="signId != null"> AND sign_id= #{signId}</if>
+			<if test="type != null"> AND type= #{type}</if>
+			<if test="verifyStatus != null"> AND verify_status= #{verifyStatus}</if>
+			<if test="isAnchorVerify != null"> AND is_anchor_verify= #{isAnchorVerify}</if>
+		</trim>
+		ORDER BY ID DESC
+	</select>
+	
+
+	<select id="getByUserId" parameterType="long" resultMap="usermedia">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_MEDIA WHERE USER_ID=#{userId}
+	</select>
+
+	<select id="getByIds" parameterType="long" resultMap="usermedia">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_MEDIA WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="getOfPager"  resultMap="usermedia">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_MEDIA   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="media.userId != null"> AND user_id= #{media.userId}</if>
+			<if test="media.signId != null"> AND sign_id= #{media.signId}</if>
+			<if test="media.type != null"> AND type= #{media.type}</if>
+		</trim>
+		
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="getUserBackImgList" parameterType="usermedia" resultMap="usermedia">
+	   SELECT t.* FROM user_media t,file a 
+       WHERE t.`file_id`=a.`id` and t.type=3
+       and verify_status=1 
+       <if test="userId != null">
+			AND t.user_id =#{userId}
+	   </if>
+	</select>
+	
+	<select id="getAnchorVedioStatusList"  resultMap="usermedia">
+	   SELECT t2.*,t1.`sign_title` as title FROM user_friend_status t1,user_media t2 ,anchor t3
+       WHERE t1.`id`=t2.`sign_id` AND t2.`type`='2' AND t1.`user_id`=t2.`user_id` and t2.`user_id`=t3.`user_id` and t3.identified=1 and t1.status=1 
+       <if test="usermedia.userId != null"> and t.user_id=#{usermedia.userId}</if>
+       <if test="pager.lastId!=null and pager.lastId!=''"> AND t2.id &lt;#{pager.lastId}</if>
+       ORDER BY t2.`id` DESC
+       limit 0,#{pager.size}
+	</select>
+
+
+	<delete id="delete">
+		DELETE FROM USER_MEDIA WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

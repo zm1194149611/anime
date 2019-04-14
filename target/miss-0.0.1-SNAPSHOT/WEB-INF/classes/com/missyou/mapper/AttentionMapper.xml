@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.AttentionDao">
+	<resultMap id="attention" type="attention">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="attention_id" property="attentionId" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">id, user_id, attention_id</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{attentionId}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="attention" flushCache="true">
+		INSERT INTO attention(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+
+
+	<select id="getByUserId" parameterType="long" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM attention WHERE User_ID=#{userId}
+	</select>
+
+	<select id="getByAttentionId" parameterType="long" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM attention WHERE attention_id=#{attentionId}
+	</select>
+	
+	<select id="find" parameterType="long" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM attention a
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userId != null"> and a.user_id=#{userId}</if>
+			<if test="attentionId != null"> and a.attention_id=#{attentionId}</if>
+		</trim>
+		</where>
+	</select>
+
+
+
+	<select id="getById" parameterType="long" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM attention WHERE ID=#{id}
+	</select>
+
+
+
+	<select id="getByIds" parameterType="long" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM attention WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+
+
+	<delete id="delete">
+		DELETE FROM ATTENTION WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<delete id="removeAttention" parameterType="attention">
+		DELETE
+		FROM ATTENTION WHERE USER_ID = #{userId} AND ATTENTION_ID =
+		#{attentionId}
+	</delete>
+
+
+
+	<select id="getAttentionOfPager" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ATTENTION  WHERE  USER_ID=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	
+	<select id="getFansOfPager" resultMap="attention">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ATTENTION   WHERE  ATTENTION_ID=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+
+		LIMIT 0,#{pager.size}
+	</select>
+
+
+	<!-- <select id="getCount" resultType="int"> SELECT COUNT(1) FROM attention 
+		T <include refid="querycondition" /> </select> -->
+
+	<!-- <select id="getWithCondition" resultMap="attention" parameterType="map" 
+		flushCache="true" useCache="false"> SELECT <include refid="keyColumns" /> 
+		FROM attention T <include refid="querycondition" /> <include refid="Sql.pager" 
+		/> </select> <sql id="querycondition"> <trim prefix="WHERE" prefixOverrides="AND|OR" 
+		suffixOverrides=""> <if test="t !=null"> <if test="t.accountName !=null and 
+		t.accountName!=''"> AND (instr(T.account_NAME,#{t.accountName})&gt;0) </if> 
+		<if test="t.accountType !=null"> AND account_TYPE = #{t.accountType} </if> 
+		<if test="t.available!= null"> AND T.available=#{t.available} </if> </if> 
+		</trim> </sql> -->
+
+</mapper>

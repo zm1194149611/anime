@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UserFriendStatusDao">
+  <resultMap id="userFriendStatus" type="userFriendStatus">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="sign_title"  property="signTitle" />
+    <result column="create_date"  property="createDate" />
+     <result column="status"  property="status" />
+    <result column="ext_1"  property="ext1" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, sign_title,create_date,status,ext_1</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{signTitle},#{createDate},#{status},#{ext1}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="userFriendStatus" flushCache="true">
+		INSERT INTO user_friend_status(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="userFriendStatus" flushCache="true">
+		UPDATE	user_friend_status T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="signTitle != null">T.sign_title=#{signTitle},</if>
+			<if test="createDate != null">T.create_date=#{createDate},</if>
+			<if test="status != null">T.status=#{status},</if>
+			<if test="ext1 != null">T.ext_1=#{ext1},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="userFriendStatus">
+		SELECT
+		<include refid="keyColumns" />
+		FROM user_friend_status WHERE ID=#{id}
+	</select>
+	
+
+	<select id="getAnchorStatusList"  resultMap="userFriendStatus">
+		SELECT
+		<include refid="keyColumns" />
+		FROM user_friend_status T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userFriendStatus.userId != null"> and T.user_id=#{userId}</if>
+			<if test="userFriendStatus.signTitle != null">and T.sign_title=#{signTitle}</if>
+			<if test="userFriendStatus.createDate != null">and T.create_date=#{createDate}</if>
+			<if test="userFriendStatus.status != null">and T.status=#{status}</if>
+			<if test="userFriendStatus.ext1 != null">and T.ext_1=#{ext1}</if>
+			<if test="pager.lastId!=null and pager.lastId!=''">
+	             AND T.ID&lt;#{pager.lastId} 
+	        </if>
+		</trim>
+		</where>
+		ORDER BY T.ID DESC
+		limit 0,#{pager.size}
+	</select>
+	
+	
+	<select id="getAnchorFileStatusList"  resultMap="userFriendStatus">
+	   SELECT t.* FROM user_friend_status t 
+       <where>
+       <trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+	       <if test="userFriendStatus.userId != null"> and t.user_id=#{userFriendStatus.userId}</if>
+	       <if test="pager.lastId!=null and pager.lastId!=''">
+		             AND t.ID&lt;#{pager.lastId} 
+		   </if>
+	   </trim>
+	   </where>
+       ORDER BY t.`id` DESC
+       limit 0,#{pager.size}
+	</select>
+	
+	
+	<delete id="delete">
+		DELETE FROM user_friend_status WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="getFirstPassFriendStatusId" resultType="long">
+		select id from user_friend_status f 
+		where f.user_id=#{userId} and f.status=1 order BY create_date ASC limit 0,1
+	</select>
+  
+</mapper>

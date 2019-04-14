@@ -1,0 +1,147 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+ul,li{
+    list-style: none;
+}
+body{
+    width: 100%;
+    height: auto;
+}
+.back{
+	position:absolute;
+	bottom:2%;
+	right:45%;
+	
+	padding:5px 0;
+	font-size:14px;
+}
+.back a{
+	color:gray;
+}
+@media (max-height: 600px) {
+    .jfnow {
+        width: 100px;
+        height: 100px;
+        background-image: url("../image/jfbg.png");
+        background-size: 100% 100%;
+        margin: 10px auto 10px;
+        text-align: center;
+        font-size: 22px!important;
+        color: #ffffff;
+        line-height: 90px;
+    }
+    .jfnow span {
+        margin-top: 20px;
+    }
+    .jfrule {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 21px;
+        color: #576a8b;
+    }
+    .jfrule img {
+        width: 20%;
+        vertical-align: middle;
+    }
+    .jftitle {
+        background: #c4cbd7;
+        height: 30px;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-indent: 15px;
+        line-height: 30px;
+    }
+    .jfborder {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .jflist ul li {
+        border-bottom: 1px solid #e1e1e1;
+        padding-top: 8px;
+        height: 50px;
+    }
+    .jfleft {
+
+        display: inline-block;
+        float: left;
+    }
+    .jfleft p:last-of-type {
+        margin-top: 5px;
+        font-size: 12px;
+        color: #999;
+    }
+    .jfleft p span {
+        position: absolute;
+        right: 10px;
+        color: #ff0000;
+    }
+}
+@media (min-height: 600px) {
+    .jfnow {
+        width: 120px;
+        height: 120px;
+        background-image: url("../image/jfbg.png");
+        background-size: 100% 100%;
+        margin: 15px auto 15px;
+        text-align: center;
+        font-size: 26px;
+        color: #ffffff;
+        line-height: 100px;
+    }
+    .jfnow span {
+        margin-top: 20px;
+    }
+    .jfrule {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 21px;
+        color: #576a8b;
+    }
+    .jfrule img {
+        width: 20%;
+        vertical-align: middle;
+    }
+    .jftitle {
+        background: #c4cbd7;
+        height: 30px;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-indent: 15px;
+        line-height: 30px;
+    }
+    .jfborder {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .jflist ul li {
+        border-bottom: 1px solid #e1e1e1;
+        padding-top: 8px;
+        height: 50px;
+    }
+    .jfleft {
+
+        display: inline-block;
+        float: left;
+    }
+    .jfleft p:last-of-type {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #999;
+    }
+
+    .jfleft p span {
+        position: absolute;
+        right: 10px;
+        color: #ff0000;
+    }
+}

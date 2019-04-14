@@ -1,0 +1,120 @@
+.classify,.checkBox{
+    width: 100%;
+    margin: 30px 0;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+.classify ul{
+    list-style: none;
+    width: 96%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+.classify ul li{
+    border-bottom: 1px dashed #dddddd;
+    height: auto;
+    overflow: auto;
+    line-height: 40px;
+    padding: 10px 0;
+}
+.classify ul li:last-of-type{
+    border: 0;
+}
+.classify ul li label{
+    float: left;
+    color: #888;
+    width: 10%;
+}
+.classify ul li p{
+    float: left;
+    width: 90%;
+}
+.classify ul li p span{
+    padding: 0 10px;
+    margin: 0 3px;
+    font-size: 13px;
+}
+.classify ul li p span:hover,.selectedSpan{
+    background-color: #e0485e;
+    color: #ffffff;
+}
+.checkBox{
+    margin: 0 0 20px 0!important;
+}
+.checkStatus{
+    width: 100%;
+    border-bottom: 2px solid #aaaaaa;
+    margin-top: 60px;
+}
+.checkStatus span{
+    width: 100px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.selectedCheck,.checkStatus span:hover{
+    background-color: #aaaaaa;
+    color: #ffffff;
+}
+.checkBox{
+    list-style: none;
+    padding: 0 0 20px 0;
+}
+.checkBox li{
+    line-height: 60px;
+    width: 94%;
+    margin: 0 auto;
+    height: 60px;
+    overflow: hidden;
+    font-size: 14px;
+}
+.checkBox li a{
+    color: #666;
+}
+.checkBox li:hover{
+    background-color: #fbf8e4 !important;
+}
+.checkBox li:nth-of-type(2n+1){
+    background-color: #eeeeee;
+}
+.checkBox li:first-of-type{
+    border-bottom: 1px solid #aaaaaa;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffffff;
+}
+.checkBox li:first-of-type:hover{
+    background-color: #ffffff !important;
+}
+.checkBox li:first-of-type span:last-of-type{
+    background-color: #ffffff;
+    color: #333;
+    line-height: 60px;
+    height: 60px;
+    margin: 0 0 0 4%;
+}
+.checkBox li span{
+    display: inline-block;
+    float: left;
+    width: 12%;
+    margin-left: 1%;
+    overflow: hidden;
+}
+.checkBox li span:first-of-type{
+    width: 20% !important;
+    overflow: hidden;
+}
+.checkBox li span:last-of-type{
+    background-color: #fb677d;
+    color: #ffffff;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 15px;
+    width: 8%;
+    margin-left: 4%;
+}

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.2.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+         http://www.springframework.org/schema/aop 
+         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+         >
+	<bean name="missTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.ProcessReflectcashTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>  
+    
+    <bean name="merchineOffinePushMsgTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.MerchineOffinePushMsgTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>  
+    
+    <bean name="cleanSpeedMatchTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.CleanSpeedMatchOrderTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>
+    
+    <bean name="notifyCpsTaskTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.NotifyCpsTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>
+    
+    <bean name="cleanUnvariableDataTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.CleanUnvariableDataTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>
+    
+    
+      <bean name="cleanUserVipTaskJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">  
+        <property name="jobClass" value="com.missyou.quartz.CleanUserVipTask" />  
+        <property name="jobDataAsMap">  
+            <map>  
+            	<entry key="timeout" value="36000" />  
+            </map>  
+        </property>  
+    </bean>
+    
+                                    
+   <!--  <bean id="reflectcashTaskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+        <property name="jobDetail" ref="missTaskJob" />  
+        <property name="startDelay" value="600000" />
+        <property name="repeatInterval" value="600000" /> 
+    </bean> -->
+    
+    <!-- <bean id="merchineOffinePushMsgTaskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+        <property name="jobDetail" ref="merchineOffinePushMsgTaskJob" />  
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="800000" /> 
+    </bean> -->
+    
+    <!-- <bean id="cleanSpeedMatchTaskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+        <property name="jobDetail" ref="cleanSpeedMatchTaskJob" />  
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="5000" /> 
+    </bean> -->
+    
+    <!-- <bean id="notifyCpsTaskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+        <property name="jobDetail" ref="notifyCpsTaskTaskJob" />  
+        <property name="startDelay" value="10000" />
+        <property name="repeatInterval" value="10000" /> 
+    </bean> -->
+    
+    <bean id="merchineOffinePushMsgTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="merchineOffinePushMsgTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 */4 * * ?</value>
+		</property>
+	</bean>
+
+   <bean id="reflectcashTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="missTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="cleanSpeedMatchTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cleanSpeedMatchTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 */10 * * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="notifyCpsTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="notifyCpsTaskTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 */10 * * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="cleanUnvariableDataTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cleanUnvariableDataTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 5 * * ?</value>
+		</property>
+	</bean>
+	
+	<bean id="cleanUserVipTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cleanUserVipTaskJob" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+	
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list>  
+                <!-- <ref bean="cleanSpeedMatchTaskTrigger" /> --> 
+                <!--<ref bean="cleanUserVipTaskTrigger" /> 
+                <ref bean="reflectcashTaskTrigger" />
+                <ref bean="notifyCpsTaskTrigger" /> -->
+                <ref bean="cleanUnvariableDataTaskTrigger" />
+            </list>  
+        </property>  
+    </bean>  
+
+
+</beans>
+

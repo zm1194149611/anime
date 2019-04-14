@@ -1,0 +1,211 @@
+body{
+    background-color: #ffffff;
+}
+article{
+    width: 80%;
+    position: relative;
+}
+article ul{
+    list-style: none;
+}
+article ul li{
+    border-bottom: 1px solid #dcdcdc;
+}
+article ul li img{
+    display: inline-block;
+}
+article ul li input{
+    display: inline-block;
+    border: 0;
+    color: #666666;
+    width: 80%;
+}
+#role{
+    width: 100%;
+    color: #666;
+}
+.roleSon{
+    width: 100%;
+}
+.roleSon div{
+    float: left;
+    width: 33.3%;
+}
+.roleSon div img{
+    width: 70%;
+    display: inline-block;
+    position: relative;
+    margin: 0 15%;
+}
+.roleSon div p{
+    text-align: center;
+}
+#submit,#update{
+    width: 100%;
+    background-color: #e0485e;
+    color: #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+.roleSon div span{
+    display: block;
+    opacity: 0;
+    width: 0;
+    position: relative;
+    height: 0;
+}
+#test{
+    width: 40% !important;
+}
+#testCode{
+    float: right;
+    width: 30%;
+    color: #ffffff;
+    background-color: #e0485e;
+    text-align: center;
+}
+.tip{
+    color: #bbb;
+    text-align: center;
+}
+@media (max-height: 600px) {
+    article{
+    margin:0 auto;
+    padding-top:20px;
+    }
+    article ul li{
+        height: 66px;
+        line-height: 110px;
+    }
+    .img2{
+        width: 10px !important;
+    }
+    article ul li img{
+        width: 14px;
+        margin-right: 14px;
+    }
+    article ul li input{
+        font-size: 16px;
+    }
+    #role{
+        margin-top: 40px;
+    }
+    .h{
+        font-size: 15px;
+    }
+    .roleSon{
+        margin-top: 16px;
+    }
+    .roleSon div{
+        width: 33.3%;
+    }
+    .roleSon div p{
+        font-size: 15px;
+        margin-top: 3px;
+    }
+    #submit,#update{
+        height: 40px;
+        margin: 30px 0;
+        line-height: 40px;
+        font-size: 16px;
+    }
+    .roleSon div span{
+        margin: 4px auto;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 8px solid #e0485e;
+    }
+    #update{
+        margin-top: 80px !important;
+    }
+    .new li{
+        height: 60px !important;
+        line-height: 90px !important;
+    }
+    .new li input{
+        font-size: 15px !important;
+    }
+    .new li:first-of-type img{
+        width: 10px !important;
+        margin-left: 2px !important;
+    }
+    #testCode{
+        margin-top: 34px;
+        font-size: 11px;
+        height: 26px;
+        line-height: 26px;
+    }
+    .tip{
+        font-size: 14px;
+        margin: 10px 0 70px 0;
+    }
+}
+@media (min-height: 600px) {
+    article{
+        margin:0 auto;
+        padding-top:30px;
+    }
+    article ul li{
+        height: 76px;
+        line-height: 120px;
+    }
+    .img2{
+        width: 10px !important;
+    }
+    article ul li img{
+        width: 14px;
+        margin-right: 14px;
+    }
+    article ul li input{
+        font-size: 18px;
+    }
+    #role{
+        margin-top: 60px;
+    }
+    .h{
+        font-size: 16px;
+    }
+    .roleSon{
+        margin-top: 24px;
+    }
+    .roleSon div p{
+        font-size: 16px;
+        margin-top: 6px;
+    }
+    #submit,#update{
+        height: 50px;
+        margin: 30px 0;
+        line-height: 50px;
+        font-size: 16px;
+    }
+    .roleSon div span{
+        margin: 4px auto;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 8px solid #e0485e;
+    }
+    #update{
+        margin-top: 90px !important;
+    }
+    .new li{
+        height: 80px !important;
+        line-height: 130px !important;
+    }
+    .new li input{
+        font-size: 16px !important;
+    }
+    .new li:first-of-type img{
+        width: 12px !important;
+        margin-left: 2px !important;
+    }
+    #testCode{
+        margin-top: 50px;
+        font-size: 13px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .tip{
+        font-size: 15px;
+        margin: 10px 0 70px 0;
+    }
+}

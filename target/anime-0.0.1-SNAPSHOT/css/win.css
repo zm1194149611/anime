@@ -1,0 +1,195 @@
+body{
+    background-image: url("../image/winBg.jpg");
+    height: auto;
+    background-size: 100%!important;
+    background-color: #e4312a;
+}
+.topFont{
+    position: relative;
+    margin:2% auto 0 auto;
+    width: 300px;
+    display: block;
+}
+.topP{
+    position: relative;
+    margin:1% auto;
+    width: 1000px;
+    display: block;
+    text-align: center;
+    color: #ffe127;
+    font-size: 30px;
+    font-weight: bold;
+}
+.topP span{
+    margin: 0 20px;
+}
+.selectedFont{
+    font-size: 40px;
+}
+article{
+    background-image: url("../image/winBox.jpg");
+    background-size: 100% 100%;
+    position: relative;
+    margin: 0 auto;
+    width: 800px;
+    height: 460px;
+}
+article div{
+    background-color: #f16d14;
+    width: 400px;
+    position: relative;
+    top: 100px;
+    margin: 0 auto;
+    border-radius: 20px;
+    height: 240px;
+    overflow: hidden;
+    border: 2px solid #fdaa56;
+}
+article ul{
+    list-style: none;
+    width: 100%;
+}
+article ul li{
+    width: 100%;
+    overflow: hidden;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: #ae3405;
+    font-weight: bolder;
+    font-size: 30px;
+}
+article ul li:nth-of-type(2){
+    background-color: #ae3405;
+    color: #fffc0d;
+    font-size: 40px;
+}
+.curr{
+    display: block;
+    text-align: center;
+    top: 36px;
+    left: 280px;
+    position: absolute;
+    width: 240px;
+    color: #b71d15;
+    font-size: 34px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 0 #fffc0d;
+    letter-spacing: 6px;
+}
+article p{
+    background-image: url("../image/winBtn.png");
+    position: relative;
+    margin: 0 auto;
+    width: 240px;
+    height: 60px;
+    line-height: 60px;
+    top: 120px;
+    color: #fffc0d;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    background-size: 100% 100%;
+    cursor:pointer;
+}
+article img{
+    width: 160px;
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    cursor:pointer;
+}
+.layer{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+.textBox{
+    width: 1000px;
+    background-color: rgba(225,225,225,1);
+    margin: 240px auto 60px auto;
+    padding: 30px 2%;
+    height: 220px;
+    overflow: hidden;
+}
+.header{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    float: left;
+}
+.content{
+    width: 86%;
+    float: left;
+    margin-left: 2%;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.content div{
+    height: auto;
+    overflow: hidden;
+}
+.content div h1{
+    line-height: 60px;
+    height: 60px;
+    font-size: 34px;
+    border-bottom: 1px solid #e0485e;
+}
+.content div p{
+    margin: 20px 0;
+    line-height:40px;
+    height:80px;
+    overflow: hidden;
+    font-size: 30px;
+}
+.gBtn{
+    width: 400px;
+    position: relative;
+    margin: 0 200px;
+    display: inline-block;
+}
+.gBtn label,.game{
+    display: inline-block;
+    background-color: #e0485e;
+    color: #ffffff;
+    position: relative;
+    margin: 0 20px;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+}
+.imgBox{
+    width: 460px;
+    position: relative;
+    margin: 100px auto;
+    background-color: #fbf8e4;
+    padding: 20px 10px;
+}
+.imgBox img{
+    width: 400px;
+    height: 380px;
+    margin: 0 30px;
+    display: block;
+}
+.imgBox p{
+    text-align: center;
+    padding: 20px 0;
+    font-size: 24px;
+}
+.game{
+    margin: 0 150px !important;
+    cursor: pointer;
+}
+.alertBox{
+    width: 1000px;
+    background-color: rgba(225,225,225,1);
+    margin: 240px auto 60px auto;
+    padding: 30px 2%;
+    height: 220px;
+    overflow: hidden;
+}

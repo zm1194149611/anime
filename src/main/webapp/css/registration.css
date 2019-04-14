@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Microsoft YaHei", "Î¢ÈíÑÅºÚ", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #efefef;
+}
+header{
+    background-color: #ffffff;
+    width: 100%;
+    position: relative;
+}
+article{
+    width: 100%;
+    background-color: #ffffff;
+}
+.time{
+    background-color: #ffffff;
+}
+.head-bk{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.head-img{
+    position: absolute;
+    width: 24%;
+    top: 36%;
+    left: 37.5%;
+    border-radius: 100px;
+}
+.people-introduce{
+    text-align: center;
+    width: 100%;
+}
+.people-introduce span{
+    color: #999999;
+}
+.people-introduce img{
+    width: 5%;
+    margin-right: 1%;
+}
+.people-introduce span:first-of-type{
+    margin-right: 10%;
+}
+.registration-button{
+    width: 76%;
+    margin: 0 auto;
+    background-color: #ffb401;
+    text-align: center;
+}
+.time{
+    list-style: none;
+    width: 100%;
+    background-color: #ffffff;
+}
+#startTime,#endTime,#totalTime{
+    display: none;
+}
+.time li{
+    width: 94%;
+    margin-left: 6%;
+    border-bottom: 1px solid #e1e1e1;
+}
+.time li span{
+    float: right;
+    color: #6696e8;
+    margin-right: 2%;
+}
+@media (max-height: 600px) {
+    article{
+        padding-bottom: 15px;
+    }
+    .name{
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .people-introduce{
+        margin-top: 10px;
+    }
+    .people-introduce span{
+        font-size: 14px;
+    }
+    .people-introduce img:first-of-type{
+        margin-bottom: -2px;
+    }
+    .people-introduce img:last-of-type{
+        margin-bottom: -4px;
+    }
+    .registration-button{
+        height: 42px;
+        margin-top: 15px;
+        border-radius: 8px;
+    }
+    .registration-button span{
+        font-size: 15px;
+        line-height: 42px;
+        color: #ffffff;
+    }
+    .time{
+        margin-top: 15px;
+    }
+    .time li{
+        height: 46px;
+    }
+    .time li label,.time li span{
+        line-height: 46px;
+    }
+}
+@media (min-height: 600px) {
+    article{
+        padding-bottom: 25px;
+    }
+    .name{
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .people-introduce{
+        margin-top: 10px;
+    }
+    .people-introduce span{
+        font-size: 16px;
+    }
+    .people-introduce img:first-of-type{
+        margin-bottom: -2px;
+    }
+    .people-introduce img:last-of-type{
+        margin-bottom: -4px;
+    }
+    .registration-button{
+        height: 48px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+    .registration-button span{
+        font-size: 17px;
+        line-height: 48px;
+        color: #ffffff;
+    }
+    .time{
+        margin-top: 25px;
+    }
+    .time li{
+        height: 50px;
+    }
+    .time li label,.time li span{
+        line-height: 50px;
+    }
+}

@@ -1,0 +1,40 @@
+.pointPeopelList{
+	width: 100%
+}
+.pointPeopelList p{
+	display: inline-block;
+	color: #526a84;
+	text-align: justify;
+	width: 100%;
+}
+.pointPeopelList p a{
+	text-decoration: none;
+	color: #526a84 !important;
+}
+.pointPeopelList img{
+	margin-right: 4%;
+	margin-bottom: -1px;
+	margin-left: 2%;
+}
+@media (max-height:600px){
+	.pointPeopelList{
+	    margin-top: 5px;
+	}
+	.pointPeopelList img{
+	    height: 13px;
+	}
+	.pointPeopelList p{
+	    font-size: 12px;
+	}
+}
+@media (min-height:600px){
+	.pointPeopelList{
+	    margin-top: 8px;
+	}
+	.pointPeopelList img{
+	    height: 16px;
+	}
+	.pointPeopelList p{
+	    font-size: 14px;
+	}
+}

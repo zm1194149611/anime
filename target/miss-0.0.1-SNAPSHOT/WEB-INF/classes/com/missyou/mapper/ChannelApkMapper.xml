@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ChannelApkDao">
+  <resultMap id="channelApk" type="channelApk">
+    <result column="id"  property="id" />
+    <result column="channel_code"  property="channelCode" />
+    <result column="channel_name"  property="channelName" />
+    <result column="channel_desc"  property="channelDesc" />
+    <result column="channel_apk_url"  property="channelApkUrl" />
+    <result column="download_cnt"  property="downLoadCnt" />
+    <result column="create_date"  property="createDate" />
+    <result column="lastup_date"  property="lastupDate" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, channel_code, channel_name,channel_desc,channel_apk_url,download_cnt,create_date,lastup_date</sql>
+	<sql id="valueColumns">#{id}, #{channelCode}, #{channelName},#{channelDesc},#{channelApkUrl},#{downLoadCnt},#{createDate},#{lastupDate}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="channelApk" flushCache="true">
+		INSERT INTO channel_apk(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="channelApk" flushCache="true">
+		UPDATE	channel_apk T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="channelCode != null">T.channel_code=#{channelCode},</if>
+			<if test="channelName != null">T.channel_name=#{channelName},</if>
+			<if test="channelDesc != null">T.channel_desc=#{channelDesc},</if>
+			<if test="channelApkUrl != null">T.channel_apk_url=#{channelApkUrl},</if>
+			<if test="downLoadCnt != null">T.download_cnt=#{downLoadCnt},</if>
+			<if test="lastupDate != null">T.lastup_date=#{lastupDate},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="channelApk">
+		SELECT
+		<include refid="keyColumns" />
+		FROM channel_apk WHERE ID=#{id}
+	</select>
+	
+	<select id="getByChannelCode" parameterType="String" resultMap="channelApk">
+		SELECT
+		<include refid="keyColumns" />
+		FROM channel_apk WHERE channel_code=#{channelCode}
+	</select>
+
+	<select id="find" parameterType="channelApk" resultMap="channelApk">
+		SELECT
+		<include refid="keyColumns" />
+		FROM channel_apk T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="channelName != null"> and T.channel_name=#{channelName}</if>
+			<if test="channelCode != null">and T.channel_code=#{channelCode}</if>
+			<if test="channelApkUrl != null">and T.channel_apk_url=#{channelApkUrl}</if>
+		</trim>
+		</where>
+	</select>
+
+	<delete id="delete">
+		DELETE FROM channel_apk WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+  
+</mapper>

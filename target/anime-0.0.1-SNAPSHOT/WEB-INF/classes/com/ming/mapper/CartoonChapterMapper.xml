@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.dao.CartoonChapterDao">
+	<resultMap id="cartoonChapter" type="cartoonChapter">
+		<result column="id" property="id" />
+		<result column="cartoon_id" property="cartoonId" />
+		<result column="title" property="title" />
+		<result column="sequence" property="sequence" />
+		<result column="need_login" property="needLogin" />
+		<result column="need_charge" property="needCharge" />
+		<result column="create_time" property="createTime" />
+		<result column="disable" property="disable" />
+		<result column="page_view" property="pageView" />
+		<result column="last_view_time" property="lastViewTime" />
+
+	</resultMap>
+
+
+	<sql id="keyColumns">ID,cartoon_id,title,sequence,need_login,need_charge,create_time,disable,page_view,last_view_time
+	</sql>
+	<sql id="valueColumns">#{id},#{cartoonId},#{title},#{sequence},#{needLogin},#{needCharge},#{createTime},#{disable},#{pageView},#{lastViewTime}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="cartoonChapter" flushCache="true">
+		INSERT INTO cartoon_chapter(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="cartoonChapter" flushCache="true">
+		UPDATE cartoon_chapter T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="cartoonId != null">T.cartoon_id=#{cartoonId},</if>
+			<if test="title != null">T.title=#{title},</if>
+			<if test="sequence != null">T.sequence=#{sequence},</if>
+			<if test="needLogin != null">T.need_login=#{needLogin},</if>
+			<if test="needCharge != null">T.need_charge=#{needCharge},</if>
+			<if test="createTime != null">T.create_time=#{createTime},</if>
+			<if test="disable != null">T.disable=#{disable},</if>
+			<if test="pageView != null">T.page_view=#{pageView},</if>
+			<if test="lastViewTime != null">T.last_view_time=#{lastViewTime},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter WHERE ID=#{id}
+	</select>
+
+	<select id="getByIds" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<delete id="delete">
+		DELETE FROM cartoon_chapter WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="find" parameterType="cartoonChapter" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="cartoonId != null"> AND cartoon_id= #{cartoonId}</if>
+			<if test="needLogin != null"> AND need_login=#{needLogin}</if>
+			<if test="needCharge != null"> AND need_charge= #{needCharge}</if>
+			<if test="disable != null"> AND disable= #{disable}</if>
+		</trim>
+		ORDER BY id DESC
+	</select>
+
+	<select id="listByCartoonId" parameterType="Long" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter
+		where cartoon_id= #{cartoonId}
+		ORDER BY sequence desc
+	</select>
+	
+</mapper>

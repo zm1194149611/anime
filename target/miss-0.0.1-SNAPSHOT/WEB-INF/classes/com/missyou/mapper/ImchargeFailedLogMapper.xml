@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ImchargeFailedLogDao">
+	<resultMap id="imchargeFailedLog" type="imchargeFailedLog">
+	    <result column="id"  property="id" />
+		<result column="charge_type" property="chargeType" />
+		<result column="charge_param" property="chargeParam" />
+		<result column="err_msg" property="errMsg" />
+		<result column="charge_date" property="chargeDate" />
+		<result column="recharge_date" property="rechargeDate" />
+		<result column="charge_desc" property="chargeDesc" />
+		<result column="status" property="status" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns"> id,charge_type,charge_param,err_msg,charge_date,recharge_date,charge_desc,status
+	</sql>
+	<sql id="valueColumns">#{id}, #{chargeType},#{chargeParam},#{errMsg},#{chargeDate},#{rechargeDate},#{chargeDesc},#{status}
+	</sql>
+
+
+
+	<!--新增 -->
+	<insert id="add" parameterType="imchargeFailedLog" flushCache="true">
+		INSERT INTO imcharge_failed_log
+		(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="imchargeFailedLog" flushCache="true">
+		UPDATE	imcharge_failed_log T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="chargeType != null">T.charge_type=#{chargeType},</if>
+			<if test="chargeParam != null">T.charge_param=#{chargeParam},</if>
+			<if test="errMsg != null">T.err_msg=#{errMsg},</if>
+			<if test="chargeDate != null">T.charge_date=#{chargeDate},</if>
+			<if test="rechargeDate != null">T.recharge_date=#{rechargeDate},</if>
+			<if test="chargeDesc != null">T.charge_desc=#{chargeDesc},</if>
+			<if test="status != null">T.status=#{status},</if>
+		</trim>
+		WHERE	T.id=#{id}
+	</update>
+	
+	
+	<select id="getFailedChargeOrders"  resultMap="imchargeFailedLog">
+		SELECT
+		<include refid="keyColumns" />
+		FROM imcharge_failed_log
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="imchargeFailedLog.chargeType != null"> AND charge_type= #{mchargeFailedLog.chargeType}</if>
+			<if test="imchargeFailedLog.chargeParam != null"> AND charge_param= #{imchargeFailedLog.chargeParam}</if>
+			<if test="imchargeFailedLog.errMsg != null"> AND err_msg= #{imchargeFailedLog.errMsg}</if>
+			<if test="imchargeFailedLog.status != null"> AND status= #{imchargeFailedLog.status}</if>
+			<if test="date != null"> AND DATE(charge_date) = #{date}</if>
+		</trim>
+	</select>
+	
+	<!-- <select id="find" parameterType="notifyCpsFailedLog" resultMap="notifyCpsFailedLog">
+		SELECT
+		<include refid="keyColumns" />
+		FROM notify_cps_failed_log
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="notifyType != null"> AND notify_type= #{notifyType}</if>
+			<if test="notifyParam != null"> AND notify_param= #{notifyParam}</if>
+			<if test="notifyResult != null"> AND notify_result= #{notifyResult}</if>
+			<if test="notifyDate != null"> AND notify_date = #{notifyDate}</if>
+			<if test="status != null"> AND status = #{status}</if>
+		</trim>
+	</select> -->
+</mapper>

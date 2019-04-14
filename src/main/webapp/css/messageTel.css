@@ -1,0 +1,152 @@
+header{
+    background-image: url("../image/bg41.jpg");
+    background-size: 100% 100%;
+    width: 100%;
+    position:relative;
+}
+header p{
+    color: #444;
+    position: absolute;
+    overflow: hidden;
+    color:#fff;
+    bottom:0;
+    text-align:right;
+    padding-right:20%;
+    width:80%;
+    text-shadow:2px 2px 3px #000;
+}
+.textBox:last-of-type{
+    border: 0;
+}
+.textBox{
+    width: 100%;
+    border-bottom: 1px solid #eeeeee;
+}
+.header{
+    float: left;
+}
+.textBody{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+    height: auto;
+    overflow: auto;
+}
+.content{
+    width: 84%;
+    float: right;
+}
+.title{
+    color: #e0485e;
+}
+.text{
+    text-align: justify;
+}
+.img{
+    display: inline-block;
+    max-width: 100%;
+}
+.more{
+    text-decoration: none;
+    positon:fixed;
+    top:200px;
+    width:100%;
+    z-index:9999;
+}
+.more img{
+    position: absolute;
+    display: block;
+    right:10px;
+    z-index:2;
+    opacity:0.8;
+    box-shadow:1px 1px 1px #ccc,-1px -1px 1px #ccc;
+}
+.time{
+    color: #777;
+}
+@media (max-height: 600px) {
+    header{
+        height: 130px;
+        padding: 30px 0 20px 0;
+        box-shadow: 0 2px 4px #ccc;
+    }
+    header p{
+        font-size: 14px;
+        margin: 10px auto 0 auto;
+        line-height: 20px;
+        height: 20px;
+    }
+    .textBox{
+        border-bottom: 1px solid #eeeeee;
+        padding: 10px 0;
+    }
+    .header{
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+    }
+    .title{
+        font-size: 15px;
+        padding: 6px 0 4px 0;
+    }
+    .text{
+        font-size: 15px;
+    }
+    .img{
+        max-height: 200px;
+        margin-top: 6px;
+    }
+    .more img{
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        top:155px;
+    }
+    .time{
+        font-size: 12px;
+        padding-top: 6px;
+    }
+}
+@media (min-height: 600px) {
+    header{
+        height: 150px;
+        padding: 40px 0;
+        box-shadow: 0 2px 4px #ccc;
+    }
+    header p{
+        font-size: 15px;
+        margin: 10px auto 0 auto;
+        line-height: 24px;
+        height: 24px;
+    }
+    .textBox{
+        border-bottom: 1px solid #eeeeee;
+        padding: 16px 0;
+    }
+    .header{
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+    }
+    .title{
+        font-size: 17px;
+        padding: 6px 0 8px 0;
+    }
+    .text{
+        font-size: 17px;
+    }
+    .img{
+        max-height: 220px;
+        margin-top: 10px;
+    }
+    .more img{
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        top:200px;
+    }
+    .time{
+        font-size: 14px;
+        padding-top: 6px;
+    }
+}

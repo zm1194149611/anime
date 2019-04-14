@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.AnchorDao">
+	<resultMap id="anchor" type="anchor">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="star" property="star" />
+		<result column="title" property="title" />
+		<result column="identified" property="identified" />
+		<result column="auto_push" property="autoPush" />
+		<result column="create_time" property="createTime" />
+		<result column="identified_time" property="identifiedTime" />
+		<result column="reason" property="reason" />
+		<result column="distance" property="distance" />
+		<result column="vedio_rate" property="vedioRate" />
+		<result column="voice_rate" property="voiceRate" />
+		<result column="message_rate" property="messageRate" />
+		<result column="open_vedio" property="openVedio" />
+		<result column="open_voice" property="openVoice" />
+		<result column="open_message" property="openMessage" />
+		<result column="top_push" property="topPush" />
+		<result column="is_machine" property="isMachine" />
+		<result column="near_dis" property="nearDis" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns">id,user_id,star,title,identified,auto_push,create_time,identified_time,reason,distance,vedio_rate,voice_rate,message_rate,open_vedio,open_voice,open_message,top_push,is_machine
+	</sql>
+	<sql id="valueColumns">#{id},#{userId},#{star},#{title},#{identified},#{autoPush},#{createTime},#{identifiedTime},#{reason},#{distance},#{vedioRate},#{voiceRate},#{messageRate},#{openVedio},#{openVoice},#{openMessage},#{topPush},#{isMachine}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="anchor" flushCache="true">
+		INSERT INTO ANCHOR(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="anchor" flushCache="true">
+		UPDATE ANCHOR T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="userId != null">T.user_id=#{userId},</if>
+			<if test="star != null">T.STAR= #{star},</if>
+			<if test="title != null">T.TITLE=#{title},</if>
+			<if test="identified != null">T.IDENTIFIED=#{identified},</if>
+			<if test="autoPush != null">T.AUTO_PUSH=#{autoPush},</if>
+			<if test="identifiedTime != null">T.identified_time=#{identifiedTime},</if>
+			<if test="reason != null">T.reason=#{reason},</if>
+			<if test="vedioRate != null">T.vedio_rate=#{vedioRate},</if>
+			<if test="voiceRate != null">T.voice_rate=#{voiceRate},</if>
+			<if test="messageRate != null">T.message_rate=#{messageRate},</if>
+			<if test="openVedio != null">T.open_vedio=#{openVedio},</if>
+			<if test="openVoice != null">T.open_voice=#{openVoice},</if>
+			<if test="openMessage != null">T.open_message=#{openMessage},</if>	
+			<if test="topPush != null">T.top_push=#{topPush},</if>	
+			<if test="isMachine != null">T.is_machine=#{isMachine},</if>	
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE ID=#{id}
+	</select>
+	
+	<select id="getAllAnchor" parameterType="anchor" resultMap="anchor">
+		SELECT t1.* FROM ANCHOR t1,user t2 WHERE t1.user_id=t2.id 
+		<if test="identified!=null and identified!='' or identified==0">
+			    AND t1.`IDENTIFIED`= #{identified ,jdbcType=INTEGER}
+		</if>
+		<if test="isOnLine!=null and isOnLine!='' and isOnLine==1">
+			    AND (t2.`on_line`=1 OR t2.`on_line`=2)
+		</if>
+		<if test="topPush==0">
+			    AND t1.`top_push`=0 
+		</if>
+		order by t1.id desc
+	</select>
+	
+	<select id="getByUserId" parameterType="long" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE user_id=#{userId}
+	</select>
+
+	<select id="getByIds" parameterType="long" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="getByUserIds" parameterType="long" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE IDENTIFIED=1 	and USER_ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="getByUserIdsAll" parameterType="long" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE  USER_ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="randomlist" resultMap="anchor">
+		SELECT
+		t1.* 
+		FROM ANCHOR t1,USER t2 where  t1.user_id=t2.id and t1.identified=1 
+		<if test="anchor.isOnLine!=null and anchor.isOnLine!='' and anchor.isOnLine==1">
+			 AND t2.`on_line`=1
+		</if>
+		<if test="anchor.user.sex!=null">
+			 AND t2.sex=#{anchor.user.sex}
+		</if>
+		<if test="anchor.isMachine!=null and anchor.isMachine!='' and anchor.isMachine==1">
+			 AND t1.`is_machine`=1 order by t2.id desc
+		</if>
+		
+		<if test="anchor.isMachine==null and anchor.isMachine==''">
+			 order by RAND()
+		</if>
+		 limit 0,#{cnt} 
+	</select>
+	
+	<select id="randomSpeedlist" parameterType="anchor" resultMap="anchor">
+		SELECT
+		t1.* 
+		FROM ANCHOR t1,USER t2 where  t1.user_id=t2.id and t1.identified=1
+		and t1.is_machine!=1  
+		<if test="anchor.user.sex!=null">
+			 AND t2.sex=#{anchor.user.sex}
+		</if>
+		order by RAND() limit 0,#{speedCnt}
+	</select>
+	
+	<select id="getOfPager" resultMap="anchor">
+		SELECT
+		A.*
+		FROM ANCHOR A,USER U WHERE  U.ID=A.USER_ID AND A.IDENTIFIED=1 	
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND A.ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY U.ON_LINE DESC, A.ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<!-- 新人主播查询，查询近30天审核通过的主播 -->
+	<select id="getNewAnchorOfPager" resultMap="anchor">
+		<!--  SELECT * FROM 
+		 (
+			SELECT A.* FROM ANCHOR A,USER U WHERE  U.ID=A.USER_ID AND A.IDENTIFIED=1 AND U.`is_anchor`=1 AND (U.`on_line`=1 OR U.`on_line`=2) 
+			<if test="sex==1">
+			 AND u.SEX = 1 
+		     </if>
+			 <if test="sex==2">
+				AND (u.SEX = 2 or u.SEX is null)  
+			 </if>
+			AND DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt; DATE(A.IDENTIFIED_TIME) 
+			ORDER BY A.`identified_time` DESC LIMIT #{pager.current},#{pager.size}
+		 ) a ORDER BY RAND() -->
+		  SELECT * FROM 
+		 (
+			SELECT A.* FROM ANCHOR A,USER U WHERE  U.ID=A.USER_ID AND A.IDENTIFIED=1 AND U.`is_anchor`=1  and U.income='2' 
+			<if test="online!=null and online!='' and online==1">
+			    AND (U.`on_line`=1 OR U.`on_line`=2)
+			 </if>
+			<if test="sex==1">
+			 AND (u.SEX = 1 or u.SEX is null)
+		     </if>
+			 <if test="sex==2">
+				AND (u.SEX = 2)  
+			 </if>
+			order by U.on_line asc 
+			LIMIT #{pager.current},#{pager.size}
+		 ) a ORDER BY RAND()
+	</select>
+	
+	<!-- 在线推荐主播（随机查询） -->
+	<select id="getStatrAnchorOfPager" resultMap="anchor">
+		SELECT * FROM 
+	    (
+			SELECT t2.* FROM USER t1,anchor t2 
+			WHERE t1.`id`=t2.`user_id`  AND t1.`income`='1'  
+			 <if test="online!=null and online!='' and online==1">
+			    AND (t1.`on_line`=1 OR t1.`on_line`=2)
+			 </if>
+			    AND t2.TOP_PUSH!=1   
+			 <if test="sex==1">
+			    AND (t1.SEX = 1 or t1.SEX is null)
+		     </if>
+			 <if test="sex==2">
+				AND (t1.SEX = 2) 
+			 </if>
+			    AND t2.identified=1 AND t1.is_anchor=1 
+			    AND t1.id not in (select k.user_id from user_kill k where k.kill_time&gt;0) 
+			 <if test="star!=null and star!='' and star>0">
+				  AND t2.`star`&gt;#{star}  ORDER BY t2.`star` DESC
+			 </if>
+			 
+			 <if test="star!=null and star!='' and star==0">
+			      ORDER BY t1.`on_line` DESC
+			 </if>
+			 LIMIT #{pager.current},#{pager.size}
+		) a ORDER BY RAND()
+	</select>
+	
+	<select id="applyList" resultMap="anchor">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR where  identified=0 or identified is null 
+	</select>
+	
+	<select id="find" parameterType="anchor" resultMap="anchor">
+		SELECT T.* FROM ANCHOR T ,user U where U.ID=T.USER_ID
+		<trim prefix="" prefixOverrides="" suffixOverrides="">
+			<if test="userId != null"> and T.user_id=#{userId}</if>
+			<if test="star != null"> and T.STAR=#{star}</if>
+		    <if test="title != null"> and T.TITLE=#{title}</if>
+			<if test="identified != null"> and T.IDENTIFIED=#{identified}</if>
+			<if test="autoPush != null"> and T.AUTO_PUSH=#{autoPush}</if>
+			<if test="identifiedTime != null"> and T.identified_time=#{identifiedTime}</if>
+			<if test="reason != null"> and T.reason=#{reason}</if>
+			<if test="vedioRate != null"> and T.vedio_rate=#{vedioRate}</if>
+			<if test="voiceRate != null"> and T.voice_rate=#{voiceRate}</if>
+			<if test="messageRate != null"> and T.message_rate=#{messageRate}</if>
+			<if test="openVedio != null"> and T.open_vedio=#{openVedio}</if>
+			<if test="openVoice != null"> and T.open_voice=#{openVoice}</if>
+			<if test="openMessage != null"> and T.open_message=#{openMessage}</if>
+			<if test="topPush != null">and T.top_push=#{topPush}</if>
+		</trim>
+		 ORDER BY RAND() LIMIT 0,10
+	</select>
+	
+	<!-- 在线置顶主播 -->
+	<select id="queryTopPushAnchor" parameterType="anchor" resultMap="anchor">
+	     SELECT
+		 t2.*
+		 FROM user t1, ANCHOR t2 where  t1.`id`=t2.`user_id` 
+		 <if test="isOnLine!=null and isOnLine!='' and isOnLine==1">
+			    AND (t1.`on_line`=1 OR t1.`on_line`=2)
+		 </if>
+		 AND t2.`top_push`='1'  AND t2.`identified`='1' 
+		 AND t1.id not in (select k.user_id from user_kill k where k.kill_time&gt;0) 
+		 ORDER BY RAND()
+	</select>
+	
+	<!-- 查找最近两小时在平台有收入的在线主播 -->
+	<select id="queryOnlineHotAnchorPush" parameterType="anchor" resultMap="anchor">
+	SELECT * FROM
+	(
+		SELECT COUNT(*) chatCnt,t.`recharge_time`,t1.`on_line` AS line,t2.* FROM recharge_history t,user t1,anchor t2 WHERE 
+		 t.`user_id`=t1.`id` AND t.`user_id`=t2.`user_id`  AND t1.`is_anchor`=1  AND t2.`top_push`!=1 AND (t2.`is_machine`!=1 OR t2.`is_machine` IS NULL)
+		 <if test="createTime != null"> and t.`recharge_time`&gt;= #{createTime}</if> 
+		 AND (t1.`on_line`=1 OR t1.`on_line`=2)  GROUP BY t.`user_id` 
+	) a ORDER BY a.chatCnt DESC;
+	</select>
+	
+	<!-- 查找最近两小时在平台有收入的在线真人主播 -->
+	<select id="queryOnlineIncomeAnchor" parameterType="anchor" resultMap="anchor">
+	<!-- SELECT * FROM
+	(
+		SELECT COUNT(*) chatCnt,t.`recharge_time`,t1.`on_line` AS line,t2.* FROM recharge_history t,user t1,anchor t2 WHERE 
+		 t.`user_id`=t1.`id` AND t.`user_id`=t2.`user_id`  AND t1.`is_anchor`=1  AND (t2.`top_push`!=1 or t2.`top_push` is null) AND (t2.`is_machine`!=1 OR t2.`is_machine` IS NULL) 
+		 AND (t1.open_online_notice=1 or t1.open_online_notice is null) 
+		 <if test="anchor.createTime != null"> and t.`recharge_time`&gt;= #{anchor.createTime}</if> 
+		 AND t1.`on_line`=1 GROUP BY t.`user_id` 
+	) a ORDER BY RAND()
+	LIMIT 0,#{pager.size} -->
+	select 
+		a.*
+	from
+		`user` t,anchor a
+	where
+		t.id=a.user_id and 
+		t.is_anchor=1 and 
+		(a.`is_machine`!=1 OR a.`is_machine` IS NULL) and 
+		t.on_line=1 and 
+		t.sex=2 AND 
+		(t.open_online_notice=1 or t.open_online_notice is null)  
+		order by RAND() 
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<!-- 查找最近两小时在平台无收入的在线真人主播 -->
+	<select id="queryOnlineNoIncomeAnchor" parameterType="anchor" resultMap="anchor">
+	SELECT 
+		a.* 
+	FROM 
+		`user` t,anchor a 
+	WHERE 
+		t.id=a.user_id AND 
+		t.`is_anchor`=1 AND 
+		t.`on_line`=1 AND 
+		(t.open_online_notice=1 or t.open_online_notice is null) 
+		<if test="anchor.createTime != null"> and t.`modify_time`&gt;= #{anchor.createTime}</if>
+		AND (a.is_machine is null or a.is_machine=0) 
+		AND t.id NOT IN
+		(
+		SELECT 
+			DISTINCT(t1.`user_id`) 
+		FROM 
+			`recharge_history` t1 
+		WHERE 
+			<if test="anchor.createTime != null">t1.`recharge_time`&gt;= #{anchor.createTime}</if>
+		)
+	order by RAND() 
+	LIMIT 0,#{pager.size}
+	</select>
+	
+	<!-- 查找附近的主播 -->
+	<select id="queryNearbyAnchor" parameterType="anchor" resultMap="anchor">
+	select * from (select 
+		a.*,
+		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{anchor.user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{anchor.user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{anchor.user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) near_dis 
+ 	from 
+ 		user u ,anchor a
+ 	where 
+ 		u.id=a.user_id
+ 		and u.is_anchor = 1 
+ 		<if test="anchor.user.sex != null">and sex=#{anchor.user.sex} </if>
+ 		<if test="anchor.user.stature != null">
+ 		 and 
+ 		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{anchor.user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{anchor.user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{anchor.user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) is not null  
+		</if>
+	order by 
+		u.on_line desc,
+		near_dis asc
+		) as t1
+		union
+		select * from 
+		(select 
+		a.*,
+		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{anchor.user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{anchor.user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{anchor.user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) near_dis 
+ 	from 
+ 		user u ,anchor a
+ 	where 
+ 		u.id=a.user_id
+ 		and u.is_anchor = 1 
+ 		<if test="anchor.user.sex != null">and sex=#{anchor.user.sex} </if>
+ 		<if test="anchor.user.stature != null">
+ 		 and 
+ 		(ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{anchor.user.weight}*PI()/180-u.weight*PI()/180)/2),2)+COS(#{anchor.user.weight}*PI()/180)*COS(u.weight*PI()/180)*POW(SIN((#{anchor.user.stature}*PI()/180-u.stature*PI()/180)/2),2)))*1000)
+		) is null  
+		</if>
+	order by 
+		u.on_line desc
+		) as t2
+		LIMIT #{pager.current},#{pager.size}
+	</select>
+	<!-- 分页查询所有主播信息 -->
+	<select id="getAllAnchorOfPager" resultMap="anchor">
+		SELECT 
+		<include refid="keyColumns" />
+		 FROM ANCHOR t1 WHERE t1.`IDENTIFIED`= 1
+		order by t1.id desc
+		LIMIT #{pager.current},#{pager.size}
+	</select>
+	<!-- 通过用户Ids查询在线主播 -->
+	<select id="getOnlineAnchorByUserIds" parameterType="long" resultMap="anchor">
+		SELECT * FROM 
+		(
+		SELECT
+		a.*
+		FROM ANCHOR a,`user` b WHERE a.user_id=b.id and a.IDENTIFIED=1 and b.on_line>0	and a.USER_ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		) c ORDER BY RAND()
+	</select>
+	<!-- 查询不在线主播 -->
+	<select id="getOfflineAnchor" resultMap="anchor">
+		  SELECT * FROM 
+		 (
+			SELECT A.* FROM ANCHOR A,USER U WHERE  U.ID=A.USER_ID AND A.IDENTIFIED=1 AND U.`is_anchor`=1 
+			AND U.`on_line`=0 AND U.SEX=2 AND A.TOP_PUSH=0 
+			<if test="anchor.user.income!=null">
+			 	AND U.income = #{anchor.user.income} 
+		     </if>
+			order by U.modify_time desc 
+			LIMIT #{pager.current},#{pager.size}
+		 ) a ORDER BY RAND()
+	</select>
+	<!-- 通过用户Ids查询在线主播 -->
+	<select id="getRandomAnchorByUserIds" parameterType="long" resultMap="anchor">
+		SELECT * FROM 
+		(
+		SELECT
+		<include refid="keyColumns" />
+		FROM ANCHOR WHERE IDENTIFIED=1 	and USER_ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		) c ORDER BY RAND()
+	</select>
+	
+</mapper>

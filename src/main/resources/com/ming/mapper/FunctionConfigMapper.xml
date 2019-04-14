@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.dao.FunctionConfigDao">
+	<resultMap id="functionConfig" type="functionConfig">
+	    <result column="id"  property="id" />
+		<result column="config_key" property="configKey" />
+		<result column="config_value" property="configValue" />
+		<result column="config_desc" property="configDesc" />
+		<result column="create_date" property="createDate" />
+		<result column="config_type" property="configType" />
+		<result column="config_charge" property="configCharge" />
+		<result column="config_ext1" property="configExt1" />
+		<result column="config_ext2" property="configExt2" />
+	</resultMap>
+
+
+
+
+	<sql id="keyColumns"> id,config_key,config_value,config_desc,create_date,config_type,config_charge,config_ext1,config_ext2
+	</sql>
+	<sql id="valueColumns">#{id}, #{configKey},#{configValue},#{configDesc},#{createDate},#{configType},#{configCharge},#{configExt1},#{configExt2}
+	</sql>
+
+
+
+	<!--新增 -->
+	<insert id="add" parameterType="functionConfig" flushCache="true">
+		INSERT INTO function_config(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="functionConfig" flushCache="true">
+		UPDATE	function_config T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+		    <if test="configKey != null">T.config_key=#{configKey},</if>
+			<if test="configValue != null">T.config_value=#{configValue},</if>
+			<if test="configDesc != null">T.config_desc=#{configDesc},</if>
+			<if test="configType != null">T.config_type=#{configType},</if>
+			<if test="configCharge != null">T.config_charge=#{configCharge},</if>
+			<if test="configExt1 != null">T.config_ext1=#{configExt1},</if>
+			<if test="configExt2 != null">T.config_ext2=#{configExt2},</if>
+		</trim>
+		WHERE	T.config_key=#{configKey}
+	</update>
+	
+	<!-- 查询 -->
+	<select id="getByFunctionConfigModel" parameterType="functionConfig" resultMap="functionConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM function_config T
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+		    <if test="configKey != null"> and T.config_key=#{configKey}</if>
+			<if test="configValue != null"> and T.config_value=#{configValue}</if>
+			<if test="configDesc != null">and T.config_desc=#{configDesc}</if>
+			<if test="configType != null">and T.config_type=#{configType}</if>
+			<if test="configCharge != null">and T.config_charge=#{configCharge}</if>
+			<if test="configExt1 != null">and T.config_ext1=#{configExt1}</if>
+			<if test="configExt2 != null">and T.config_ext2=#{configExt2}</if>
+		</trim>
+		</where>
+	</select>
+	
+	<select id="find" parameterType="functionConfig" resultMap="functionConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM function_config
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="configKey != null"> AND config_key= #{configKey}</if>
+			<if test="configValue != null"> AND config_value= #{configValue}</if>
+			<if test="configType != null"> AND config_type= #{configType}</if>
+			<if test="configCharge != null"> AND config_charge= #{configCharge}</if>
+			<if test="configExt1 != null">AND config_ext1=#{configExt1}</if>
+			<if test="configExt2 != null">AND config_ext2=#{configExt2}</if>
+		</trim>
+		<!-- ORDER BY CONVERT(config_value,SIGNED) ASC -->
+	</select>
+	
+	
+	<select id="getRandomHeadImgUrl"  resultMap="functionConfig">
+		SELECT config_value FROM function_config t where t.config_type=14 ORDER BY RAND() Limit 0,#{pager.size}
+	</select>
+
+
+</mapper>

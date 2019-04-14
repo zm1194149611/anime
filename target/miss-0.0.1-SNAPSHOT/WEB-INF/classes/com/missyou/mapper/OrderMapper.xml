@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.OrderDao">
+  <resultMap id="order" type="order">
+    <result column="id"  property="id" />
+	<result column="order_no"  property="orderNo" /> 
+	<result column="amount"  property="amount" /> 
+	<result column="item_name"  property="itemName" /> 
+	<result column="order_desc"  property="orderDesc" /> 
+	<result column="user_id"  property="userId" /> 
+	<result column="vip"  property="vip" /> 
+	<result column="payed"  property="payed" /> 
+	<result column="create_time"  property="createTime" /> 
+	<result column="order_msg"  property="orderMsg" /> 
+	<result column="lock_status"  property="lockStatus" /> 
+    <result column="chat_coin"  property="chatCoin" />
+    <result column="pay_ip"  property="payIp" />
+    
+  </resultMap> 
+  
+	<sql id="keyColumns">ID, order_no, amount,item_name,order_desc,user_id,vip,create_time,order_msg,lock_status,payed,chat_coin,pay_ip</sql>
+	<sql id="valueColumns">#{id}, #{orderNo}, #{amount},#{itemName},#{orderDesc},#{userId},#{vip},#{createTime},#{orderMsg},#{lockStatus},#{payed},#{chatCoin},#{payIp}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="order" flushCache="true">
+		INSERT INTO `ORDER` (
+		<include refid="keyColumns" />
+		) VALUES (
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<update id="pay" >
+		UPDATE	`ORDER`  T	SET T.payed = 1 WHERE	T.order_no=#{orderNo}
+	</update>
+	
+	
+	<!--修改 -->
+	<update id="update" parameterType="order" flushCache="true">
+		UPDATE	`ORDER` T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="amount != null">T.amount=#{amount},</if>
+			<if test="chatCoin != null">T.chat_coin=#{chatCoin},</if>
+			<if test="itemName != null">T.item_name=#{itemName},</if>
+			<if test="orderDesc != null">T.order_desc=#{orderDesc},</if>
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="vip != null">T.vip=#{vip},</if>
+			<if test="payed != null">T.payed=#{payed},</if>
+			<if test="orderMsg != null">T.order_msg=#{orderMsg},</if>
+			<if test="lockStatus != null">T.lock_status=#{lockStatus},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+	
+	
+	<select id="getByOrderNo" parameterType="String" resultMap="order">
+		SELECT
+		<include refid="keyColumns" />
+		FROM `ORDER` WHERE order_no=#{orderNo}
+	</select>
+	
+	<select id="getUserTotalRecharge" parameterType="order" resultMap="order">
+		SELECT SUM(amount) amount FROM `ORDER` 
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="userId != null"> AND user_id= #{userId}</if>
+			<if test="payed != null"> AND payed= #{payed}</if>
+			<if test="startDate != null"> AND create_time &gt;= #{startDate}</if>
+			<if test="endDate != null"> AND create_time &lt;= #{endDate}</if>
+		</trim>
+	</select>
+	
+	<select id="getUserRechargeList"  resultMap="order">
+		SELECT
+		<include refid="keyColumns" />
+		FROM `ORDER`   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="order.userId != null"> AND user_id= #{order.userId}</if>
+			<if test="order.payed != null"> AND payed = #{order.payed}</if>
+			<if test="order.startDate != null"> AND create_time &gt;= #{order.startDate}</if>
+			<if test="order.endDate != null"> AND create_time &lt;= #{order.endDate}</if>
+		</trim>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+	
+	<select id="orderPayOfDate"  resultMap="order">
+	    SELECT
+		<include refid="keyColumns" />
+		FROM `ORDER`   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="order.userId != null"> AND user_id= #{order.userId}</if>
+			<if test="order.payed != null"> AND payed = #{order.payed}</if>
+			<if test="date != null"> AND DATE(create_time) = #{date}</if>
+		</trim>
+		ORDER BY ID DESC
+		<if test="pager.current!=null and pager.current!=''">
+		LIMIT #{pager.current},#{pager.size}
+		</if>
+	</select>
+	
+</mapper>

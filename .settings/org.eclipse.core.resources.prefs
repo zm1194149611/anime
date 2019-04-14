@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/config/properties/dev/apk.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/druid.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/miss.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/pay.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/redis.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/swiftPass.properties=UTF-8
+encoding//src/main/resources/config/properties/dev/yunxin.properties=UTF-8
+encoding//src/main/resources/config/properties/product/druid.properties=UTF-8
+encoding//src/main/resources/config/properties/product/miss.properties=UTF-8
+encoding//src/main/resources/config/properties/product/redis.properties=UTF-8

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.AccountScoreDao">
+  <resultMap id="accountScore" type="accountScore">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="create_time"  property="createTime" />
+    <result column="score"  property="score" />
+    <result column="total_score"  property="totalScore" />
+     <result column="score_level"  property="scoreLevel" />
+   
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, create_time,score,total_score,score_level</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{createTime},#{score},#{totalScore},#{scoreLevel}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="accountScore" flushCache="true">
+		INSERT INTO account_score(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="accountScore" flushCache="true">
+		UPDATE	account_score T	SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="score != null">T.score=#{score},</if>
+			<if test="totalScore != null">T.total_score=#{totalScore},</if>
+			<if test="scoreLevel != null">T.score_level=#{scoreLevel},</if>
+		</trim>
+		WHERE	T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="accountScore">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account_score WHERE ID=#{id}
+	</select>
+	
+	<select id="getByUserId" parameterType="long" resultMap="accountScore">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account_score WHERE user_id=#{userId}
+	</select>
+
+	<select id="getByUserIds" parameterType="long" resultMap="accountScore">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account_score WHERE user_id IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+ 
+
+	<select id="getByIds" parameterType="long" resultMap="accountScore">
+		SELECT
+		<include refid="keyColumns" />
+		FROM account_score WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+  
+</mapper>

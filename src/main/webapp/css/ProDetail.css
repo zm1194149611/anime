@@ -1,0 +1,66 @@
+
+.seek span:last-of-type label{
+    color: #ffffff;
+    margin-left: 10%;
+    width: 80%;
+    overflow: hidden;
+    letter-spacing: 4px;
+}
+.classify{
+    width: 100%;
+   /* margin: 30px 0;  */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+.classify ul{
+    list-style: none;
+    width: 96%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+.classify ul li{
+    border-bottom: 1px dashed #dddddd;
+    height: auto;
+    overflow: auto;
+    /* line-height: 30px; */
+    /* padding: 20px 0; */
+}
+.classify ul li:last-of-type{
+    border: 0;
+}
+.classify ul li label{
+    float: left;
+    color: #888;
+    width: 10%;
+}
+.classify ul li p{
+    float: left;
+    width: 90%;
+}
+.classify ul li p span{
+    padding: 0 10px;
+    margin: 0 3px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: justify;
+}
+.classify ul li p img{
+    width: 200px;
+    height: 150px;
+    margin-right: 20px;
+}
+.detailBtn{
+    width: 100%;
+    margin-bottom: 60px;
+    text-align: center;
+}
+.detailBtn span{
+    display: inline-block;
+    background-color: #e0485e;
+    color: #ffffff;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 16%;
+    margin: 0 40px;
+}

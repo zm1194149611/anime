@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.dao.ComicDao">
+	<resultMap id="comic" type="comic">
+		<result column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="img_url" property="imgUrl" />
+		<result column="tags" property="tags" />
+		<result column="author" property="author" />
+		<result column="introduce" property="introduce" />
+		<result column="resource_url" property="resourceUrl" />
+		<result column="resource_password" property="resourcePassword" />
+		<result column="create_time" property="createTime" />
+		<result column="disable" property="disable" />
+		<result column="page_view" property="pageView" />
+		<result column="last_view_time" property="lastViewTime" />
+
+	</resultMap>
+
+
+	<sql id="keyColumns">ID,TITLE,IMG_URL,tags,AUTHOR,introduce,resource_url,resource_password,CREATE_TIME,DISABLE,page_view,last_view_time
+	</sql>
+	<sql id="valueColumns">#{id},#{title},#{imgUrl},#{tags},#{author},#{introduce},#{resourceUrl},#{resourcePassword},#{createTime},#{disable},#{pageView},#{lastViewTime}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="comic" flushCache="true">
+		INSERT INTO comic(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="comic" flushCache="true">
+		UPDATE comic T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="title != null">T.title=#{title},</if>
+			<if test="imgUrl != null">T.img_url=#{imgUrl},</if>
+			<if test="tags != null">T.tags=#{tags},</if>
+			<if test="author != null">T.author=#{author},</if>
+			<if test="introduce != null">T.introduce=#{introduce},</if>
+			<if test="resourceUrl != null">T.resource_url=#{resourceUrl},</if>
+			<if test="resourcePassword != null">T.resource_password=#{resourcePassword},</if>
+			<if test="createTime != null">T.create_time=#{createTime},</if>
+			<if test="disable != null">T.disable=#{disable},</if>
+			<if test="pageView != null">T.page_view=#{pageView},</if>
+			<if test="lastViewTime != null">T.last_view_time=#{lastViewTime},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" resultMap="comic">
+		SELECT
+		<include refid="keyColumns" />
+		FROM comic WHERE ID=#{id}
+	</select>
+
+	<select id="getByIds" resultMap="comic">
+		SELECT
+		<include refid="keyColumns" />
+		FROM comic WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<delete id="delete">
+		DELETE FROM comic WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="find" parameterType="comic" resultMap="comic">
+		SELECT
+		<include refid="keyColumns" />
+		FROM comic
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="title != null"> AND title like '%${title}%'</if>
+			<if test="tags != null"> AND tags like CONCAT(CONCAT('%', #{tags}), '%')</if>
+			<if test="author != null"> AND author= #{author}</if>
+			<if test="disable != null"> AND disable= #{disable}</if>
+		</trim>
+		ORDER BY id DESC
+	</select>
+
+	<select id="pageByList" resultMap="comic">
+		SELECT
+		<include refid="keyColumns" />
+		FROM comic   
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="comic.title != null"> AND title like '%${comic.title}%'</if>
+			<if test="comic.tags != null"> AND tags like CONCAT(CONCAT('%', #{comic.tags}), '%')</if>
+			<if test="comic.author != null"> AND author= #{comic.author}</if>
+			<if test="comic.disable != null"> AND disable= #{comic.disable}</if>
+		</trim>
+		ORDER BY page_view DESC 
+		<include refid="Sql.pager"></include>
+	</select>
+</mapper>

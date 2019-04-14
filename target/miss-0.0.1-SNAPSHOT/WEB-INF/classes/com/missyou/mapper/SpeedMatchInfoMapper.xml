@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.SpeedMatchInfoDao">
+  <resultMap id="speedMatchInfo" type="speedMatchInfo">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="anchor_id"  property="anchorId" />
+    <result column="speed_time"  property="speedTime" />
+    <result column="answer_time"  property="answerTime" />
+    <result column="cut_time"  property="cutTime" />
+    <result column="vedio_Time"  property="vedioTime" />
+    <result column="status"  property="status" />
+    <result column="ext_1"  property="ext1" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">ID, user_id, anchor_id,speed_time,answer_time,cut_time,vedio_Time,status,ext_1</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{anchorId},#{speedTime},#{answerTime},#{cutTime},#{vedioTime},#{status},#{ext1}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="speedMatchInfo" flushCache="true">
+		INSERT INTO speed_match_info(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	<!--修改 -->
+	<update id="update" parameterType="speedMatchInfo" flushCache="true">
+		UPDATE	speed_match_info T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="anchorId != null">T.anchor_id=#{anchorId},</if>
+			<if test="speedTime != null">T.speed_time=#{speedTime},</if>
+			<if test="answerTime != null">T.answer_time=#{answerTime},</if>
+			<if test="cutTime != null">T.cut_time=#{cutTime},</if>
+			<if test="vedioTime != null">T.vedio_Time=#{vedioTime},</if>
+			<if test="status != null">T.status=#{status},</if>
+			<if test="ext1 != null">T.ext_1=#{ext1},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+	
+
+	<select id="getById" parameterType="long" resultMap="speedMatchInfo">
+		SELECT
+		<include refid="keyColumns" />
+		FROM speed_match_info WHERE ID=#{id}
+	</select>
+	
+
+	<select id="find" parameterType="speedMatchInfo" resultMap="speedMatchInfo">
+		SELECT
+		<include refid="keyColumns" />
+		FROM speed_match_info T	
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userId != null"> and T.user_id=#{userId}</if>
+			<if test="anchorId != null">and T.anchor_id=#{anchorId}</if>
+			<if test="speedTime != null">and T.speed_time=#{speedTime}</if>
+			<if test="answerTime != null">and T.answer_time=#{answerTime}</if>
+			<if test="vedioTime != null">and T.vedio_Time=#{vedioTime}</if>
+			<if test="cutTime != null">and T.cut_time=#{cutTime}</if>
+			<if test="status != null">and T.status=#{status}</if>
+		</trim>
+		</where>
+	</select>
+	
+	<select id="getCleanCntList" parameterType="speedMatchInfo" resultMap="speedMatchInfo">
+	    SELECT * FROM speed_match_info  WHERE status=0 AND speed_time &lt;#{speedTime} 
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM speed_match_info WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+  
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.UserKillDao">
+	<resultMap id="userkill" type="userKill">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="count" property="count" />
+		<result column="kill_days" property="killDays" />
+		<result column="create_time" property="createTime" />
+		<result column="kill_time" property="killTime" />
+	</resultMap>
+
+
+	<sql id="keyColumns">`id`,`user_id`,`count`,`kill_days`,`create_time`,`kill_time`</sql>
+	
+	<!--新增 -->
+	<insert id="add" parameterType="userkill" flushCache="true">
+		INSERT INTO USER_KILL(`user_id`,`count`,`kill_days`,`create_time`,`kill_time`,`kill_reason`)
+		VALUES(#{userId},#{count},#{killDays},#{createTime},#{killTime},#{killReason})
+	</insert>
+	
+	<!--修改 -->
+	<update id="updateUserKill"  flushCache="true">
+		UPDATE USER_KILL T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userKill.count != null">T.`count`=#{userKill.count},</if>
+			<if test="userKill.killDays != null">T.`kill_days`=#{userKill.killDays},</if>
+			<if test="userKill.killTime != null">T.kill_time=#{userKill.killTime},</if>
+			<if test="userKill.killReason != null">T.kill_reason=#{userKill.killReason},</if>
+		</trim>
+		WHERE T.ID=#{userKill.id}
+	</update>
+
+	<select id="getByUserId" resultMap="userkill" parameterType="long">
+		SELECT
+		<include refid="keyColumns" />
+		FROM USER_KILL WHERE user_id=#{userId}
+	</select>
+
+	<delete id="deleteByUserId" parameterType="long">
+		DELETE FROM USER_KILL WHERE user_id=#{userId}
+	</delete>
+</mapper>

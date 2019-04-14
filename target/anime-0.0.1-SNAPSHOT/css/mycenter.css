@@ -1,0 +1,605 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+}
+header{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #3e82f7;
+}
+.picture{
+    position: relative;
+    height: auto;
+}
+.dao{
+    position: absolute;
+    z-index: 9;
+    width: 6%;
+    left: 55%;
+    top: 78%;
+}
+.integral-left{
+    float: left;
+    width: 49%;
+    border-right: 1px solid #d7d7d7;
+}
+.integral-right{
+    float: right;
+    width: 50%;
+}
+.mycenter-menu{
+    position: relative;
+    width: 92%;
+    height: auto;
+    background-color: #ffffff;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+}
+.last{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+}
+.last-one{
+    width: 92%;
+    padding-left: 8%;
+    list-style: none;
+}
+.mynameK{
+	margin-left: 44%;
+}
+.myname{
+	margin-left: 44%;
+}
+.myname1{
+	margin-left: 40% !important;
+}
+.myname2{
+	margin-left: 35% !important;
+}
+.myname3{
+	margin-left: 30% !important;
+}
+.introduce img{
+    display: inline-block;
+    width: 5.5%;
+    margin-right: -2px;
+}
+.introduce img:first-of-type{
+    width: 9% !important;
+}
+.icon1{
+    display: inline-block;
+    width: 14%;
+}
+.icon2{
+    display: inline-block;
+    width: 18%;
+}
+.icon3{
+    display: inline-block;
+    width: 20%;
+}
+.integral-details{
+    float: right;
+    width: 60%;
+}
+.first{
+    border-bottom: 1px solid #e1e1e1;
+}
+.integral-left img,.integral-right img{
+    display: inline-block;
+    width: 14%;
+    margin-left: 16%;
+    margin-top: 10%;
+}
+.baseMessage{
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+.content{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+}
+.contentHead{
+    width: 100%;
+    position: relative;
+}
+.certification {
+    position: absolute;
+    right: 0;
+    width: 16%;
+    opacity: 1;
+}
+.name{
+    font-weight: bold;
+    color: #000;
+}
+.contentHead a{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #e0485e;
+    display: inline-block;
+    visibility: hidden;
+    text-align: center;
+    float: right;
+}
+.contentHead span{
+    color: #6d6a6b;
+}
+.contentBody{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+#indexPic,.indexPic{
+    width: 33%;
+    display: block;
+    float: left;
+}
+.indexPic{
+    display: block;
+    float: left;
+}
+.font{
+    width: 64%;
+    float: right;
+    color: #6d6a6b;
+}
+.projIntroduce{
+    text-align: justify;
+}
+.font div{
+    width: 100%;
+}
+.font div span{
+    color: #aaaaaa;
+}
+.icon{
+     width: 100%;
+     background-color: #ffffff;
+     list-style: none;
+}
+.icon li{
+     width: 33%;
+     float: left;
+     text-align: center;
+}
+.icon li img,.icon li label{
+      display: inline-block;
+}
+.browse {
+	opacity: 0.5;
+}
+.shareCout {
+	opacity: 0.5;
+}
+.server span:first-of-type{
+	float:left;
+}
+.server span:last-of-type{
+	float:right;
+	margin-right: 5%;
+}
+@media (max-height: 600px) {
+    .picture{
+        padding: 30px 0 10px 0;
+    }
+    .my{
+        display: block;
+        width: 90px;
+        height: 90px;
+        border-radius: 50px;
+        margin: 0 auto;
+    }
+    .myname{
+        display: inline-block;
+        font-size: 18px;
+        color: #ffffff;
+        margin-right: 3px;
+    }
+    .honor1,.honor2,.honor3{
+        display: inline-block;
+        font-size: 12px;
+        -webkit-transform:scale(0.6);
+        padding: 2px 4px;
+        margin: 0 -4% 3px -6%;
+        border-radius: 6px;
+        color: white;
+        border: 1px solid #ffffff;
+    }
+    .baseMessage{
+        padding: 10px 0 20px 0;
+        font-size: 12px;
+        height: 30px;
+    }
+    .first-where{
+        width: 10px !important;
+    }
+    .baseMessage span{
+        margin: 0 8px;
+        color: #ffffff;
+    }
+    .baseMessage span img{
+        width: 14px;
+        margin-right: 4px;
+    }
+    .integral{
+        position: relative;
+        width: 100%;
+        height: 60px;
+        padding: 10px 0;
+        border-bottom: 2px solid #e5e3e3;
+        background-color: #ffffff;
+    }
+    .integral-details{
+        height: 60px;
+    }
+    .integral-left{
+        height: 60px;
+    }
+    .integral-right{
+        height: 60px;
+    }
+    .rule-details{
+        float: right;
+        height: 60px;
+        width: 65%;
+    }
+    .integral-details p{
+        color: #ffa406;
+        font-size: 24px;
+        margin-top: 5px;
+    }
+    .integral-details span{
+        font-size: 14px;
+        color: #b3b3b3;
+    }
+    .rule-details span{
+        clear: both;
+        display: inline-block;
+        color: #b3b3b3;
+        line-height: 60px;
+        font-size: 15px;
+    }
+    .foot ul,.server{
+        height: 50px !important;
+    }
+    .server span{
+        line-height: 50px;
+        font-size: 15px;
+    }
+    .certification {
+        top: -8px;
+    }
+    .mycenter-menu{
+        margin: 15px auto;
+        padding-left: 8%;
+    }
+    .mycenter-menu ul{
+        height: 100px;
+        list-style: none;
+    }
+    .mycenter-menu ul li{
+        display: block;
+        height: 50px;
+    }
+    .mycenter-menu ul li a{
+        display: block;
+        height: 50px;
+        width: 100%;
+        text-decoration: none;
+    }
+    .mycenter-menu ul li a span,.last-one li span{
+        position: relative;
+        font-size: 15px;
+        line-height: 50px;
+        color: black;
+    }
+    .mycenter-menu ul li a img,.last-one li img{
+        display: inline-block;
+        float: right;
+        width: 3%;
+        margin-right: 5%;
+        margin-top: 6%;
+    }
+    .last-one{
+        height: 50px;
+    }
+    .last-one li{
+        display: block;
+        height: 50px;
+    }
+    .content{
+        padding: 14px 0;
+    }
+    .contentHead{
+        padding-bottom: 6px;
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+    }
+    .before {
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 10px;
+    }
+    .indexPic{
+        height: 80px;
+        box-shadow: 1px 1px 2px #ccc;
+        border-radius: 6px;
+    }
+    .projIntroduce{
+        font-size: 14px;
+        line-height: 18px;
+        max-height: 36px;
+        overflow: hidden;
+        padding: 0 4%;
+    }
+    .contentBody{
+        height: 82px;
+    }
+    .font{
+        height: 80px;
+        position: relative;
+    }
+    .font img{
+        width: 12px;
+        margin: 0 4px 0 4px;
+    }
+    .font div{
+        margin-top: 6px;
+        position: absolute;
+        bottom: 0;
+    }
+    .font div span{
+        font-size: 10px;
+    }
+    .font div label{
+        margin-left: 20px;
+    }
+    .footer-fill{
+        height: 30px;
+    }
+    .icon{
+        height: 25px;
+    }
+     .icon li{
+         height: 25px;
+    }
+     .icon li img{
+         width: 20px;
+         margin-right:1px;
+         margin-bottom: -1px;
+    }
+     .vote{
+         width: 15px!important;
+         opacity:1;
+    }
+     .icon li label{
+         font-size: 14px;
+         line-height: 25px;
+     }
+}
+@media (min-height: 600px) {
+    .picture{
+        padding: 35px 0 14px 0;
+    }
+    .my{
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 60px;
+        margin: 0 auto;
+    }
+    .myname{
+        display: inline-block;
+        font-size: 21px;
+        color: #ffffff;
+        margin-right: 3px;
+    }
+    .baseMessage{
+        padding: 15px 0 20px 0;
+        font-size: 13px;
+        height: 30px;
+    }
+    .first-where{
+        width: 12px !important;
+    }
+    .baseMessage span{
+        margin: 0 12px;
+        color: #ffffff;
+    }
+    .baseMessage span img{
+        width: 16px;
+        margin-right: 6px;
+    }
+    .certification {
+        top: -10px;
+    }
+    .integral{
+        position: relative;
+        width: 100%;
+        height: 65px;
+        padding: 15px 0;
+        border-bottom: 2px solid #e5e3e3;
+        background-color: #ffffff;
+    }
+    .integral-details{
+        height: 65px;
+    }
+    .integral-left{
+        height: 65px;
+    }
+    .integral-right{
+        height: 65px;
+    }
+    .rule-details{
+        float: right;
+        height: 65px;
+        width: 65%;
+    }
+    .integral-details p{
+        color: #ffa406;
+        font-size: 26px;
+        margin-top: 6px;
+    }
+    .integral-details span{
+        font-size: 15px;
+        color: #b3b3b3;
+    }
+    .rule-details span{
+        clear: both;
+        display: inline-block;
+        color: #b3b3b3;
+        line-height: 65px;
+        font-size: 16px;
+    }
+    .foot ul,.server{
+        height: 60px !important;
+    }
+    .server span{
+        line-height: 60px;
+        font-size: 18px;
+    }
+    .mycenter-menu{
+        margin: 20px auto;
+        padding-left: 8%;
+    }
+    .mycenter-menu ul{
+        height: 120px;
+        list-style: none;
+    }
+    .mycenter-menu ul li{
+        display: block;
+        height: 60px;
+    }
+    .mycenter-menu ul li a{
+        display: block;
+        text-decoration: none;
+        height: 60px;
+        width: 100%;
+    }
+    .mycenter-menu ul li a span,.last-one li span{
+        position: relative;
+        font-size: 18px;
+        line-height: 60px;
+        color: black;
+    }
+    .mycenter-menu ul li a img,.last-one li img{
+        display: inline-block;
+        float: right;
+        width: 3%;
+        margin-right: 5%;
+        margin-top: 6%;
+    }
+    .last-one{
+        height: 60px;
+    }
+    .last-one li{
+        display: block;
+        height: 60px;
+    }
+    .content{
+        padding: 18px 0;
+    }
+    .contentHead{
+        padding-bottom: 8px;
+    }
+    .name{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px;
+    }
+    .before {
+        height: 10px;
+        margin: 0 2px 0 4px;
+     }
+    .contentHead span{
+        font-size: 12px;
+    }
+    #indexPic,.indexPic{
+        height: 100px;
+        box-shadow: 2px 2px 4px #ccc;
+        border-radius: 8px;
+    }
+    #projIntroduce,.projIntroduce{
+        padding: 2px 4%;
+    }
+
+    .contentBody{
+        height: 102px;
+    }
+    .font{
+        height: 100px;
+        position: relative;
+    }
+    .font p{
+        font-size: 15px;
+        line-height: 22px;
+        max-height: 45px;
+        overflow: hidden;
+    }
+    .font img{
+        width: 12px;
+        margin: 0 4px;
+    }
+    .font div{
+        position: absolute;
+        bottom: 0;
+    }
+    .font div span{
+        font-size: 12px;
+    }
+    .font div label{
+        margin-left: 30px;
+    }
+    .footer-fill{
+        height: 40px;
+    }
+    .icon {
+		height: 30px;
+	}
+	.icon li {
+		height: 30px;
+	}
+	.icon li img {
+		width: 25px;
+		margin-right: 2px;
+		margin-bottom:-2px;
+	}
+	.vote {
+		width: 18px !important;
+		opacity:1;
+	}
+	.icon li label {
+		font-size: 15px;
+		line-height: 30px;
+	}
+}

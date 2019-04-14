@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.MachinePushConfigDao">
+	<resultMap id="machinePushConfig" type="machinePushConfig">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="push_period" property="pushPeriod" />
+		<result column="create_date" property="createDate" />
+		<result column="pub" property="pub" />
+	</resultMap>
+
+	<sql id="keyColumns"> ID,NAME,PUSH_PERIOD,CREATE_DATE,PUB
+	</sql>
+	<sql id="valueColumns"> #{id},#{name},#{pushPeriod},#{createDate},#{pub}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="machinePushConfig" flushCache="true">
+		INSERT INTO MACHINE_PUSH_CONFIG(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+
+	<!--修改 -->
+	<update id="update" parameterType="machinePushConfig"
+		flushCache="true">
+		UPDATE MACHINE_PUSH_CONFIG T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="name != null">T.name=#{name},</if>
+			<if test="pushPeriod != null">T.push_period=#{pushPeriod},</if>
+			<if test="pub != null">T.pub=#{pub},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="delete">
+		DELETE FROM MACHINE_PUSH_CONFIG WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="machinePushConfig" resultMap="machinePushConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_PUSH_CONFIG T
+		<where>
+			<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+				<if test="name != null"> and T.name=#{name}</if>
+				<if test="pushPeriod != null"> and T.push_period=#{pushPeriod}</if>
+				<if test="pub != null"> and T.pub=#{pub}</if>
+			</trim>
+		</where>
+	</select>
+	
+	
+	<select id="getRandomMachinePushCnt"  resultMap="machinePushConfig">
+		SELECT * FROM `machine_push_config` t WHERE t.`id` IN
+		(
+			SELECT t1.`push_id` FROM machine_push_msg_config t1,`machine_message_config` t2
+			WHERE t1.`message_id`=t2.`id` AND t2.`msg_type`!=3 
+		) ORDER BY RAND() LIMIT 0,#{cnt};
+	</select>
+	
+	<select id="getRandomMachinePushDefineCnt"  resultMap="machinePushConfig">
+		SELECT * FROM `machine_push_config` t WHERE t.`id` IN
+		(
+			SELECT t1.`push_id` FROM machine_push_msg_config t1,`machine_message_config` t2
+			WHERE t1.`message_id`=t2.`id` AND t2.`msg_type`=3 
+		) ORDER BY RAND() LIMIT 0,#{cnt};
+	</select>
+
+	<select id="getById" parameterType="long" resultMap="machinePushConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_PUSH_CONFIG WHERE ID=#{id}
+	</select>
+
+	<select id="getByIds" parameterType="long" resultMap="machinePushConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_PUSH_CONFIG WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<select id="getAll" resultMap="machinePushConfig">
+		SELECT
+		<include refid="keyColumns" />
+		FROM MACHINE_PUSH_CONFIG
+	</select>
+	
+
+</mapper>

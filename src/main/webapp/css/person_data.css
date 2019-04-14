@@ -1,0 +1,263 @@
+body{
+    background-color: #eee;
+}
+ul{
+    box-shadow: 3px 0 1px #c9c9cb;
+    list-style: none;
+    background-color: #ffffff;
+}
+ul li{
+    width: 94%;
+    margin-left: 6%;
+    border-bottom: 1px solid #eee;
+}
+#divselect ul li{
+    width: 100% !important;
+    margin-left: 0 !important;
+}
+ul>li:last-of-type{
+    border-bottom:0;
+}
+ul li img:first-of-type{
+    margin-right: 4%;
+    margin-bottom: -2px;
+}
+ul li span{
+    width: 30%;
+    display: inline-block;
+}
+ul li input,ul li label{
+    display: inline-block;
+    width: 54%;
+    overflow: hidden;
+    color: #6d6a6b;
+    border: 0;
+}
+.must{
+    color: red;
+    margin-left: 2px;
+}
+aside{margin: 0 auto;}
+.bottom_btn{
+    margin: 20px auto 0;
+    width: 90%;
+    height: 60px;
+    text-align: center;
+}
+.bottom_btn a{
+    display: inline-block;
+    height: 40px;
+    width: 40%;
+    line-height: 40px;
+    text-decoration: none;
+    background: #34a853;
+    color: #ffffff;
+}
+.bottom_btn a:last-of-type{
+    margin-left: 5%;
+    background: #d2292e;
+}
+.right{
+    position: relative;
+    float: right;
+}
+.layerForm{
+    background-color: rgba(0,0,0,0.3) !important;
+    display: none;
+}
+.divForm{
+    width: 50%;
+    margin: 0 20%;
+    padding: 0 5%;
+    background-color: #ffffff;
+    position: fixed;
+    top: 40%;
+}
+.divForm p{
+    width: 100%;
+    text-align: center;
+    border-bottom:  1px solid #dcdcdc;
+}
+.divForm p:last-of-type{
+    border: 0;
+}
+@media (max-height: 600px) {
+    article{
+        padding-top:14px;
+    }
+    ul{
+        margin-bottom: 14px;
+    }
+    .information ul li{
+        height: 46px;
+        line-height: 46px;
+    }
+    ul li span{
+        font-size: 14px;
+    }
+    .information input[type="text"]{
+        height: 30px;
+        line-height: 30px;
+        font-size: 13px;
+    }
+    ul li img:first-of-type{
+        width: 13px;
+    }
+    .information ul li input{
+        height: 14px;
+        font-size: 13px;
+        line-height: 14px;
+    }
+    .information ul li label{
+        height: 14px;
+        font-size: 13px;
+        line-height: 14px;
+    }
+    .right{
+        height: 14px;
+        margin-right: 14px;
+        top: 16px;
+    }
+    .divForm{
+        border-radius: 15px;
+        box-shadow: 2px 2px 2px #ccc,-2px -2px 2px #ccc;
+    }
+    .divForm p{
+        height: 46px;
+        line-height: 46px;
+        font-size: 14px;
+    }
+    #divselect{
+        display:inline-block;
+        width:140px;
+        height:34px;
+        position:relative;
+        z-index:9;
+        text-align: center;
+    }
+    #divselect cite{
+        width:138px;
+        height:32px;
+        line-height:32px;
+        font-size:13px;
+        display:block;
+        color:#807a62;
+        cursor:pointer;
+        font-style:normal;
+        border:1px solid #eeeeee;
+    }
+    #divselect ul{
+        width:138px;
+        max-height:132px;
+        overflow-y:scroll;
+        border:1px solid #eeeeee;
+        border-top:0!important;
+        background-color:#ffffff;
+        position:absolute;
+        z-index:9;
+        display:none;
+        font-size: 13px;
+        box-shadow: 1px 0 1px #c9c9cb !important;
+    }
+    #divselect ul li{
+        height:32px;
+        line-height:32px;
+    }
+    #divselect ul li a{
+        display:block;
+        height:32px;
+        color:#807a62;
+        text-decoration:none;
+    }
+}
+@media (min-height: 600px) {
+    article{
+        padding-top:20px;
+    }
+    ul{
+        margin-bottom: 20px;
+    }
+    ul li{
+        height: 56px;
+        line-height: 56px;
+    }
+    ul li span{
+        font-size: 16px;
+    }
+    input[type="text"]{
+        height: 40px;
+        line-height: 40px;
+        font-size: 15px;
+    }
+    ul li img:first-of-type{
+        width: 16px;
+    }
+    ul li input{
+        height: 14px;
+        font-size: 13px;
+        line-height: 14px;
+    }
+    ul li label{
+        height: 14px;
+        font-size: 15px;
+        line-height: 20px;
+        overflow: visible;
+    }
+    .right{
+        height: 14px;
+        margin-right: 16px;
+        top: 18px;
+    }
+    .divForm{
+        border-radius: 15px;
+        box-shadow: 2px 2px 2px #ccc,-2px -2px 2px #ccc;
+    }
+    .divForm p{
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+    }
+    #divselect{
+        display:inline-block;
+        width:160px;
+        height:40px;
+        position:relative;
+        z-index:9;
+        text-align: center;
+
+    }
+    #divselect cite{
+        width:158px;
+        height:38px;
+        line-height:40px;
+        font-size:15px;
+        display:block;
+        color:#807a62;
+        cursor:pointer;
+        font-style:normal;
+        border:1px solid #eeeeee;
+    }
+    #divselect ul{
+        width:158px;
+        max-height:164px;
+        overflow-y:scroll;
+        border:1px solid #eeeeee;
+        border-top:0!important;
+        background-color:#ffffff;
+        position:absolute;
+        z-index:9;
+        display:none;
+        font-size: 15px;
+        box-shadow: 1px 0 1px #c9c9cb !important;
+    }
+    #divselect ul li{
+        height:40px;
+        line-height:40px;
+    }
+    #divselect ul li a{
+        display:block;
+        height:40px;
+        color:#807a62;
+        text-decoration:none;
+    }
+}

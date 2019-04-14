@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+ http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<mvc:default-servlet-handler />
+	<!-- 2.注解扫描包 -->
+
+	<context:component-scan base-package="com.missyou.controller">
+	</context:component-scan>
+
+	<!--扫描属性文件 -->
+	<!-- <context:property-placeholder -->
+	<!-- location="classpath*:/config/properties/${env}/*.properties" /> -->
+	<bean id="propertyConfigurer"
+		class="com.missyou.frame.spring.properties.CustomePropertyConfigure">
+		<property name="locations">
+			<list>
+				<value>classpath*:/config/properties/${env}/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- JSP -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<!-- *****自定义JSON返回类型***** -->
+						<value>text/javascript;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="objectMapper" ref="jacksonObjectMapper"></property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!--权限拦截器 -->
+	<mvc:interceptors>
+
+		<bean class="com.missyou.frame.spring.intercept.HttpHeadInterceptor" />
+		<!-- <bean class="cn.dh.itgroup.frame.core.spring.intercept.AuthenticationInterceptor" 
+			/> -->
+		<!-- <bean class="cn.dh.itgroup.frame.core.spring.intercept.OperateLogInterceptor" 
+			/> -->
+	</mvc:interceptors>
+
+
+	<bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<!-- 为null字段时不显示 -->
+		<property name="serializationInclusion">
+			<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+		</property>
+	</bean>
+
+	<!--文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="1073741824"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
+
+</beans>
+

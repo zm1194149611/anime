@@ -1,0 +1,99 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #f8f8f8;
+}
+header ul{
+    list-style: none;
+}
+header ul li{
+    display: block;
+    width: 50%;
+    float: left;
+}
+header ul li span{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.left{
+    margin-left: 30%;
+}
+.right{
+    margin-left: 15%;
+}
+.left,.right{
+    width: 56%;
+    vertical-align: middle;
+}
+
+.tutor-data,.entrepreneur-data{
+    width:94%;
+    margin: 0 auto;
+    border:1px solid #eee;
+    position:relative;
+    background-color: #ffffff;
+}
+.tutor-data:before,.tutor-data:after,.entrepreneur-data:before,.entrepreneur-data:after{
+    content:"";
+    display:block;
+    position:absolute;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #eee;
+}
+.tutor-data:after,.entrepreneur-data:after{
+    border-color: transparent transparent #ffffff;
+}
+@media (max-height:600px) {
+    header{
+        height: 140px;
+    }
+    header ul{
+        height: 140px;
+    }
+    header ul li{
+        height: 140px;
+    }
+    .tutor-data:before,.tutor-data:after,.entrepreneur-data:before,.entrepreneur-data:after{
+        top:-20px;
+        border-width:10px;
+    }
+    .tutor-data:after,.entrepreneur-data:after{
+        top: -19px;
+    }
+    .tutor-data:before,.tutor-data:after{
+        left: 24%;
+    }
+    .entrepreneur-data:before,.entrepreneur-data:after{
+        right: 24%;
+    }
+}
+@media (min-height: 600px) {
+    header{
+        height: 160px;
+    }
+    header ul{
+        height: 160px;
+    }
+    header ul li{
+        height: 160px;
+    }
+    .tutor-data:before,.tutor-data:after,.entrepreneur-data:before,.entrepreneur-data:after{
+        top:-30px;
+        border-width:15px;
+    }
+    .tutor-data:after,.entrepreneur-data:after{
+        top: -29px;
+    }
+    .tutor-data:before,.tutor-data:after{
+        left: 22%;
+    }
+    .entrepreneur-data:before,.entrepreneur-data:after{
+        right: 22%;
+    }
+}

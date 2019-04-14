@@ -1,0 +1,449 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+}
+header{
+    position: relative;
+    width: 100%;
+    overflow: hidden;   
+    background-size:100% 100%;
+}
+.stratum{
+	background-color: rgba(0,0,0,0.5);
+}
+article{
+    width: 100%;
+}
+section{
+    background-color: #ffffff;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+section:last-of-type{
+    border-bottom: 1px solid #ffffff;
+}
+.picture{
+    position: relative;
+    height: auto;
+}
+/*改 开始*/
+.introduce{
+	position:absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 9;
+}
+/*改 结束*/
+.baseMessage{
+	position:absolute;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+.baseMessage label{
+    color: red;
+}
+.information{
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e3e3;
+    }
+.information li{
+    float: left;
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+.information li span{
+    color: #999999;
+}
+.middle{
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+}
+.section-head{
+    position: relative;
+    width: 97%;
+    padding-left: 3%;
+}
+.my-details{
+    width: 94%;
+    margin: 0 auto;
+}
+.content{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+}
+section{
+    width: 100%;
+    overflow: hidden;
+}
+/*改 开始*/
+.industry span{
+    background-color: #FFDB87;
+    color: #FBA919;
+}
+.enterprise span{
+    background-color: #b6c1de;
+    color: #3c54a5;
+}
+/*改 结束*/
+.mold span{
+    background-color: #cfead7;
+    color: #005a1d;
+}
+.skill span{
+    background-color: #b6c1de;
+    color: #3c54a5;
+}
+.like span{
+    background-color: #f2ac9f;
+    color: #d75842;
+}
+.describe_work {
+    width:95%;
+    margin: 0 auto;
+    text-indent: 2em;
+    margin-bottom: 5px;
+}
+.vote-detail{
+	position: fixed;
+    z-index: 9;
+    width:14%;
+    right: 2%;
+    bottom: 20%;
+    opacity:1;
+}
+.icon{
+	position: absolute;
+    z-index: 9;
+    width:6%;
+    right: 2%;
+    top: 5%;
+    opacity:1;
+}
+.icon-intruduce{
+	position: absolute;
+    right: 12%;   
+}
+.write{
+	position: fixed;
+    z-index: 9;
+    width:14%;
+    right: 2%;
+    bottom: 35%;
+    opacity:1;
+}
+.one,.tow,.three {
+	width: 100%;
+}
+.one{
+	text-align: center;
+}
+.one img {
+	width: 80%;
+	position: relative;
+	margin-left: -9%;
+	height: auto;
+}
+.tow img {
+	float: left;
+	width: 49%;
+	position: relative;
+}
+.tow img:first-of-type{
+	margin-right: 2%;
+}
+.three img {
+	float: left;
+	width: 32%;
+	position: relative;
+}
+.three img:first-of-type{
+	margin-right: 1%;
+}
+.three img:last-of-type{
+	margin-left: 1%;
+}
+@media (max-height: 600px) {
+	header{
+	    height: 160px;
+	}
+	.stratum{
+	    position: absolute;
+	    height: 160px;
+	    top:0;
+	    width: 100%;
+	}
+    .picture {
+        padding: 70px 0 10px 0;
+    }
+    .introduce{
+        top: 70px;
+    }
+    .baseMessage{
+        top: 100px;
+    }
+    .shu{
+        display: inline-block;
+        width: 1%;
+        margin-right: 2px;
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
+    .myname {
+        display: inline-block;
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+    .baseMessage {
+        padding: 5px 0;
+        font-size: 12px;
+        height: 25px;
+    }
+    .first-where {
+        width: 10px !important;
+    }
+    .baseMessage span {
+        margin: 0 8px;
+        color: #ffffff;
+        font-size: 12px;
+    }
+    .baseMessage span img {
+        width: 14px;
+        margin-right: 4px;
+    }
+    .describe{
+        font-size:14px;
+        letter-spacing:1px;
+        color:#6D6A6B;
+        text-align: justify;
+    }
+    .information{
+        padding: 5px 0;
+    }
+    .information li img{
+        width: 15px;
+    }
+    .information li span{
+        font-size: 15px;
+    }
+    section{
+        margin: 10px 0;
+    }
+    .section-head{
+        padding-top: 5px;
+        padding-bottom: 10px;
+    }
+    .picNew{
+        overflow: hidden;
+        margin: 15px 0 10px;
+    }
+    .one img {
+		max-height: 180px;
+	}
+	.tow img {
+		height: 100px;
+	}
+	.three img {
+		height: 100px;
+	}
+    .tou{
+        font-size: 16px;
+    }
+    .icon-intruduce{
+        font-size: 15px;
+	    top: 20%;
+    }
+    .my-details{
+        padding-bottom: 5px;
+    }
+    .my-details span{
+        display: inline-block;
+        border-radius: 4px;
+        font-size: 15px;
+        padding: 3px 5px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+    }
+    .my-details p:first-of-type{
+        margin-top: 0 !important;
+    }
+    .my-details p:last-of-type{
+        margin-bottom: 10px !important;
+    }
+    .content{
+        padding: 0 0 10px;
+    }
+    .contentHead{
+        padding-bottom: 6px;
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 10px;
+    }
+    .foot-fill{
+        height: 60px;
+    }
+}
+@media (min-height: 600px) {
+	header{
+	    height: 200px;
+	}
+	.stratum{
+	    position: absolute;
+	    height: 200px;
+	    top:0;
+	    width: 100%;
+	}
+	.introduce{
+        top: 90px;
+    }
+    .baseMessage{
+        top: 130px;
+    }
+    .picture {
+        padding: 80px 0 20px 0;
+    }
+    .myname {
+        display: inline-block;
+        font-size: 21px;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .shu{
+        display: inline-block;
+        width: 1%;
+        margin-right: 2px;
+        vertical-align: middle;
+        margin-bottom: 4px;
+    }
+    .baseMessage {
+        padding: 5px 0;
+        font-size: 13px;
+        height: 30px;
+    }
+
+    .first-where {
+        width: 11px !important;
+    }
+
+    .baseMessage span {
+        margin: 0 12px;
+        color: #ffffff;
+        font-size: 15px;
+    }
+
+    .baseMessage span img {
+        width: 16px;
+        margin-right: 6px;
+    }
+    .describe{
+        font-size:17px;
+        letter-spacing:1px;
+        color:#6D6A6B;
+        text-align: justify;
+    }
+    .information{
+        padding: 8px 0;
+    }
+    .information li img{
+        width: 18px;
+    }
+    .information li span{
+        font-size: 18px;
+    }
+    section{
+        margin: 10px 0;
+    }
+    .section-head{
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+    .picNew{
+        overflow: hidden;
+        margin: 20px 0 15px;
+    }
+    .one img {
+		max-height: 180px;
+	}
+	.tow img {
+		height: 110px;
+	}
+	.three img {
+		height: 110px;
+	}
+    .tou{
+        font-size: 18px;
+    }
+    .icon-intruduce{
+        font-size: 16px;
+	    top: 20%;
+    }
+    .my-details{
+        padding-bottom: 10px;
+    }
+    .my-details span{
+        display: inline-block;
+        border-radius: 8px;
+        font-size: 16px;
+        padding: 5px 7px;
+        margin-bottom: 15px;
+        margin-right: 8px;
+    }
+    .my-details p:first-of-type{
+        margin-top: 0 !important;
+    }
+    .my-details p:last-of-type{
+        margin-bottom: 15px !important;
+    }
+    .content{
+        padding: 0 0 15px;
+    }
+    .contentHead{
+        padding-bottom: 8px;
+    }
+    .name{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 12px;
+    }
+    .foot-fill{
+        height: 70px;
+    }
+}

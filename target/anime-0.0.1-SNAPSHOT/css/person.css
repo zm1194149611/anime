@@ -1,0 +1,345 @@
+body{
+    background-color: #eee;
+}
+header{
+    width: 100%;
+    background-image: url("../image/man.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    height: auto !important;
+}
+.blackLayer{
+    width: 100%;
+    height: auto;
+    position: relative;
+    background-color: rgba(0,0,0,0.5);
+}
+#manHead{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    border:2px solid rgba(255,255,255,0.8);
+}
+.smallName{
+    width: 100%;
+    text-align: center;
+}
+.smallName span{
+    font-size: 16px;
+    min-width: 10px;
+    display: inline-block;
+}
+.smallName img{
+    position: absolute;
+}
+.baseMessage{
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    height: 16px;
+    line-height: 16px;
+}
+nav{
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 3px 0 1px #c9c9cb;
+}
+ul{
+    list-style: none;
+}
+ul li{
+    width: 94%;
+    margin-left: 6%;
+}
+ul li:first-child{
+    border-bottom: 1px solid #eee;
+}
+ul li a{
+    text-decoration: none;
+    width: 100%;
+    height: auto;
+    display: block;
+    color: #242425;
+}
+ul li img{
+    position: relative;
+    float: right;
+}
+section{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: #ffffff;
+    box-shadow: 3px 0 1px #c9c9cb;
+}
+.content{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+}
+.contentHead{
+    width: 100%;
+}
+.name{
+    font-weight: bold;
+    color: #000;
+}
+.contentHead a{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #e0485e;
+    display: inline-block;
+    text-align: center;
+    float: right;
+}
+.contentHead span{
+    color: #6d6a6b;
+}
+.contentBody{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+#indexPic,.indexPic{
+    width: 33%;
+    display: block;
+    float: left;
+}
+.indexPic{
+    display: block;
+    float: left;
+}
+.font{
+    width: 64%;
+    float: right;
+    color: #6d6a6b;
+}
+.projIntroduce{
+    text-align: justify;
+}
+.font div{
+    width: 100%;
+}
+.font div span{
+    color: #aaaaaa;
+}
+@media (max-height: 600px) {
+    .blackLayer{
+        padding-top: 30px;
+    }
+    #manHead{
+        width: 90px;
+        height: 90px;
+        border-radius: 45px;
+    }
+    .smallName{
+        margin: 14px 0 10px 0;
+        height: 18px;
+    }
+    .smallName span{
+        font-size: 16px;
+        height: 18px;
+        line-height: 18px;
+    }
+    .smallName img{
+        height: 18px;
+        margin-left: 8px;
+    }
+    .baseMessage{
+        padding-bottom: 30px;
+        font-size: 12px;
+    }
+    .baseMessage span{
+        margin: 0 8px;
+    }
+    .baseMessage span img{
+        width: 14px;
+        margin-right: 4px;
+    }
+    nav{
+        margin: 14px 0;
+    }
+    ul{
+        font-size: 14px;
+    }
+    ul li{
+        height: 46px;
+        line-height: 46px;
+    }
+    ul li img{
+        height: 14px;
+        margin-right: 14px;
+        top: 16px;
+    }
+    section{
+        margin-bottom: 14px;
+    }
+    .content{
+        padding: 14px 0;
+    }
+    .contentHead{
+        padding-bottom: 6px;
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 10px;
+    }
+    .indexPic{
+        height: 80px;
+        box-shadow: 1px 1px 2px #ccc;
+        border-radius: 6px;
+    }
+    .projIntroduce{
+        font-size: 14px;
+        line-height: 18px;
+        max-height: 50px;
+        overflow: hidden;
+        padding: 4px 4%;
+    }
+    .contentBody{
+        height: 82px;
+    }
+    .font{
+        height: 80px;
+        position: relative;
+    }
+    .font img{
+        width: 12px;
+        margin: 0 4px 0 4px;
+    }
+    .font div{
+        margin-top: 6px;
+        position: absolute;
+        bottom: 0;
+    }
+    .font div span{
+        font-size: 10px;
+    }
+    .font div label{
+        margin-left: 20px;
+    }
+}
+@media (min-height: 600px) {
+    .blackLayer{
+        padding-top: 45px;
+    }
+    #manHead{
+        width: 100px;
+        height: 100px;
+        border-radius: 55px;
+    }
+    .smallName{
+        margin: 20px 0 16px 0;
+        height: 22px;
+    }
+    .smallName span{
+        font-size: 17px;
+        height: 22px;
+        line-height: 22px;
+    }
+    .smallName img{
+        height: 22px;
+        margin-left: 10px;
+    }
+    .baseMessage{
+        padding-bottom: 40px;
+        font-size: 13px;
+    }
+    .baseMessage span{
+        margin: 0 12px;
+    }
+    .baseMessage span img{
+        width: 16px;
+        margin-right: 6px;
+    }
+    nav{
+        margin: 20px 0;
+    }
+    ul{
+        font-size: 16px;
+    }
+    ul li{
+        height: 56px;
+        line-height: 56px;
+    }
+    ul li img{
+        height: 14px;
+        margin-right: 16px;
+        top: 21px;
+    }
+    section{
+        margin-bottom: 20px;
+    }
+    .content{
+        padding: 18px 0;
+    }
+    .contentHead{
+        padding-bottom: 8px;
+    }
+    .name{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 12px;
+    }
+    #indexPic,.indexPic{
+        height: 100px;
+        box-shadow: 2px 2px 4px #ccc;
+        border-radius: 8px;
+    }
+    #projIntroduce,.projIntroduce{
+        padding: 6px 4%;
+    }
+
+    .contentBody{
+        height: 102px;
+    }
+    .font{
+        height: 100px;
+        position: relative;
+    }
+    .font p{
+        font-size: 15px;
+        line-height: 22px;
+        max-height: 62px;
+        overflow: hidden;
+    }
+    .font img{
+        width: 12px;
+        margin: 0 4px;
+    }
+    .font div{
+        position: absolute;
+        bottom: 0;
+    }
+    .font div span{
+        font-size: 12px;
+    }
+    .font div label{
+        margin-left: 30px;
+    }
+}

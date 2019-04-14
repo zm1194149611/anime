@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ScoreRecordDao">
+  <resultMap id="scoreRecord" type="scoreRecord">
+    <result column="id"  property="id" />
+    <result column="user_id"  property="userId" />
+    <result column="anchor_userId"  property="anchorUserId" />
+    <result column="project_desc"  property="projectDesc" />
+    <result column="create_time"  property="createTime" />
+    <result column="score"  property="score" />
+  </resultMap>
+  
+  <sql id="keyColumns">ID, user_id, anchor_userId,project_desc,create_time,score</sql>
+  <sql id="valueColumns">#{record.id}, #{record.userId}, #{record.anchorUserId},#{record.projectDesc},#{record.createTime},#{record.score}</sql>
+
+  <!--新增 -->
+  <insert id="addScoreRecord"  flushCache="true">
+	INSERT INTO ${tableName}(<include refid="keyColumns" />)
+	VALUES(<include refid="valueColumns" />)
+  </insert>
+
+  <update id="updateScoreRecord">
+  	update ${tableName} set score=#{record.score} where id=#{record.id}
+  </update>	
+  
+  <select id="getScoreRecordById"  resultMap="scoreRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ${tableName} WHERE ID=#{id}
+  </select>
+  
+  <select id="getScoreList"  resultMap="scoreRecord">
+		SELECT
+		<include refid="keyColumns" />
+		FROM ${tableName}   
+		<include refid="scoreConditon"></include>
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt; #{pager.lastId}
+		</if>
+		ORDER BY create_time DESC
+		LIMIT 0,#{pager.size}
+  </select>
+  
+  <select id="getTotalScore"  resultMap="scoreRecord">
+		SELECT IFNULL(SUM(score),0) as score  from ${tableName}   
+		<include refid="scoreConditon"></include>
+  </select>
+  
+  <sql id="scoreConditon">
+  		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="scoreRecord.anchorUserId != null"> AND anchor_userId= #{scoreRecord.anchorUserId}</if>
+			<if test="scoreRecord.userId != null"> AND user_id= #{scoreRecord.userId}</if>
+			<if test="timeBegin != null"> AND create_time &gt;= #{timeBegin}</if>
+			<if test="timeEnd != null"> AND create_time &lt;= #{timeEnd}</if>
+		</trim>
+  </sql>
+</mapper>

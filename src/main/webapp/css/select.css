@@ -1,0 +1,80 @@
+.choose{
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+.title{
+    width: 89%;
+    background-color: #ffffff;
+    padding: 0 5%;
+}
+.titleSpan{
+    display: inline-block;
+    width: 0 !important;
+    height: 0 !important;
+    float: right !important;
+}
+.choose ul{
+    width: 110%;
+    overflow-y: scroll;
+    height: auto;
+    position: relative;
+    list-style: none;
+    background-color: #ffffff;
+}
+.choose ul li{
+    padding: 0 !important;
+    border: 0!important;
+}
+.choose ul li span{
+    width: 80%;
+    margin-left: 5%;
+    position: relative;
+    border-bottom: 1px solid #fbf8e4;
+    color: #666 !important;
+}
+.choose ul li:last-of-type span{
+    border-bottom: 0;
+}
+@media (max-height: 600px) {
+    .title{
+        height: 36px;
+        line-height: 36px;
+    }
+    .titleSpan{
+        margin-left: 4px;
+        border-top: 6px solid #e0485e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        margin-top: 17px;
+    }
+    .choose ul{
+        max-height: 144px;
+    }
+    .choose ul li{
+        height: 36px !important;
+        line-height: 36px !important;
+        font-size: 12px;
+    }
+}
+@media (min-height: 600px) {
+    .title{
+        height: 46px;
+        line-height: 46px;
+    }
+    .titleSpan{
+        margin-left: 4px;
+        border-top: 6px solid #e0485e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        margin-top: 22px;
+    }
+    .choose ul{
+        max-height: 184px;
+    }
+    .choose ul li{
+        height: 46px !important;
+        line-height: 46px !important;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.2.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+         http://www.springframework.org/schema/aop 
+         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<context:annotation-config />
+	<!--扫描所有的排除控制器以外的实体 -->
+	<context:component-scan base-package="com.missyou">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!--编译所有的属性文件的KV ${env}代表Tomcat初始化环境变量 -->
+	<!-- <context:property-placeholder -->
+	<!-- location="classpath*:/config/properties/${env}/*.properties" /> -->
+
+	<bean id="propertyConfigurer"
+		class="com.missyou.frame.spring.properties.CustomePropertyConfigure">
+		<property name="locations">
+			<list>
+				<value>classpath*:/config/properties/${env}/*.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!--加载所有的spring集成如 xmemcached readis mybatis等配置文件 -->
+	<import resource="classpath*:/config/spring/spring-*.xml" />
+</beans>

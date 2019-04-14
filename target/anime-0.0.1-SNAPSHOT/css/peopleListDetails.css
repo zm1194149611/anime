@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Microsoft YaHei", "微软雅黑", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+}
+.peopleList{
+    width: 90%;
+    padding: 0 5%;
+    overflow: hidden;
+    border-bottom: 1px solid #e1e1e1;
+}
+.peopleList-left,.peopleList-right{
+    float: left;
+    position: relative;
+}
+.peopleList-right{
+    width: 70%;
+    margin-left: 2%;
+}
+.peopleList-arrow{
+    float: right;
+}
+.peopleList-peopleImg{
+    display: block;
+    border-radius: 60px;
+}
+.peopleList-peopleDao{
+    position: absolute;
+    z-index: 9;
+    width: 35%;
+    left: 55%;
+    top: 78%;
+}
+.peopleList-name{
+    display: inline-block;
+}
+.peopleList-right img {
+    width: 13%;
+    margin-right: -2px;
+}
+.peopleList-right img:first-of-type {
+    width: 13%!important;
+}
+@media (max-height: 600px) {
+    .peopleList{
+        padding: 8px 5%;
+        height: 46px;
+    }
+    .peopleList-left{
+        height: 46px;
+        width: 46px;
+    }
+    .peopleList-peopleImg{
+        height: 46px;
+        width: 46px;
+    }
+    .peopleList-name{
+        font-size: 14px;
+        margin-right: 3px;
+    }
+    .peopleList-arrow{
+        height: 16px;
+        margin-top: 15px;
+    }
+}
+@media (min-height: 600px) {
+    .peopleList{
+        padding: 10px 5%;
+        height: 55px;
+    }
+    .peopleList-left{
+        height: 55px;
+        width: 55px;
+    }
+    .peopleList-peopleImg{
+        height: 55px;
+        width: 55px;
+    }
+    .peopleList-name{
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    .peopleList-arrow{
+        height: 17px;
+        margin-top: 19px;
+    }
+}

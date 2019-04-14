@@ -1,0 +1,586 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+}
+header{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #3e82f7;
+}
+article{
+    width: 100%;
+}
+.section{
+    background-color: #ffffff;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+.section:last-of-type{
+    border-bottom: 1px solid #ffffff;
+}
+.picture{
+    position: relative;
+    height: auto;
+}
+.dao1{
+    position: absolute;
+    z-index: 9;
+    width: 6%;
+    left: 54%;
+    top: 76%;
+}
+.introduce{
+    width: 58%;
+    margin-left: 42%;
+}
+.introduce img{
+    width: 10%;
+    margin-right: -2px;
+}
+.introduce img:first-of-type{
+    width: 17%!important;
+}
+.baseMessage{
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+.manifesto{
+    display: block;
+    text-align: center;
+    background-color: #254e94;
+    width: 90%;
+    margin: 0 auto;
+    color: #ffffff;
+}
+.information{
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e5e3e3;
+    }
+.information li{
+    float: left;
+    display: inline-block;
+    width: 24.5%;
+    text-align: center;
+}
+.information li span{
+    color: #999999;
+}
+.information li p{
+	margin-bottom: 3px;
+}
+.middle{
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+}
+.middle1{
+    border-left: 1px solid #d7d7d7;
+}
+.section-head{
+    position: relative;
+    width: 97%;
+    padding-left: 3%;
+}
+.shu{
+    display: inline-block;
+    width: 1%;
+    margin-right: 2px;
+    vertical-align: middle;
+    margin-bottom: 4px;
+}
+.my-details{
+    width: 94%;
+    margin: 0 auto;
+}
+.content{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+}
+.contentHead{
+    width: 100%;
+}
+.name{
+    font-weight: bold;
+    color: #000;
+}
+.contentHead a{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #e0485e;
+    display: inline-block;
+    visibility: hidden;
+    text-align: center;
+    float: right;
+}
+.contentHead span{
+    color: #6d6a6b;
+}
+.contentBody{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+#indexPic,.indexPic{
+    width: 33%;
+    display: block;
+    float: left;
+}
+.indexPic{
+    display: block;
+    float: left;
+}
+.font{
+    width: 64%;
+    float: right;
+    color: #6d6a6b;
+}
+.projIntroduce{
+    text-align: justify;
+}
+.font div{
+    width: 100%;
+}
+.font div span{
+    color: #aaaaaa;
+}
+section{
+    width: 100%;
+    overflow: hidden;
+}
+.my1{
+    display: block;
+}
+.print{
+    clear: both;
+}
+.mold span{
+    background-color: #cfead7;
+    color: #005a1d;
+}
+.skill span{
+    background-color: #b6c1de;
+    color: #3c54a5;
+}
+.like span{
+    background-color: #f2ac9f;
+    color: #d75842;
+}
+#div1,#div3,#div5,#div7{
+    position: absolute;
+}
+#div2,#div4,#div6,#div8{
+    position: absolute;
+    text-align: center;
+}
+#div2{
+    left: 0;
+    top: 0;
+}
+#div4{
+    bottom: 0;
+    left: 0;
+}
+#div6{
+    right: 0;
+    bottom: 0;
+}
+#div8{
+    right: 0;
+    bottom: 0;
+}
+.vote-detail{
+	position: fixed;
+    z-index: 9;
+    width:14%;
+    right: 2%;
+    bottom: 20%;
+}
+@media (max-height: 600px) {
+    .picture {
+        padding: 30px 0 10px 0;
+    }
+    .my1 {
+        display: block;
+        width: 90px;
+        height: 90px;
+        border-radius: 50px;
+        margin: 0 auto;
+    }
+    .myname {
+        display: inline-block;
+        font-size: 18px;
+        color: #ffffff;
+        margin-right: 3px;
+    }
+    .baseMessage {
+        padding: 5px 0;
+        font-size: 12px;
+        height: 25px;
+    }
+    .first-where {
+        width: 10px !important;
+    }
+    .baseMessage span {
+        margin: 0 8px;
+        color: #ffffff;
+    }
+    .baseMessage span img {
+        width: 14px;
+        margin-right: 4px;
+    }
+    .manifesto{
+        height: 30px;
+        line-height: 30px;
+        font-size: 15px;
+        padding-left: 5px;
+        border-radius: 15px;
+        margin-bottom: 15px;
+    }
+    .information{
+        padding: 5px 0;
+    }
+    .information li img{
+        width: 15px;
+    }
+    .information li span{
+        font-size: 12px;
+    }
+    .section{
+        margin: 10px 0;
+    }
+    .section-head{
+        padding-top: 5px;
+        padding-bottom: 10px;
+    }
+    .tou{
+        font-size: 15px;
+    }
+    .my-details{
+        padding-bottom: 5px;
+    }
+    .books{
+        padding-bottom: 13px !important;
+    }
+    .word{
+        padding: 0 0 6px 0;        
+    }
+    .word img{
+        display:inline-block;
+        width: 16px;
+        margin: 0 5px -1px 0;
+    }
+    .word p{
+        display:inline-block;
+        font-size: 14px;
+    }
+    .book{
+        display: inline-block;
+        margin: 2px 0;
+        font-size: 14px;
+    }
+    .my-details span{
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 3px 5px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+    }
+    .content{
+        padding: 0 0 10px;
+    }
+    .contentHead{
+        padding-bottom: 6px;
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 10px;
+    }
+    .indexPic{
+        height: 80px;
+        box-shadow: 1px 1px 2px #ccc;
+        border-radius: 6px;
+    }
+    .projIntroduce{
+        font-size: 14px;
+        line-height: 18px;
+        max-height: 55px;
+        overflow: hidden;
+        padding: 0 4%;
+    }
+    .contentBody{
+        height: 82px;
+    }
+    .font{
+        height: 80px;
+        position: relative;
+    }
+    .font div {
+        margin-top: 6px;
+        position: absolute;
+        bottom: 0;
+    }
+    .font img {
+        width: 12px;
+        margin: 0 4px 0 4px;
+        position: relative;
+        top: 1px;
+    }
+    .font div span {
+        font-size: 10px;
+    }
+    #div1,#div3,#div5,#div7{
+        width: 85px;
+        height: 85px;
+    }
+    #div1{
+        top: 75px;
+        left: 18px;
+    }
+    #div3{
+        top: 15px;
+        left: 20px;
+    }
+    #div5{
+        top: 15px;
+        right: 20px;
+    }
+    #div7{
+        top: 75px;
+        right: 18px;
+    }
+    #div2,#div4,#div6,#div8{
+        height: 75px;
+        width: 75px;
+        border-radius: 50px;
+    }
+    #div2 span,#div4 span,#div6 span,#div8 span{
+        font-size: 12px;
+        line-height: 50px;
+        color: #010101;
+        padding: 2px 4px;
+        background-color: #78a8f9;
+        border-radius:25px; 	
+    }
+    .foot-fill{
+        height:70px; 
+    }
+    .dian{
+	    margin-top: 35px !important;
+    }
+}
+@media (min-height: 600px) {
+    .picture {
+        padding: 35px 0 14px 0;
+    }
+
+    .my1 {
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 60px;
+        margin: 0 auto;
+    }
+
+    .myname {
+        display: inline-block;
+        font-size: 21px;
+        color: #ffffff;
+        margin-right: 3px;
+    }
+    .baseMessage {
+        padding: 5px 0;
+        font-size: 13px;
+        height: 30px;
+    }
+    .first-where {
+        width: 11px !important;
+    }
+    .baseMessage span {
+        margin: 0 12px;
+        color: #ffffff;
+    }
+    .baseMessage span img {
+        width: 16px;
+        margin-right: 6px;
+    }
+    .manifesto{
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+        border-radius: 21px;
+        margin-bottom: 25px;
+        padding-left: 8px;
+    }
+    .information{
+        padding: 8px 0;
+    }
+    .information li img{
+        width: 18px;
+    }
+    .information li span{
+        font-size: 14px;
+    }
+    .section{
+        margin: 10px 0;
+    }
+    .section-head{
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+    .tou{
+        font-size: 18px;
+    }
+    .my-details{
+        padding-bottom: 10px;
+    }
+    .books{
+        padding-bottom: 22px !important;
+    }
+    .word{
+        padding: 0 0 6px 0;        
+    }
+    .word img{
+        display:inline-block;
+        width: 19px;
+        margin: 0 5px -1px 0;
+    }
+    .word p{
+        display:inline-block;
+        font-size: 16px;
+    }
+    .book{
+        display: inline-block;
+        margin: 3px 0;
+        font-size: 16px;
+    }
+    .my-details span{
+        display: inline-block;
+        border-radius: 8px;
+        font-size: 16px;
+        padding: 5px 7px;
+        margin-bottom: 15px;
+        margin-right: 8px;
+    }
+    .content{
+        padding: 0 0 15px;
+    }
+    .contentHead{
+        padding-bottom: 8px;
+    }
+    .name{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px;
+    }
+    .contentHead img{
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 12px;
+    }
+    #indexPic,.indexPic{
+        height: 100px;
+        box-shadow: 2px 2px 4px #ccc;
+        border-radius: 8px;
+    }
+    #projIntroduce,.projIntroduce{
+        padding: 0 4%;
+    }
+
+    .contentBody{
+        height: 102px;
+    }
+    .font{
+        height: 100px;
+        position: relative;
+    }
+    .font div {
+        position: absolute;
+        bottom: 0;
+    }
+    .font div span {
+        font-size: 12px;
+    }
+    .font img {
+        width: 12px;
+        margin: 0 4px;
+        position: relative;
+        top: 2px;
+     }
+    .font p{
+        font-size: 15px;
+        line-height: 22px;
+        max-height: 65px;
+        overflow: hidden;
+    }
+    #div1,#div3,#div5,#div7{
+        width: 100px;
+        height: 100px;
+    }
+    #div1{
+        top: 90px;
+        left: 20px;
+    }
+    #div3{
+        top: 15px;
+        left: 30px;
+    }
+    #div5{
+        top: 20px;
+        right: 30px;
+    }
+    #div7{
+        top: 75px;
+        right: 18px;
+    }
+    #div2,#div4,#div6,#div8{
+        height: 90px;
+        width: 90px;
+        border-radius: 65px;
+    }
+    #div2 span,#div4 span,#div6 span,#div8 span{
+        font-size: 15px;
+        line-height: 60px;
+        color: #010101;
+        padding: 2px 5px;
+        background-color: #78a8f9;
+        border-radius:25px;
+    }
+    .foot-fill{
+        height:70px; 
+    }
+    .dian{
+	    margin-top: 35px !important;
+    }
+}

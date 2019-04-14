@@ -1,0 +1,142 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    height: auto;
+    background-color: #f8f8f8;
+}
+header{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #3e82f7;
+}
+.version{
+    float: right;
+    color: forestgreen!important;
+    margin-right: 17px;
+}
+.back{
+    text-align: center!important;
+}
+.mycenter-menu{
+    position: relative;
+    width: 92%;
+    height: auto;
+    background-color: #ffffff;
+    border-top: 1px solid #e1e1e1;
+    /* border-bottom: 1px solid #e1e1e1; */
+}
+.first{
+    border-bottom: 1px solid #e1e1e1;
+}
+@media (max-height: 600px) {
+    .last{
+        position: fixed;
+        bottom:13%;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        background-color: #ffffff;
+        border-top: 1px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+    }
+    .last ul li a{
+        display:block;
+        text-decoration: none;
+        color: #000000;
+        font-size: 15px;
+        line-height: 50px;
+    }
+    .mycenter-menu{
+        margin: 15px auto;
+        padding-left: 8%;
+    }
+    .mycenter-menu ul{
+        height: 204px;
+        list-style: none;
+    }
+    .mycenter-menu ul li{
+        display: block;
+        height: 50px;
+    }
+    .mycenter-menu ul li a{
+        display: block;
+        height: 50px;
+        width: 100%;
+        text-decoration: none;
+    }
+    .mycenter-menu ul li a span{
+        position: relative;
+        font-size: 15px;
+        line-height: 50px;
+        color: black;
+    }
+    .mycenter-menu ul li a img{
+        display: inline-block;
+        float: right;
+        width: 3%;
+        margin-right: 5%;
+        margin-top: 6%;
+    }
+    .footer-fill{
+        height: 60px;
+    }
+}
+@media (min-height: 600px) {
+    .last{
+        position: fixed;
+        bottom:13%;
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        background-color: #ffffff;
+        border-top: 1px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+    }
+    .last ul li a{
+        display:block;
+        text-decoration: none;
+        color: #000000;
+        font-size: 18px;
+        line-height: 60px;
+    }
+    .mycenter-menu{
+        margin: 15px auto;
+        padding-left: 8%;
+    }
+    .mycenter-menu ul{
+        height: 244px;
+        list-style: none;
+    }
+    .mycenter-menu ul li{
+        display: block;
+        height: 60px;
+    }
+    .mycenter-menu ul li a{
+        display: block;
+        height: 50px;
+        width: 100%;
+        text-decoration: none;
+    }
+    .mycenter-menu ul li a span{
+        position: relative;
+        font-size: 18px;
+        line-height: 50px;
+        color: black;
+    }
+    .mycenter-menu ul li a img{
+        display: inline-block;
+        float: right;
+        width: 3%;
+        margin-right: 5%;
+        margin-top: 6%;
+    }
+    .footer-fill{
+        height: 60px;
+    }
+}

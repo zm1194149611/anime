@@ -1,0 +1,705 @@
+body {
+	background-color: #eeeeee;
+}
+
+header {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-image: url("../image/pro2.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	color: #ffffff;
+}
+
+.blackLayer {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+/*头部支持按钮灰色*/
+.supportingNone {
+	background-color: #bbbbbb !important;
+	opacity: 0.8;
+}
+
+#proPic {
+	display: block;
+	position: relative;
+	margin: 5% auto 0 auto;
+	border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+#proName {
+	width: 80%;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+}
+
+.proData {
+	text-align: center;
+}
+
+.proData span:nth-of-type(2) {
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+
+/* .proMessage { */
+/* 	text-align: center; */
+/* } */
+
+.proMessage img {
+	display: inline-block;
+}
+
+.proMessage span {
+	display: inline-block;
+}
+
+.proMessage span:last-of-type {
+	padding-right: 0;
+}
+
+header p:last-of-type {
+	width: 100%;
+	text-align: center;
+}
+
+header p:last-of-type span {
+	background-color: #faf3c4;
+	text-align: center;
+	display: inline-block;
+	color: #000;
+}
+
+.float {
+	position: fixed;
+	z-index: 9;
+	right: 6px;
+	bottom: 10%;
+}
+
+.fixedBtn {
+	background-color: rgba(0, 0, 0, 0.7);
+	text-align: center;
+	color: #ffffff;
+}
+
+.fixedBtn img {
+	width: 60%;
+	margin-top: 14%;
+	border: 1px solid #fff;
+}
+
+.bgLine {
+	position: relative;
+	background-color: #ffffff;
+	box-shadow: 3px 0 1px #c9c9cb;
+	width: 100%;
+}
+.proMessage_industry,.proMessage_state,.proMessage_area{
+		background-color:#BFBCDB;
+	}
+.certification {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	width: 16%;
+}
+
+.title {
+	width: 20%;
+	background-color: #fbf8e5;
+	color: #444;
+	text-align: left;
+	font-weight: bold;
+}
+
+.textContent, .myTutor {
+	width: 90%;
+	position: relative;
+	text-indent: 2em;
+	color: #666666;
+}
+
+.pic {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.pic ul {
+	position: relative;
+}
+
+.pic ul li {
+	float: left;
+	list-style: none;
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.pic ul li img {
+	display: inline-block;
+	width: 100%;
+}
+
+.pic p {
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	bottom: 0;
+	color: #ffffff;
+}
+
+.pic p span:first-of-type {
+	margin-left: 6%;
+}
+
+.pic p span:last-of-type {
+	float: right;
+	margin-right: 6%;
+}
+
+.picNew {
+	position: relative;
+	height: auto;
+	overflow: auto;
+	margin: 0 auto;
+}
+
+.picNew ul {
+	list-style: none;
+}
+
+.picNew ul li img {
+	display: block;
+	height: 100px;
+	width: 200px;
+}
+
+.one {
+	width: 100%;
+}
+
+.one ul li img {
+	max-width: 100%;
+	position: relative;
+	margin: 0 auto;
+	height: auto !important;
+	width: auto !important;
+}
+
+.tow {
+	width: 90%;
+}
+
+.tow ul li a {
+	float: left;
+	width: 47%;
+	position: relative;
+	margin-right: 2%;
+	overflow: hidden;
+}
+
+.tow ul li img {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.three {
+	width: 90%;
+}
+
+.three ul li a {
+	float: left;
+	width: 32%;
+	position: relative;
+	margin-right: 1%;
+	overflow: hidden;
+}
+
+.three ul li img {
+	width: 100% !important;
+	height: auto !important;
+}
+
+section {
+	clear: both;
+	width: 100%;
+	overflow: hidden;
+}
+
+#tutor-section {
+	width: 90% !important;
+	margin: 0 auto;
+}
+
+.left1 {
+	float: left;
+	width: 14%;
+}
+
+.left1 img {
+	width: 100%;
+}
+
+.right1 {
+	float: right;
+	width: 84%;
+}
+
+.write {
+	display: block;
+	position: fixed;
+	z-index: 9;
+	width: 14%;
+	right: 0;
+	bottom: 20%;
+}
+
+.introduce-left {
+	float: left;
+	width: 80%;
+}
+
+.introduce-left img {
+	width: 10%;
+	margin-right: -2px;
+}
+
+.introduce-left img:first-of-type {
+	width: 15% !important;
+}
+
+.introduce-right {
+	position: relative;
+	float: right;
+	width: 20%;
+}
+
+.statistical {
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+.statistical p {
+	display: inline-block;
+}
+
+.statistical p:first-of-type {
+	float: left;
+}
+
+.statistical p:last-of-type {
+	float: right;
+	margin-right: 10px;
+}
+
+.statistical p img {
+	-webkit-transform: scale(0.6);
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.statistical p span {
+	font-size: 12px;
+	color: #2f5e9b;
+	line-height: 26px;
+	display: inline-block;
+}
+
+.code {
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	text-align: center;
+}
+.code p,.code span{
+	color: #474747;
+}
+.titleImg a{
+	display:inline-block;
+	float:right;
+	margin-right:5%;
+	text-decoration:none;
+	color: #666666;
+}
+@media ( max-height : 600px) {
+	.one ul li img {
+		max-height: 300px;
+	}
+	.tow ul li a {
+		height: 120px;
+	}
+	.tow ul li img {
+		min-height: 120px;
+	}
+	.three ul li a {
+		height: 100px;
+	}
+	.three ul li img {
+		min-height: 120px;
+	}
+	#proPic {
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+	}
+	#proName {
+		margin: 8px auto;
+		font-size: 16px;
+		height: 22px;
+		line-height: 22px;
+	}
+	.proMan{
+		font-size:12px;
+		text-align:center;
+	}
+	.proData {
+		font-size: 11px;
+		margin: 16px 0 10px 0;
+	}
+	.proData span:nth-of-type(2) {
+		margin: 0 12px;
+		padding: 0 12px;
+	}
+	.proMessage {
+		font-size: 15px;
+		width:90%;
+		margin:0 auto;
+		margin-top:15px;
+	}
+	
+	.proMessage span {
+		border-radius:4px;
+		padding: 3px 5px;
+		color:	#5E5C81;
+	}
+	.bgLine:last-of-type {
+		margin-bottom: 20px;
+	}
+	header p:last-of-type span {
+		padding: 6px 10px;
+		border-radius: 6px;
+		font-size: 12px;
+		margin: 0 10px 15px 10px;
+	}
+	header p:last-of-type img {
+		height: 12px;
+		margin: 0 2px;
+	}
+	.fixedBtn {
+		width: 42px;
+		height: 42px;
+		line-height: 42px;
+		border-radius: 25px;
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+	.bgLine {
+		margin: 14px 0 0 0;
+		padding: 12px 0 14px 0;
+	}
+	.title {
+		height: 30px;
+		line-height: 30px;
+		padding: 0 20px;
+		font-size: 16px;
+	}
+	.textContent, .myTutor {
+		font-size: 14px;
+		line-height: 24px;
+		margin: 12px auto;
+		text-align: justify;
+	}
+	.pic {
+		height: 160px;
+	}
+	.pic ul li {
+		height: 160px;
+	}
+	.pic ul li img {
+		height: 160px;
+	}
+	.pic p {
+		height: 24px;
+		line-height: 24px;
+		font-size: 12px;
+	}
+	.titleImg {
+		font-size: 16px;
+	}
+	.titleImg img {
+		height: 13px;
+		margin: 0 3px 0 20px;
+	}
+	#tutor-section {
+		margin-top: 10px;
+	}
+	.left1 img {
+		margin-top: 3px;
+		height: 42px;
+        width: 42px;
+        border-radius: 55px;
+	}
+	.name {
+		display: inline-block;
+		font-size: 18px;
+		margin-right: 3px;
+	}
+
+	.industry {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin-bottom: 8px;
+	}
+	.industry span {
+		font-size: 12px;
+		-webkit-transform: scale(0.8);
+		display: inline-block;
+		padding: 0 4px;
+		margin: 0 -6px;
+		border-radius: 4px;
+		background-color: #a2bed9;
+		color: #ffffff;
+	}
+	.word {
+		padding: 0 0 6px 0;
+	}
+	.word img {
+		display: inline-block;
+		width: 16px;
+		margin: 0 5px -1px 0;
+	}
+	.word p {
+		display: inline-block;
+		font-size: 16px;
+	}
+	.interact {
+		overflow: hidden;
+		width: 100%;
+		height: auto;
+		margin-bottom: 10px;
+	}
+	.interact img:last-of-type {
+		display: inline-block;
+		float: right;
+		width: 20%;
+		margin-right: 10px;
+	}
+	.interact span {
+		display: inline-block;
+		margin-top: 5px;
+		color: #999999;
+	}
+	.pro-footprint {
+		margin-top: 15px;
+	}
+	.code p,.code span{
+	    font-size: 15px;
+	}
+	.code img{
+	    display:block;
+	    width: 32%;
+	    margin: 10px auto;
+	}
+	.footer-fill {
+		height: 65px;
+	}
+}
+
+@media ( min-height : 600px) {
+	.one ul li img {
+		max-height: 300px;
+	}
+	.tow ul li a {
+		height: 120px;
+	}
+	.tow ul li img {
+		min-height: 120px;
+	}
+	.three ul li a {
+		height: 100px;
+	}
+	.three ul li img {
+		min-height: 120px;
+	}
+	#proPic {
+		width: 80px;
+		height: 80px;
+		border-radius: 40px;
+	}
+	#proName {
+		margin: 14px auto;
+		font-size: 16px;
+		height: 22px;
+		line-height: 22px;
+	}
+	.proMan{
+		font-size:12px;
+		text-align:center;
+	}
+	.proData {
+		font-size: 12px;
+		margin: 18px 0 12px 0;
+	}
+	.proMessage {
+		font-size: 15px;
+		width:90%;
+		margin:0 auto;
+		margin-top:15px;
+	}
+	.proMessage span {
+		border-radius:4px;
+		padding: 3px 5px;
+		color:	#5E5C81;
+	}
+	.proData span:nth-of-type(2) {
+		margin: 0 14px;
+		padding: 0 14px;
+	}
+/* 	.proMessage { */
+/* 		font-size: 12px; */
+/* 		margin: 18px 0 34px 0; */
+/* 	} */
+	.proMessage img {
+		height: 11px;
+		margin: 0 4px 0 4px;
+	}
+	.proMessage span {
+		padding-right: 10px;
+	}
+	.bgLine:last-of-type {
+		margin-bottom: 24px;
+	}
+	header p:last-of-type span {
+		padding: 6px 10px;
+		border-radius: 6px;
+		font-size: 14px;
+		margin: 0 14px 20px 14px;
+	}
+	header p:last-of-type img {
+		height: 14px;
+		margin: 0 4px 0 2px;
+	}
+	.fixedBtn {
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 22px;
+		border-radius: 25px;
+		margin-bottom: 14px;
+	}
+	.bgLine {
+		margin: 18px 0 0 0;
+		padding: 16px 0 20px 0;
+	}
+	.title {
+		height: 40px;
+		line-height: 40px;
+		padding: 0 30px;
+		font-size: 18px;
+	}
+	.textContent, .myTutor {
+		font-size: 16px;
+		line-height: 26px;
+		margin: 20px auto;
+		text-align: justify;
+	}
+	.pic {
+		height: 210px;
+	}
+	.pic ul li {
+		height: 210px;
+	}
+	.pic ul li img {
+		height: 210px;
+	}
+	.pic p {
+		height: 36px;
+		line-height: 36px;
+		font-size: 14px;
+	}
+	.titleImg {
+		font-size: 18px;
+	}
+	.titleImg img {
+		height: 14px;
+		margin: 0 4px 0 24px;
+	}
+	#tutor-section {
+		margin-top: 15px;
+	}
+	.left1 img {
+		margin-top: 3px;
+		height: 50px;
+        width: 50px;
+        border-radius: 65px;
+	}
+	.name {
+		display: inline-block;
+		font-size: 21px;
+		margin-right: 3px;
+	}
+
+	.industry {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.industry span {
+		font-size: 12px;
+		-webkit-transform: scale(0.9);
+		display: inline-block;
+		padding: 2px 6px;
+		margin: 0 -4px;
+		border-radius: 4px;
+		background-color: #a2bed9;
+		color: #ffffff;
+	}
+	.word {
+		padding: 0 0 6px 0;
+	}
+	.word img {
+		display: inline-block;
+		width: 19px;
+		margin: 0 5px -1px 0;
+	}
+	.word p {
+		display: inline-block;
+		font-size: 19px;
+	}
+	.interact {
+		overflow: hidden;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.interact img:last-of-type {
+		display: inline-block;
+		float: right;
+		width: 20%;
+		margin-right: 10px;
+	}
+	.pro-footprint {
+		margin-top: 20px;
+	}
+	.footer-fill {
+		height: 80px;
+	}
+	.code p,.code span{
+	    font-size: 18px;
+	}
+	.code img{
+	    display:block;
+	    width: 32%;
+	    margin: 14px auto;
+	}
+}

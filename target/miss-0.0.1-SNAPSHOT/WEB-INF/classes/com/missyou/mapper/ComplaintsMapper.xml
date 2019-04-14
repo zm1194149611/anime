@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ComplaintsDao">
+  <resultMap id="complaints" type="complaints">
+    <result column="id"  property="id" />
+    <result column="complain_user_id"  property="complainUserId" />
+    <result column="be_complained_user_id"  property="beComplainedUserId" />
+    <result column="type"  property="type" />
+    <result column="detail_reason"  property="detailReason" />
+    <result column="create_date"  property="createDate" />
+    <result column="handle_status"  property="handleStatus" />
+    <result column="file_locations"  property="fileLocations" />
+    <result column="complaints_reason_id"  property="complaintsReasonId" />
+  </resultMap>
+  
+  <sql id="keyColumns">ID, complain_user_id, be_complained_user_id,type,detail_reason,create_date,handle_status,file_locations,complaints_reason_id</sql>
+  <sql id="valueColumns">#{id}, #{complainUserId}, #{beComplainedUserId},#{type},#{detailReason},#{createDate},#{handleStatus},#{fileLocations},#{complaintsReasonId}</sql>
+
+  <!--新增 -->
+  <insert id="add" parameterType="complaints" flushCache="true">
+	INSERT INTO complaints(<include refid="keyColumns" />)
+	VALUES(<include refid="valueColumns" />)
+  </insert>
+</mapper>

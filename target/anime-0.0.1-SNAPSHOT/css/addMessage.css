@@ -1,0 +1,236 @@
+body{
+    background-image: url("../image/yao%20(1).jpg");
+    height:auto;
+    width:100%;
+    overflow:auto;
+}
+.bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+header ,article{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+header div,.content{
+    background-color: rgba(255,255,255,0.9);
+    width: 80%;
+    height: auto;
+    overflow: auto;
+}
+.boder{
+    width: 100%;
+    opacity: 0.9;
+    display: block;
+}
+header div img{
+    width: 12%;
+    float: left;
+}
+header div p{
+    width: 84%;
+    float: left;
+    margin-left: 4%;
+    border-bottom: 1px solid #e0485e;
+}
+.content{
+    padding: 0 !important;
+    width: 100% !important;
+}
+.font,.form,.submit{
+    width: 80%;
+    position: relative;
+    margin: 16px auto 0 auto;
+    background-color: #fbf8e4;
+    text-align: justify;
+    color: #686866;
+}
+.font::after,.form::after{
+    content: " ";
+    position: absolute;
+    left: 40%;
+    z-index: 1;
+}
+.font p:last-of-type{
+    text-indent: 2em;
+}
+.form{
+    margin-top: 0!important;
+    background-color: #e0485e !important;
+}
+textarea{
+    width: 90%;
+    background-color: #fbf8e4;
+}
+article{
+    height: auto;
+    overflow: auto;
+}
+.form p{
+    color: #fbf8e4;
+    width: 100%;
+    text-align: right;
+}
+.imgBox{
+    width: 86%;
+    background-color:#fbf8e4;
+    position: relative;
+}
+input[type = "file"]{
+    width: 100%;
+    position: absolute;
+    display: block;
+    opacity: 0;
+}
+.imgBox img{
+    display: inline-block;
+}
+#submit{
+    width: 100%;
+    background-color:#e0485e;
+    color: #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+@media (max-height: 600px) {
+    header ,article{
+        padding-top: 20px;
+    }
+    header div,.content{
+        padding: 6px 10% 4px 10%;
+    }
+    header div img{
+        width: 12%;
+        float: left;
+    }
+    header div p{
+        height: 30px;
+        font-size: 15px;
+        line-height: 30px;
+        letter-spacing: 4px;
+    }
+    .font,.form,.submit{
+        padding: 20px 5% 12px 5%;
+        margin: 16px auto 0 auto;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .font::after,.form::after{
+        border-top: 12px solid #fbf8e4;
+        border-left: 26px solid transparent;
+        border-right: 26px solid transparent;
+        bottom: -12px;
+    }
+    .form::after{
+        border-top: 12px solid #e0485e;
+    }
+    .form{
+        padding-bottom: 20px;
+        margin-bottom: 16px;
+    }
+    .submit{
+        margin: -16px auto 20px auto!important;
+    }
+    textarea{
+        padding: 10px 5%;
+        height: 80px;
+        border-radius: 10px;
+    }
+    .form p{
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .imgBox{
+        padding: 10px 7% !important;
+        border-radius: 10px;
+    }
+    input[type = "file"]{
+        top: 10px;
+        height: 26px;
+    }
+    .imgBox div{
+        height: 26px;
+        line-height: 26px;
+    }
+    .imgBox img{
+        height: 26px;
+    }
+    #submit{
+        margin: 10px 0;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 10px;
+    }
+}
+@media (min-height: 600px) {
+    header ,article{
+        padding-top: 20px;
+    }
+    header div,.content{
+        padding: 6px 10% 4px 10%;
+    }
+    header div img{
+        width: 12%;
+        float: left;
+    }
+    header div p{
+        height: 30px;
+        font-size: 15px;
+        line-height: 30px;
+        letter-spacing: 4px;
+    }
+    .font,.form,.submit{
+        padding: 20px 5% 12px 5%;
+        margin: 16px auto 0 auto;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .font::after,.form::after{
+        border-top: 12px solid #fbf8e4;
+        border-left: 26px solid transparent;
+        border-right: 26px solid transparent;
+        bottom: -12px;
+    }
+    .form::after{
+        border-top: 12px solid #e0485e;
+    }
+    .form{
+        padding-bottom: 20px;
+        margin-bottom: 16px;
+    }
+    .submit{
+        margin: -16px auto 20px auto!important;
+    }
+    textarea{
+        padding: 10px 5%;
+        height: 80px;
+        border-radius: 10px;
+    }
+    .form p{
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .imgBox{
+        padding: 10px 7% !important;
+        border-radius: 10px;
+    }
+    input[type = "file"]{
+        top: 10px;
+        height: 26px;
+    }
+    .imgBox div{
+        height: 26px;
+        line-height: 26px;
+    }
+    .imgBox img{
+        height: 26px;
+    }
+    #submit{
+        margin: 10px 0;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,504 @@
+body{
+    background-color: #ffffff;
+}
+.content{
+    border-bottom: 1px solid #eeeeee;
+}
+header{
+    width: 100%;
+}
+.picBox{
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+}
+#picBox{
+    background-size: 100% 100%;
+}
+.selectedSpan{
+    border: 1px solid #ffffff;
+}
+.picBox li{
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.picBox img{
+    width: 100%;
+}
+.boxFont{
+    width: 96%;
+    padding-left: 4%;
+    background-color: rgba(0,0,0,0.5);
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+}
+.bgBox{
+    position: relative;
+}
+.picIndex{
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+}
+.picIndex span{
+    display: inline-block;
+    background-color: #ffffff;
+}
+nav ul{
+    width: 100%;
+    list-style: none;
+}
+.title{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+.title a{
+    width: 100%;
+    height: 100%;
+}
+.titleSpan{
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.selected{
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.choose{
+    width: 100%;
+    overflow-x: hidden;
+    position: absolute;
+    z-index: 3;
+}
+.choose ul{
+    width: 110%;
+    overflow-y: scroll;
+    height: auto;
+    position: relative;
+    list-style: none;
+    background-color: #f5f5f5;
+    display: none;
+}
+.choose ul li span{
+    width: 94%;
+    float: right;
+    border-bottom: 1px solid #eeeeee;
+}
+.choose ul li:last-of-type span{
+    border-bottom: 0;
+}
+
+.content,.selectedP{
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+}
+.contentHead{
+    width: 100%;
+    position: relative;
+}
+.name{
+    font-weight: bold;
+    color: #000;
+}
+.certification {
+    position: absolute;
+    right: 0;
+    width: 16%;
+    opacity: 1;
+}
+.contentHead a{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #e0485e;
+    display: inline-block;
+    text-align: center;
+    float: right;
+}
+.contentHead span{
+    color: #6d6a6b;
+}
+.contentBody{
+    width: 100%;
+    overflow: hidden;
+}
+#indexPic,.indexPic{
+    width: 33%;
+    display: block;
+    float: left;
+}
+.indexPic{
+    display: block;
+    float: left;
+}
+.font{
+    width: 64%;
+    float: right;
+    color: #6d6a6b;
+}
+.projIntroduce{
+    text-align: justify;
+}
+.statistical{
+	padding: 0 4%;
+}
+.statistical p{
+	display: inline-block;
+}
+.statistical p:first-of-type{
+	float:left;
+}
+.statistical p:last-of-type{
+	float:right;
+}
+.statistical p img{
+    -webkit-transform: scale(0.6);
+    display: inline-block;
+    vertical-align: middle;
+}
+.time{
+    width: 100%;
+}
+.time span{
+    color: #aaaaaa;
+}
+.selectedP{
+    line-height: 40px;
+    padding: 0 3%;
+    background-color: #eee;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+.selectedP span{
+    padding: 4px 8px;
+    background-color: #e0485e;
+    font-size: 12px !important;
+    color: #ffffff;
+    margin-left: 8px;
+}
+#showMore{
+    position: relative;
+    margin: 10px 0;
+}
+#showMore span:first-of-type{
+    margin-left: 18%;
+}
+#showMore span{
+    display: inline-block;
+    width: 14%;
+    position: relative;
+    top: -3px;
+    border-bottom: 1px solid #cccccc;
+}
+#showMore a{
+	text-align:center;
+    text-decoration: none;
+    color: #aaaaaa;
+    width: 34%;
+    position: relative;
+    display: inline-block;
+}
+.icon{
+     width: 100%;
+     background-color: #ffffff;
+     list-style: none;
+}
+.icon li{
+     width: 33%;
+     float: left;
+     text-align: center;
+}
+.icon li img,.icon li label{
+      display: inline-block;
+}
+.browse {
+	opacity: 0.5;
+}
+.shareCout {
+	opacity: 0.5;
+}
+@media (max-height: 630px) {
+    #showMore a{
+        font-size:12px;
+        padding:10px 0;
+    }
+    .picBox{
+        height: 180px;
+    }
+    .picBox img{
+        height: 180px;
+    }
+    .boxFont{
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .picIndex{
+        right: 10px;
+        padding-bottom: 12px;
+        height: 6px;
+        line-height: 6px;
+    }
+    .picIndex span{
+        width: 4px;
+        height: 4px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    nav ul{
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        box-shadow: 4px 0 4px #ddd;
+    }
+    .titleSpan{
+        margin-left: 4px;
+        border-top: 6px solid #e0485e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+    }
+    .selected{
+        margin-left: 4px;
+        border-bottom: 6px solid #e0485e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+    }
+    .choose ul{
+        max-height: 163px;
+    }
+    .choose ul li{
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+    }
+    .content{
+        padding: 14px 0;
+    }
+    .contentHead{
+        padding-bottom: 6px;
+    }
+    .name{
+        font-size: 14px !important;
+    }
+    .certification {
+        top: -8px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+    }
+    .before {
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 10px;
+    }
+    .indexPic{
+        height: 80px;
+        box-shadow: 1px 1px 2px #ccc;
+        border-radius: 6px;
+    }
+    .projIntroduce{
+        font-size: 14px;
+        line-height: 18px;
+        max-height: 34px;
+        overflow: hidden;
+        padding: 0 4%;
+        margin-bottom: 2px;
+    }
+    .font{
+        height: 80px;
+        position: relative;
+    }
+    .statistical p span{
+        font-size: 12px;
+        color: #2f5e9b;
+        line-height: 26px;
+        display: inline-block;
+    }
+    .time img{
+        width: 12px;
+        margin: 0 4px 0 4px;
+        position:relative;
+        top:1px
+    }
+    .time{
+        margin-top: 6px;
+        position: absolute;
+        bottom: 0;
+    }
+    .time span{
+        font-size: 10px;
+    }
+    .icon{
+        height: 25px;
+    }
+     .icon li{
+         height: 25px;
+    }
+     .icon li img{
+         width: 20px;
+         margin-right:1px;
+         margin-bottom: -1px;
+    }
+     .vote{
+         width: 15px!important;
+         opacity:1;
+    }
+     .icon li label{
+         font-size: 14px;
+         line-height: 25px;
+     }
+     .fill{
+         height: 60px;
+     }
+}
+@media (min-height: 630px) {
+	#showMore a{
+	font-size:14px;
+	padding:14px 0;
+}
+    .picBox{
+        height: 250px;
+    }
+    .picBox img{
+        height: 250px;
+    }
+    .boxFont{
+        height: 36px;
+        line-height: 36px;
+        font-size: 13px;
+    }
+    .picIndex{
+        right: 14px;
+        height: 7px;
+        padding-bottom: 13px;
+        line-height: 7px;
+    }
+    .picIndex span{
+        width: 5px;
+        height: 5px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    nav ul{
+        height: 50px;
+        line-height: 50px;
+        font-size: 17px;
+        box-shadow: 5px 0 5px #ddd;
+    }
+    .titleSpan{
+        margin-left: 5px;
+        border-top: 7px solid #e0485e;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+    .selected{
+        margin-left: 5px;
+        border-bottom: 7px solid #e0485e;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+    .choose ul{
+        max-height: 203px;
+    }
+    .choose ul li{
+        height: 50px;
+        line-height: 50px;
+        font-size: 15px;
+    }
+    .content{
+        padding: 18px 0;
+    }
+    .contentHead{
+        padding-bottom: 8px;
+    }
+    .name{
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .certification {
+        top: -10px;
+    }
+    .contentHead a{
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 8px;
+    }
+    .before {
+        height: 10px;
+        margin: 0 2px 0 4px;
+    }
+    .contentHead span{
+        font-size: 12px;
+    }
+    #indexPic,.indexPic{
+        height: 100px;
+        box-shadow: 2px 2px 4px #ccc;
+        border-radius: 8px;
+    }
+    .projIntroduce{
+        font-size: 15px;
+        line-height: 22px;
+        max-height: 42px;
+        overflow: hidden;
+        padding: 0 4%;
+        margin-bottom: 5px;
+    }
+    .font{
+        height: 100px;
+        position: relative;
+    }
+    .statistical p span{
+        font-size: 12px;
+        color: #2f5e9b;
+        line-height: 26px;
+        display: inline-block;
+    }
+    .time img{
+        width: 12px;
+        margin: 0 4px;
+        position:relative;
+        top:2px
+    }
+    .time{
+        position: absolute;
+        margin-top:8px;
+        bottom: 0;
+    }
+    .time span{
+        font-size: 12px;
+    }
+    .icon {
+		height: 30px;
+	}
+	.icon li {
+		height: 30px;
+	}
+	.icon li img {
+		width: 25px;
+		margin-right: 2px;
+		margin-bottom:-2px;
+	}
+	.vote {
+		width: 18px !important;
+		opacity:1;
+	}
+	.icon li label {
+		font-size: 15px;
+		line-height: 30px;
+	}
+	.fill{
+         height: 70px;
+     }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.VipChatcoinRechargeConfigDao">
+  <resultMap id="vipChatcoinRechargeConfig" type="vipChatcoinRechargeConfig">
+    <result column="id"  property="id" />
+    <result column="type"  property="type" />
+    <result column="money"  property="money" />
+    <result column="chat_coin"  property="chatCoin" />
+    <result column="vip_month"  property="vipMonth" />
+    <result column="recommend_flag"  property="recommendFlag" />
+    <result column="name"  property="name" />
+    <result column="privilege_chat_coin"  property="privilegeChatCoin" />
+    <result column="privilege_rebate"  property="privilegeRebate" />
+    <result column="privilege_recharge_id"  property="privilegeRechargeId" />
+    <result column="discount_money"  property="discountMoney" />
+    <result column="active_desc"  property="activeDesc" />
+    <result column="days"  property="days" />
+  </resultMap>
+  
+  
+ 	<select id="getById" parameterType="long" resultMap="vipChatcoinRechargeConfig">
+		select * from vip_chatcoin_recharge_config where id=#{id}
+	</select>
+	<select id="getByType" parameterType="int" resultMap="vipChatcoinRechargeConfig">
+		select * from vip_chatcoin_recharge_config where type=#{type} order by money asc	
+	</select>
+	
+	<select id="getByMoney" parameterType="int" resultMap="vipChatcoinRechargeConfig">
+		select * from vip_chatcoin_recharge_config where money=#{money}
+	</select>
+
+</mapper>

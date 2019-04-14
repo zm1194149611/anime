@@ -1,0 +1,342 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+li{
+	li-style: none;
+	}
+a{
+	text-decoration: none;
+	}
+img{
+	border: none;
+	}
+input,textarea{
+	border: none;
+	background-color: transparent;
+	}
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;
+	}
+textarea{
+	resize: none;
+	}
+a,input{
+	outline: none;
+	}
+HTML{
+	font-size: 62.5%;
+	overflow-x: hidden;
+	}
+body{
+	font-family: 微软雅黑;
+	background-color: #fff;
+	overflow-x: hidden;
+	padding-bottom: 4em;
+	}
+.banner{
+	position: relative;
+	}
+.banner img{
+	width: 100%;
+	}
+.indicator{
+	width: 0.5rem;
+	height: 0.5rem;
+	position: absolute;
+	bottom: 1rem;
+	background-color: #fff;
+	border-radius: 0.25rem;
+	}
+.indicator:first-child{
+	width: 1rem;
+	background-color: #ff4830;
+	left: 50%;
+	transform: translateX(-150%);
+	}
+.indicator:last-child{
+	right: 50%;
+	transform: translateX(150%);
+	}
+form{
+	width: 90%;
+	height: 5rem;
+	padding: 0 5%;
+	background-color: #fff;
+	position: fixed;
+	top: -5rem;
+	z-index: 5;
+	}
+.input{
+	display: block;
+	float: left;
+	width: 85%;
+	height: 3rem;
+	font-size: 1.2rem;
+	color: #aaa;
+	line-height: 3rem;
+	margin: 1rem 0;
+	padding: 0 10% 0 5%;
+	border-radius: 0.5rem;
+	border: 0.1rem solid #d8d8d8;
+	}
+.submit{
+	display: block;
+	float: left;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 1.75rem 0 1.75rem -2.5rem;
+	background-image: url(../image/magnifier-icon-test.png);
+	background-size: 1.5rem 1.5rem;
+	}
+.selectionBar{
+	height: 6rem;
+	background-color: #fff;
+	}
+.optionCard{
+	width: 33.33%;
+	float: left;
+	font-size: 1.2rem;
+	color: #444;
+	text-align: center;
+	padding-top: 2.2rem;
+	line-height: 3.8rem;
+	background-repeat: no-repeat;
+	background-position: center 1rem;
+	background-size: 1.5rem 1.5rem;
+	}
+.optionCard:nth-child(1){
+	background-image: url(../image/province-office-optionCard-1-test.png);
+	}
+.optionCard:nth-child(2){
+	background-image: url(../image/province-office-optionCard-2-test.png);
+	}
+.optionCard:nth-child(3){
+	background-image: url(../image/province-office-optionCard-3-test.png);
+	}
+.nav{
+	height: 3rem;
+	border-top: 0.1em solid #d8d8d8;
+	border-bottom: 0.1em solid #d8d8d8;
+	background-color: #fff;
+	position: relative;
+	}
+.category{
+	width: 33.33%;
+	float: left;
+	font-size: 1.2rem;
+	color: #777;
+	line-height: 3rem;
+	text-align: center;
+	position: absolute;
+	z-index: 3;
+	}
+.category:nth-child(1){
+	left: 0;
+	}
+.category:nth-child(2){
+	left: 33.33%;
+	}
+.category:nth-child(3){
+	left: 66.67%;
+	}
+.nav:before{
+	content: "";
+	display: block;
+	width: 0.1rem;
+	height: 3rem;
+	position: absolute;
+	top: 0;
+	left: 33.33%;
+	z-index: 1;
+	border-left: 0.1em solid #d8d8d8;
+	}
+.nav:after{
+	content: "";
+	display: block;
+	width: 0.1rem;
+	height: 3rem;
+	position: absolute;
+	top: 0;
+	left: 66.67%;
+	z-index: 1;
+	border-right: 0.1em solid #d8d8d8;
+	}
+.screen{
+	width: 33.33%;
+	height: 3.05rem;
+	background-color: #fff;
+	border-left: 0.1em solid #d8d8d8;
+	border-right: 0.1em solid #d8d8d8;
+	position: absolute;
+	z-index: 2;
+	left: -0.03%;
+	}
+.entryListContainer{
+	height: 24.6rem;
+	position: relative;
+	}
+.entryList{
+	width: 100%;
+	float: left;
+	background-color: #fff;
+	position: absolute;
+	z-index: 6;
+	}
+.entryList:nth-child(1){
+	left: -200%;
+	}
+.entryList:nth-child(2){
+	left: -100%;
+	}
+.entryList:nth-child(3){
+	left: 0;
+	}
+.entry{
+	width: 90%;
+	padding: 0 5%;
+	font-size: 1.2rem;
+	line-height: 4rem;
+	color: #444;
+	border-bottom: 0.1em solid #ebebeb;
+	background-color: #fff;
+	}
+.entry img:first-child{
+	display: block;
+	float: left;
+	width: 1.5rem;
+	margin-right: 5%;
+	padding-top: 1.2rem;
+	}
+.arrow{
+	width: 1.5rem;
+	margin-top: 1.2rem;
+	float: right;
+	}
+.arrowRotate_before{
+	animation: arrowRotate_before 0.6s;
+	}
+.arrowRotate_after{
+	animation: arrowRotate_after 0.6s;
+	}
+@keyframes arrowRotate_before{
+	0%{
+		transform: rotate(0);
+		}
+	25%{
+		transform: rotate(45deg);
+		}
+	50%{
+		transform: rotate(90deg);
+		}
+	75%{
+		transform: rotate(135deg);
+		}
+	100%{
+		transform: rotate(180deg);
+		}
+	}
+@keyframes arrowRotate_after{
+	0%{
+		transform: rotate(180deg);
+		}
+	25%{
+		transform: rotate(225deg);
+		}
+	50%{
+		transform: rotate(270deg);
+		}
+	75%{
+		transform: rotate(315deg);
+		}
+	100%{
+		transform: rotate(360deg);
+		}
+	}
+.list{
+	padding: 0 5%;
+	display: none;
+	}
+.card{
+	width: 48%;
+	float: left;
+	margin-top: 2rem;
+	}
+.card:nth-child(2n+1){
+	float: left;
+	clear: both;
+	}
+.card:nth-child(2n+2){
+	float: right;
+	}
+.card img{
+	width: 100%;
+	}
+.title{
+	font-size: 1.2rem;
+	color: #444;
+	line-height: 1.75rem;
+	margin-top: 0.5rem;
+	}
+.detailInformation div{
+	display: inline-block;
+	width: 100%;
+	}
+.detailInformation div p{
+	line-height: 1.4rem;
+	margin-top: 0.5rem;
+	font-size: 1rem;
+	color: #777;
+	}
+.detailInformation div p:first-child{
+	float: left;
+	}
+.detailInformation div p:last-child{
+	float: right;
+	}
+.workPlace span{
+	color: #ff4830;
+	}
+.workPlace span:last-child{
+	color: #777;
+	}
+.price span,.already span{
+	color: #444;
+	}
+.bottomNavBar{
+	width: 100%;
+	background-color: #fff;
+	border-top: 0.1em solid #d8d8d8;
+	position: fixed;
+	bottom: 0;
+	z-index: 99;
+	}
+.bottomNavBar a{
+	width: 25%;
+	display: block;
+	float: left;
+	text-align: center;
+	font-size: 0.8rem;
+	line-height: 1.75rem;
+	color: #444;
+	padding-top: 2.25rem;
+	background-size: 2rem 2rem;
+	background-repeat: no-repeat;
+	background-position: center 0.5rem;
+	}
+.bottomNavBar a:nth-child(1){
+	background-image: url(../image/bottomNavBar-1-test.png);
+	}
+.bottomNavBar a:nth-child(2){
+	background-image: url(../image/bottomNavBar-2-test.png);
+	}
+.bottomNavBar a:nth-child(3){
+	color: #ff4830;
+	background-image: url(../image/bottomNavBar-3-active-test.png);
+	}
+.bottomNavBar a:nth-child(4){
+	background-image: url(../image/bottomNavBar-4-test.png);
+	}

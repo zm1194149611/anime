@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.BlackListDao">
+  <resultMap id="blacklist" type="blacklist">
+    <result column="id"  property="id" />
+    <result column="user_id" property="userId" />
+    <result column="black_id" property="blackId" />
+  </resultMap>
+  
+  
+ 
+  
+	<sql id="keyColumns">id, user_id, black_id</sql>
+	<sql id="valueColumns">#{id}, #{userId}, #{blackId}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="blacklist" flushCache="true">
+		INSERT INTO BLACK_LIST(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	
+	
+	<select id="getByUserId" parameterType="long" resultMap="blacklist">
+		SELECT
+		<include refid="keyColumns" />
+		FROM BLACK_LIST WHERE User_ID=#{userId}
+	</select>
+
+	
+	<select id="getById" parameterType="long" resultMap="blacklist">
+		SELECT
+		<include refid="keyColumns" />
+		FROM BLACK_LIST WHERE ID=#{id}
+	</select>
+
+ 
+
+	<select id="getByIds" parameterType="long" resultMap="blacklist">
+		SELECT
+		<include refid="keyColumns" />
+		FROM BLACK_LIST WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="find" parameterType="blacklist" resultMap="blacklist">
+		SELECT
+		<include refid="keyColumns" />
+		FROM BLACK_LIST a
+		<where>
+		<trim prefix="" prefixOverrides="and|or" suffixOverrides="">
+			<if test="userId != null"> and a.user_id=#{userId}</if>
+			<if test="blackId != null"> and a.black_id=#{blackId}</if>
+		</trim>
+		</where>
+	</select>
+
+
+	<delete id="delete">
+		DELETE FROM BLACK_LIST WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<delete id="removeBlack" parameterType="blacklist" >
+		DELETE FROM BLACK_LIST WHERE USER_ID = #{userId} AND BLACK_ID = #{blackId}
+	</delete>
+	
+	
+	
+	
+	<select id="getBlackListOfPager" resultMap="blacklist">
+		SELECT
+		<include refid="keyColumns" />
+		FROM  BLACK_LIST  WHERE USER_ID=#{userId}
+		<if test="pager.lastId!=null and pager.lastId!=''">
+			AND ID &lt;#{pager.lastId}
+		</if>
+		ORDER BY ID DESC
+		LIMIT 0,#{pager.size}
+	</select>
+
+
+	<!-- <select id="getCount" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		black_list T
+		<include refid="querycondition" />
+	</select> -->
+
+	<!-- <select id="getWithCondition" resultMap="black_list" parameterType="map"
+		flushCache="true" useCache="false">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		black_list T
+		<include refid="querycondition" /> 
+		<include refid="Sql.pager" />
+	</select>
+
+	<sql id="querycondition">
+		<trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="">
+			<if test="t !=null">
+				<if test="t.accountName !=null and t.accountName!=''">
+					AND (instr(T.account_NAME,#{t.accountName})&gt;0)
+				</if>
+				<if test="t.accountType !=null">
+					AND account_TYPE = #{t.accountType}
+				</if>
+				<if test="t.available!= null">
+					AND T.available=#{t.available}
+				</if>
+			</if>
+		</trim>
+	</sql> -->
+  
+</mapper>

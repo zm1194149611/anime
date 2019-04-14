@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 控制台日志 -->
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%t] %d{yyyy-MM-dd HH\:mm\:ssS} %-5p %l- %m%n" />
+			<!-- %d{HH:mm:ss}[%C(%L)-%p] %m%n -->
+		</layout>
+	</appender>
+
+	<!-- 文件日志，（包含日志产生的时间，执行绪，类别等等信息） -->
+	<appender name="TTCC" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${webName.root}/WEB-INF/logs/log_TTCCLayout.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.TTCCLayout"></layout>
+	</appender>
+
+	<!-- HTML日志，以html表格的形式布局 -->
+	<appender name="HTML" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${webName.root}/WEB-INF/logs/log_HTMLLayout.html" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.HTMLLayout"></layout>
+	</appender>
+
+	<!-- 文件日志，（包含日志讯息的级别和讯息字符串） -->
+	<appender name="Simple" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${webName.root}/WEB-INF/logs/log_SimpleLayout.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.SimpleLayout"></layout>
+	</appender>
+
+	<!-- 文件日志 -->
+	<appender name="Pattern1" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${webName.root}/WEB-INF/logs/log_PatternLayout.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%r [%t] %p - %c -%l -%m%n" />
+		</layout>
+	</appender>
+
+	<!-- 文件日志 -->
+	<appender name="Pattern2" class="org.apache.log4j.FileAppender">
+		<param name="File"
+			value="${webName.root}/WEB-INF/logs/log_PatternLayout2.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH\:mm\:ss,SSS} %p] [%l] %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 文件日志，（轮换"日志文件",当日志文件达到指定大小时，该文件就被关闭并备份，然后创建一个新的日志文件）） -->
+	<appender name="Rolling" class="org.apache.log4j.RollingFileAppender">
+		<param name="File"
+			value="${logger.home}/imlogs/IM.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="512000KB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+
+
+
+	<appender name="pay" class="org.apache.log4j.RollingFileAppender">
+		<param name="File"
+			value="${logger.home}/pay/pay.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="512000KB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+	
+	
+	<appender name="cash" class="org.apache.log4j.RollingFileAppender">
+		<param name="File"
+			value="${logger.home}/cash/cash.log" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="512000KB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%p %t %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- （打印到数据库） -->
+	<appender name="JDBC" class="com.lingran.base.log.jdbc.MyJDBCAppender">
+		<param name="BufferSize" value="40" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="Driver" value="oracle.jdbc.OracleDriver" />
+		<param name="URL" value="jdbc:oracle:thin:@localhost:1521:lingran" />
+		<param name="User" value="carevaluation" />
+		<param name="Password" value="car123" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="INSERT INTO T_LOG_LOG4J (CREATE_DATE, THREAD, PRIORITY, CATEGORY, MESSAGE) values(to_date('%d{yyyy-MM-dd HH:mm:ss}', 'yyyy-mm-dd hh24:mi:ss'), '%t', '%p', '%l', ?)" />
+		</layout>
+	</appender>
+
+
+	<!-- 文件日志，（每天产生一个日志文件） -->
+	<appender name="DailyRolling" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${logger.home}/logs/miss.log" />
+		<param name="DatePattern" value="'_'yyyyMMdd'.log'" />
+		<param name="Threshold" value="INFO" />
+		<param name="MaxFileSize" value="512000KB" />
+		<param name="append" value="true" />
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-4r [%t] %-5p %d{yyyy-MM-dd HH\:mm\:ssS} %x %l- %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 发送邮件 -->
+	<appender name="MAIL" class="org.apache.log4j.net.SMTPAppender">
+		<param name="threshold" value="ERROR" />
+		<param name="BufferSize" value="5" />
+		<param name="SMTPHost" value="smtp.sina.com.cn" />
+		<param name="SMTPUsername" value="yulianglin" />
+		<param name="SMTPPassword" value="123456" />
+		<param name="SMTPDebug" value="false" />
+		<param name="Encoding" value="UTF-8" />
+		<param name="From" value="yulianglin@sina.com" />
+		<param name="Subject" value="log4j_测试邮件" />
+		<param name="To" value="yulianglin@sina.com,linyuliang@foxmail.com" />
+		<layout class="org.apache.log4j.HTMLLayout"></layout>
+	</appender>
+
+
+
+	<logger name="imlog">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="Rolling" />
+	</logger>
+	<logger name="pay">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="pay" />
+	</logger>
+	
+	<logger name="cash">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="cash" />
+	</logger>
+	
+	
+	<logger name="com.ming">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+	<!-- <logger name="net.sf.ehcache"> -->
+	<!-- <level value="DEBUG" /> -->
+	<!-- <appender-ref ref="Console" /> -->
+	<!-- <appender-ref ref="DailyRolling" /> -->
+	<!-- </logger> -->
+
+	<logger name="java.sql.PreparedStatement">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+	<logger name="java.sql.Connection">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+	<logger name="java.sql.ResultSet">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+	<logger name="org.mybatis">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+	<logger name="org.apache.ibatis">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+	<logger name="org.apache.commons">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+	<logger name="org.quartz">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+<!-- 	xmemcached 日志 -->
+	<logger name="net.rubyeye">
+		<level value="INFO" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="DailyRolling" />
+	</logger>
+
+</log4j:configuration>

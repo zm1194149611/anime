@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.ContactDao">
+	<resultMap id="contact" type="contact">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="anchor_id" property="anchorId" />
+		<result column="user_contcat" property="userContcat" />
+		<result column="start_time" property="startTime" />
+		<result column="end_time" property="endTime" />
+		<result column="settled" property="settled" />
+	</resultMap>
+
+
+	<sql id="keyColumns">ID, user_id,anchor_id,user_contcat,start_time,end_time,settled
+	</sql>
+	<sql id="valueColumns">#{id}, #{userId},#{anchorId},#{userContcat},#{startTime},#{endTime},#{settled}
+	</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="contact" flushCache="true">
+		INSERT INTO CONTACT(
+		<include refid="keyColumns" />
+		)
+		VALUES
+		(
+		<include refid="valueColumns" />
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="contact" flushCache="true">
+		UPDATE CONTACT T SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="userId != null">T.user_id=#{userId},</if>
+			<if test="anchorId != null">T.anchor_id=#{anchorId},</if>
+			<if test="userContcat != null">T.user_contcat=#{userContcat},</if>
+			<if test="startTime != null">T.start_time=#{startTime},</if>
+			<if test="endTime != null">T.end_time=#{endTime},</if>
+			<if test="settled != null">T.settled=#{settled},</if>
+		</trim>
+		WHERE T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="contact">
+		SELECT
+		<include refid="keyColumns" />
+		FROM CONTACT WHERE ID=#{id}
+	</select>
+
+
+
+	<delete id="delete">
+		DELETE FROM CONTACT WHERE ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+
+
+
+
+</mapper>

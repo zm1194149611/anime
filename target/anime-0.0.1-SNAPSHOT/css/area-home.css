@@ -1,0 +1,345 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Microsoft YaHei", helvetica, arial, verdana, tahoma, sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #f8f8f8;
+}
+header{
+    position: relative;
+    width: 100%;
+}
+.picBox{
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+    background-size: 100% 100%;
+}
+.selectedSpan{
+    border: 1px solid #ffffff;
+}
+.picBox li{
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.picBox img{
+    width: 100%;
+}
+.boxFont{
+    width: 96%;
+    padding-left: 4%;
+    background-color: rgba(0,0,0,0.5);
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+}
+.bgBox{
+    width: 100%;
+    position: relative;
+}
+.picIndex{
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+}
+.picIndex span{
+    display: inline-block;
+    background-color: #ffffff;
+}
+.selected{
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.selectedP{
+    line-height: 40px;
+    padding: 0 3%;
+    background-color: #eee;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+.selectedP span{
+    padding: 4px 8px;
+    background-color: #e0485e;
+    font-size: 12px !important;
+    color: #ffffff;
+    margin-left: 8px;
+}
+.head-menu{
+    width: 92%;
+    padding: 0 4%;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+.head-menu ul{
+    list-style: none;
+    width: 100%;
+}
+.head-menu ul li{
+    display: inline-block;
+    float: left;
+    width: 47.5%;
+    text-align: center;
+    padding-left: 2%;
+}
+.one{
+    border-bottom: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+}
+.two{
+    border-bottom: 1px solid #e1e1e1;
+}
+.three{
+    border-right: 1px solid #e1e1e1;
+}
+.head-menu ul li img{
+    float: left;
+    display: inline-block;
+ }
+ .head-menu ul li div{
+     float: left;
+     display: inline-block;
+     width: 75%;
+     margin-left: 5%;
+ }
+.body-menu{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    border-top:1px solid #e1e1e1;
+}
+.body-menu ul{
+    list-style: none;
+    width: 100%;
+    border-bottom:1px solid #e1e1e1;
+}
+.body-menu ul li{
+    display: inline-block;
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+.body-menu ul li a{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    display: inline-block;
+    border-right:1px solid #e1e1e1;
+}
+.body-menu ul li a img{
+    display: block;
+    position: relative;
+}
+.notice{
+    background-color: #f8f8f8;
+    width: 100%;
+    text-align: left;
+}
+.notice_left{
+    float: left;
+    margin-left: 3%;
+    width: 10%;
+    height:25px;
+    display: inline-block;
+    position: relative;
+}
+.notice_left img{
+    width: 60%;
+    display: inline-block;
+    margin-left: 20%;
+    position: absolute;
+    bottom: 2px;
+}
+#moocBox {
+    width: 85%;
+    margin-left: 1%;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;    /*  ���һ��Ҫ�ӣ����������ݲ���Ҫ���أ���óŸ��м䲿�� */
+}
+#moocBox ul li a{
+    text-decoration: none;
+    color: #79a8f8;
+}
+.phone{
+    position: fixed;
+    width: 12%;
+    right: 2%;
+    bottom: 20%;
+    z-index: 9;
+}
+@media (max-height: 600px) {
+    .picBox{
+        height: 140px;
+    }
+    .picBox img{
+        height: 140px;
+    }
+    .boxFont{
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .picIndex{
+        right: 10px;
+        padding-bottom: 12px;
+        height: 6px;
+        line-height: 6px;
+    }
+    .picIndex span{
+        width: 4px;
+        height: 4px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    .head-menu{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .head-menu ul{
+        height: 120px;
+    }
+    .head-menu ul li{
+        height: 60px;
+    }
+    .head-menu ul li img{
+        margin-top: 18px;
+        height: 25px;
+    }
+    .head-menu ul li div{
+        height: 45px;
+        margin-top: 8px;
+    }
+    .head-menu ul li div p{
+        height:27px;
+        font-size: 20px;
+        text-align: left;
+        color: #f57c7c;
+        height:27px;
+    }
+    .head-menu ul li div span{
+        display: block;
+        height:18px;
+        font-size: 12px;
+        text-align: left;
+        color: #474747;
+        height:18px;
+    }
+    .body-menu{
+/*         padding-top: 10px; */
+    }
+    .menu_tit{
+		font-size:16px;
+		margin:10px 0;
+		margin-left:22px;
+	}
+/*     .body-menu ul{ */
+/*         height: 180px; */
+/*     } */
+    .body-menu ul li a{
+        height: 90px;
+        font-size: 14px;
+    }
+    .body-menu ul li a img{
+        width: 35%;
+        margin: 5px auto 5px auto;
+        margin-top:20px;
+    }
+    .notice{
+        height: 25px;
+        margin: 5px 0;
+    }
+    .fill{
+        height: 65px;
+    }
+}
+@media (min-height: 600px) {
+    .picBox{
+        height: 160px;
+    }
+    .picBox img{
+        height: 160px;
+    }
+    .boxFont{
+        height: 36px;
+        line-height: 36px;
+        font-size: 13px;
+    }
+    .picIndex{
+        right: 14px;
+        height: 7px;
+        padding-bottom: 13px;
+        line-height: 7px;
+    }
+    .picIndex span{
+        width: 5px;
+        height: 5px;
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    .head-menu{
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .head-menu ul{
+        height: 140px;
+    }
+    .head-menu ul li{
+        height: 70px;
+    }
+    .head-menu ul li img{
+        margin-top: 20px;
+        height: 30px;
+    }
+    .head-menu ul li div{
+        height: 50px;
+        margin-top: 10px;
+    }
+    .head-menu ul li div p{
+        font-size: 24px;
+        height: 31px;
+        line-height: 31px;
+        text-align: left;
+        color: #f57c7c;
+    }
+    .head-menu ul li div span{
+        display: block;
+        font-size: 14px;
+        height: 19px;
+        line-height: 19px;
+        text-align: left;
+        color: #474747;
+    }
+    .body-menu{
+/*         padding-top: 15px; */
+    }
+    .menu_tit{
+		font-size:18px;
+		margin:10px 0;
+		margin-left:28px;
+	}
+/*     .body-menu ul{ */
+/*         height: 220px; */
+/*     } */
+    .body-menu ul li a{
+        height: 110px;
+        font-size: 16px;
+    }
+    .body-menu ul li a img{
+        width: 40%;
+        margin: 6px auto 6px auto;
+        margin-top:22px;
+    }
+    .notice{
+        height: 25px;
+        margin: 8px 0;
+    }
+    .fill{
+        height: 75px;
+    }
+}

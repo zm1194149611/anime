@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.missyou.dao.FileDao">
+	<resultMap id="file" type="file">
+		<result column="id"  property="id" />
+		<result column="file_name"  property="fileName" />
+		<result column="size"  property="size" />
+		<result column="subfix"  property="subfix" />
+		<result column="location"  property="location" /> 
+		<result column="related"  property="related" />
+		<result column="creator"  property="creator" />
+		<result column="create_time"  property="createTime" />
+		<result column="user_Id"  property="userId" />
+		<result column="file_type"  property="fileType" />
+	</resultMap>
+
+
+	<sql id="keyColumns">ID,FILE_NAME,SIZE,SUBFIX,LOCATION,RELATED,CREATOR,CREATE_TIME,USER_ID,FILE_TYPE</sql>
+	<sql id="valueColumns">#{id},#{fileName},#{size},#{subfix},#{location},#{related},#{creator},#{createTime},#{userId},#{fileType}</sql>
+
+	<!--新增 -->
+	<insert id="add" parameterType="file" flushCache="true">
+		INSERT INTO
+		FILE(
+		ID, FILE_NAME, SIZE, SUBFIX, LOCATION,CREATOR, CREATE_TIME,USER_ID,FILE_TYPE
+		)
+		VALUES
+		(
+		#{id}, #{fileName}, #{size}, #{subfix}, #{location},#{creator}, #{createTime},#{userId},#{fileType}
+		)
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="file" flushCache="true">
+		UPDATE
+		FILE T
+		SET
+		<trim prefix="" prefixOverrides="" suffixOverrides=",">
+			<if test="related != null">T.RELATED=#{related},</if>
+		</trim>
+		WHERE
+		T.ID=#{id}
+	</update>
+
+	<select id="getById" parameterType="long" resultMap="file">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		FILE WHERE ID=#{id}
+	</select>
+
+	<select id="getByIds" parameterType="long" resultMap="file">
+		SELECT
+		<include refid="keyColumns" />
+		FROM
+		FILE WHERE
+		ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getAllUnRelated" resultMap="file">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FILE WHERE (RELATED = 0 OR RELATED IS NULL) AND CREATE_TIME &lt;
+		DATE_SUB(now(),INTERVAL 1 DAY ) 
+	</select>
+
+	<select id="find" resultMap="file" parameterType="file">
+		SELECT
+		<include refid="keyColumns" />
+		FROM FILE
+		<trim prefix="WHERE " prefixOverrides="AND|OR" suffixOverrides=",">
+			<if test="related != null">AND T.RELATED=#{related}</if>
+			<if test="userId != null">AND T.USER_ID=#{userId}</if>
+			<if test="fileType != null">AND T.FILE_TYPE=#{fileType}</if>
+		</trim>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+
+
+	<delete id="delete">
+		DELETE FROM FILE WHERE
+		ID IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<select id="getUnvariableFiles"  resultMap="file">
+		SELECT * FROM `file` t WHERE DATE(t.create_time)=#{date} AND t.`id` NOT IN
+		(
+			SELECT t1.`id` FROM `file` t1,`user_media` t2 WHERE t2.`file_id`=t1.`id`  
+			<if test="date != null"> AND DATE(t1.create_time) = #{date}</if>
+			UNION 
+			SELECT t3.`id` FROM `file` t3,`user_media` t4 WHERE t4.`vedio_file_id`=t3.`id` 
+			<if test="date != null"> AND DATE(t3.create_time) = #{date}</if>
+			UNION 
+			SELECT t5.`id` FROM `file` t5,`user` t6 WHERE t5.`id`=t6.`head_image_id` 
+			<if test="date != null"> AND DATE(t5.create_time) = #{date}</if>
+		)
+	</select>
+</mapper>
