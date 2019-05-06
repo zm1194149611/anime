@@ -1,11 +1,11 @@
 /**
  * Created by Tantake on 2016/3/22.
  */
-var box1 = '<div class="layer"><div class="box"><p></p></div></div>';
-var box0 = '<div class="layer"><div class="box"><p></p><p style="width:20px;text-align:left;"></p></div></div>';
-var box2 = '<div class="layer"><div class="box"><p></p><span id="close" class="span1">确定</span></div></div>';
-var box3 = '<div class="layer"><div class="box"><p></p><div><span id="sure" class="span2">确定</span><span id="close" class="span2">取消</span></div></div></div>';
-var box4 = '<div class="layer"><div class="box"><p></p><div><span id="sure" class="span2">继续留言</span><span id="close" class="span2">返回留言板</span></div></div></div>';
+var box1 = '<div class="layer"><div class="box1"><p></p></div></div>';
+var box0 = '<div class="layer"><div class="box1"><p></p><p style="width:20px;text-align:left;"></p></div></div>';
+var box2 = '<div class="layer"><div class="box1"><p></p><span id="close" class="span1">确定</span></div></div>';
+var box3 = '<div class="layer"><div class="box1"><p></p><div><span id="sure" class="span2">确定</span><span id="close" class="span2">取消</span></div></div></div>';
+var box4 = '<div class="layer"><div class="box1"><p></p><div><span id="sure" class="span2">继续留言</span><span id="close" class="span2">返回留言板</span></div></div></div>';
 var box5 = '<div class="layer"><div class="criticism"><div class="criticism-left"><img src="image/mycenter-my.png"></div><div class="criticism-right"><div class="my-criticism"><textarea id="myMessage"></textarea></div></div><div class="bottom-box"><span id="sure" class="yes">确认</span><span id="close" class="no">取消</span></div></div></div>';
 var body = '';
 var article = '';

@@ -178,6 +178,116 @@ public class ResourceController {
 		// }
 		return "";
 	}
+	
+	@RequestMapping("toCartoonResource2")
+	public String toCartoonResource2() {
+		return "anime/user/cartoonResource2";
+	}
+	
+	/**
+	 * 获取资源2
+	 * @param sourcePath 资源路径
+	 * @param sourcePage 资源页数
+	 * @param startNo    开始编号
+	 * @param targetName 资源存放名称
+	 * @param cartoonId  资源id
+	 * @param targetTitle 资源存放标题
+	 * @param targetNo    资源存放编号
+	 * @param needLogin   是否需要登录
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("getCartoonResource2")
+	@ResponseBody
+	public String getAnimeResource2(String sourcePath, Integer sourcePage, Integer startNo,String targetName,
+			String cartoonId, String targetTitle, Integer targetNo, Integer needLogin) throws Exception {
+
+		// 插入章节
+		CartoonChapter cartoonChapter = new CartoonChapter();
+		cartoonChapter.setId(IDUtil.generate());
+		cartoonChapter.setCartoonId(LongUtil.valueOf(cartoonId));
+		cartoonChapter.setTitle(targetTitle);
+		cartoonChapter.setSequence(targetNo);
+		cartoonChapter.setNeedLogin(needLogin);
+		cartoonChapter.setNeedCharge(0);
+		cartoonChapter.setCreateTime(new Date());
+		cartoonChapter.setDisable(0);
+		cartoonChapter.setPageView(0);
+		cartoonChapter.setLastViewTime(null);
+		cartoonChapterService.add(cartoonChapter);
+
+		if (startNo == 0) {// 从0开始
+			for (int i = 0; i < sourcePage; i++) {
+
+				// 构建资源地址
+				String urlName = "0";
+				String pathName = "01";
+
+				int i2 = i + 1;
+				if (i2 < 10) {
+					pathName = "0" + i2;
+					urlName = i2 +"";
+				} else {
+					pathName = i2 + "";
+					urlName = i2 + "";
+				}
+				String urlList = sourcePath + "/" + urlName + ".jpg";
+				String path = filepathprefix + cartoonUrlPrefix + "/" + targetName + "/" + targetNo + "-" + pathName
+						+ ".jpg";
+
+				URL url = new URL(urlList);
+				DataInputStream dataInputStream = new DataInputStream(url.openStream());
+				FileUtil.writeFile(path, dataInputStream);
+
+
+				// 插入图片数据
+				CartoonBody cartoonBody = new CartoonBody();
+				cartoonBody.setChapterId(cartoonChapter.getId());
+				cartoonBody.setCartoonId(LongUtil.valueOf(cartoonId));
+				cartoonBody.setSequence(i2);
+				cartoonBody.setImgUrl("/" + targetName + "/" + targetNo + "-" + pathName + ".jpg");
+				cartoonBody.setCreateTime(new Date());
+
+				cartoonBodyService.add(cartoonBody);
+
+			}
+		} else {// 从1开始
+			for (int i = 1; i <= sourcePage; i++) {
+
+				// 构建资源地址
+				String urlName = "1";
+				String pathName = "01";
+				if (i < 10) {
+					urlName =  i + "";
+					pathName = "0" + i;
+				} else {
+					urlName = i + "";
+					pathName = i + "";
+				}
+				String urlList = sourcePath + "/" + urlName + ".jpg";
+				String path = filepathprefix + cartoonUrlPrefix + "/" + targetName + "/" + targetNo + "-" + pathName
+						+ ".jpg";
+
+				URL url = new URL(urlList);
+				DataInputStream dataInputStream = new DataInputStream(url.openStream());
+				FileUtil.writeFile(path, dataInputStream);
+
+				// 插入图片数据
+				CartoonBody cartoonBody = new CartoonBody();
+				cartoonBody.setChapterId(cartoonChapter.getId());
+				cartoonBody.setCartoonId(LongUtil.valueOf(cartoonId));
+				cartoonBody.setSequence(i);
+				cartoonBody.setImgUrl("/" + targetName + "/" + targetNo + "-" + pathName + ".jpg");
+				cartoonBody.setCreateTime(new Date());
+
+				cartoonBodyService.add(cartoonBody);
+
+			}
+		}
+
+		return "";
+	}
+	
 
 	// 链接url下载图片
 	private void downloadPicture(String urlList, String path) {

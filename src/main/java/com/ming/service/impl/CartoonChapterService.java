@@ -79,4 +79,19 @@ public class CartoonChapterService implements ICartoonChapterService {
 		return cartoonChapterDao.listByCartoonId(cartoonId);
 	}
 
+	@Override
+	public CartoonChapter getLastObjectByCartoonId(Long cartoonId) {
+		return cartoonChapterDao.getLastObjectByCartoonId(cartoonId);
+	}
+
+	@Override
+	public CartoonChapter getPreObjectByCartoonId(Long cartoonId,Integer chapterNo) {
+		return cartoonChapterDao.getPreObjectByCartoonId(cartoonId,chapterNo);
+	}
+
+	@Override
+	public CartoonChapter getNextObjectByCartoonId(Long cartoonId,Integer chapterNo) {
+		return cartoonChapterDao.getNextObjectByCartoonId(cartoonId,chapterNo);
+	}
+
 }

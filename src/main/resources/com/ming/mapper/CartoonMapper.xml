@@ -81,7 +81,7 @@
 			<if test="author != null"> AND author= #{author}</if>
 			<if test="disable != null"> AND disable= #{disable}</if>
 		</trim>
-		ORDER BY id DESC
+		ORDER BY page_view DESC
 	</select>
 
 	

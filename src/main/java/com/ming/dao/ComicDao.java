@@ -20,5 +20,12 @@ public interface ComicDao extends IMyBatisDao<Comic>{
 	 * @return
 	 */
 	public List<Comic> pageByList(@Param("comic") Comic comic,@Param("pager")Pager pager);
+	/**
+	 * 根据分类查询列表
+	 * @param Category 分类
+	 * @param num   数量
+	 * @return
+	 */
+	public List<Comic> getListByCategory(@Param("category")Integer category,@Param("num")Integer num);
 
 }

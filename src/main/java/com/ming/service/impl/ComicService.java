@@ -79,4 +79,9 @@ public class ComicService implements IComicService{
 		return comicDao.pageByList(comic, pager);
 	}
 
+	@Override
+	public List<Comic> getListByCategory(Integer category, Integer num) {
+		return comicDao.getListByCategory(category,num);
+	}
+
 }

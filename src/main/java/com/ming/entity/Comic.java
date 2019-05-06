@@ -29,7 +29,15 @@ public class Comic extends BaseEntity{
 	private Integer disable;
 	private Integer pageView;
 	private Date lastViewTime;
+	private Integer category;//类别(0：未分类，1：新番，2：推荐，3：热门)
+	
 	private List<String> tagList;
+	public Integer getCategory() {
+		return category;
+	}
+	public void setCategory(Integer category) {
+		this.category = category;
+	}
 	public Integer getPageView() {
 		return pageView;
 	}

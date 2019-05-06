@@ -81,7 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						//window.localStorage.setItem("pwd",pwd);
 						setCookie("phone",phone,365);
 						setCookie("pwd",pwd,365);
-						location.href="${contextPath}/cartoon/index";
+						Box.autoClose('登录成功！');
+						location.href="${contextPath}/cartoonNew/index";
 					}
 	    		},
 	    		error:function(data){

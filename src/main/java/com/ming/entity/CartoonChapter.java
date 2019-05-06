@@ -26,6 +26,29 @@ public class CartoonChapter extends BaseEntity{
 	private Integer disable;
 	private Integer pageView;
 	private Date lastViewTime;
+	
+	private String cartoonTitle; //漫画名
+	private Long preChapterId;   //上一话id
+	private Long nextChapterId;   //下一话id
+	
+	public Long getPreChapterId() {
+		return preChapterId;
+	}
+	public void setPreChapterId(Long preChapterId) {
+		this.preChapterId = preChapterId;
+	}
+	public Long getNextChapterId() {
+		return nextChapterId;
+	}
+	public void setNextChapterId(Long nextChapterId) {
+		this.nextChapterId = nextChapterId;
+	}
+	public String getCartoonTitle() {
+		return cartoonTitle;
+	}
+	public void setCartoonTitle(String cartoonTitle) {
+		this.cartoonTitle = cartoonTitle;
+	}
 	public Integer getPageView() {
 		return pageView;
 	}

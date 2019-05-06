@@ -14,13 +14,16 @@
 		<result column="disable" property="disable" />
 		<result column="page_view" property="pageView" />
 		<result column="last_view_time" property="lastViewTime" />
+		<result column="category" property="category" />
 
 	</resultMap>
 
 
-	<sql id="keyColumns">ID,TITLE,IMG_URL,tags,AUTHOR,introduce,resource_url,resource_password,CREATE_TIME,DISABLE,page_view,last_view_time
+	<sql id="keyColumns">
+	ID,TITLE,IMG_URL,tags,AUTHOR,introduce,resource_url,resource_password,CREATE_TIME,DISABLE,page_view,last_view_time,category
 	</sql>
-	<sql id="valueColumns">#{id},#{title},#{imgUrl},#{tags},#{author},#{introduce},#{resourceUrl},#{resourcePassword},#{createTime},#{disable},#{pageView},#{lastViewTime}
+	<sql id="valueColumns">
+	#{id},#{title},#{imgUrl},#{tags},#{author},#{introduce},#{resourceUrl},#{resourcePassword},#{createTime},#{disable},#{pageView},#{lastViewTime},#{category}
 	</sql>
 
 	<!--新增 -->
@@ -98,8 +101,19 @@
 			<if test="comic.tags != null"> AND tags like CONCAT(CONCAT('%', #{comic.tags}), '%')</if>
 			<if test="comic.author != null"> AND author= #{comic.author}</if>
 			<if test="comic.disable != null"> AND disable= #{comic.disable}</if>
+			<if test="comic.category != null and comic.category>0"> AND category= #{comic.category}</if>
 		</trim>
 		ORDER BY page_view DESC 
 		<include refid="Sql.pager"></include>
+	</select>
+	
+	<select id="getListByCategory" resultMap="comic">
+		SELECT
+		<include refid="keyColumns" />
+		FROM comic   
+		WHERE disable=0 
+		<if test="category != null and category>0"> AND category= #{category}</if> 
+		ORDER BY page_view DESC 
+		limit 0,#{num}
 	</select>
 </mapper>

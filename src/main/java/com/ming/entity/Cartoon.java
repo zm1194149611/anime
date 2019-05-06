@@ -28,6 +28,22 @@ public class Cartoon extends BaseEntity{
 	private Integer pageView;
 	private Date lastViewTime;
 	private List<String> tagList;
+	
+	//业务字段
+	private Integer lastChapterNo;  //最新章节话数
+	private String lastChapterTitle;   //最新章节标题
+	public Integer getLastChapterNo() {
+		return lastChapterNo;
+	}
+	public void setLastChapterNo(Integer lastChapterNo) {
+		this.lastChapterNo = lastChapterNo;
+	}
+	public String getLastChapterTitle() {
+		return lastChapterTitle;
+	}
+	public void setLastChapterTitle(String lastChapterTitle) {
+		this.lastChapterTitle = lastChapterTitle;
+	}
 	public Integer getPageView() {
 		return pageView;
 	}

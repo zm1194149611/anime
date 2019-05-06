@@ -93,4 +93,31 @@
 		ORDER BY sequence desc
 	</select>
 	
+	<select id="getLastObjectByCartoonId" parameterType="Long" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter
+		where cartoon_id= #{cartoonId}
+		ORDER BY sequence desc
+		limit 1
+	</select>
+	
+	<select id="getPreObjectByCartoonId" resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter
+		where cartoon_id=#{cartoonId}
+		AND sequence = #{chapterNo}-1
+		limit 1
+	</select>
+	
+	<select id="getNextObjectByCartoonId"  resultMap="cartoonChapter">
+		SELECT
+		<include refid="keyColumns" />
+		FROM cartoon_chapter
+		where cartoon_id=#{cartoonId}
+		AND sequence = #{chapterNo}+1
+		limit 1
+	</select>
+	
 </mapper>

@@ -15,5 +15,12 @@ public interface IComicService extends IBaseService<Comic>{
 	 * @return
 	 */
 	public List<Comic> pageByList(Comic comic,Pager pager);
+	/**
+	 * 根据分类查询列表
+	 * @param Category 分类
+	 * @param num   数量
+	 * @return
+	 */
+	public List<Comic> getListByCategory(Integer category,Integer num);
 
 }
